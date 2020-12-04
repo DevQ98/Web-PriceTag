@@ -1,0 +1,103 @@
+.design-container{
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+.design-container-tab{
+    display: flex;    
+}
+.design-container-left-content{
+    display: flex;
+    flex: 20%;
+    background-color: black;
+    flex-grow: 1;
+    border-left: 1px solid ;
+}
+.design-container-right-content{
+    display: flex;
+    flex: 80%;
+    background: #F0F0F0;
+    flex-grow: 1;
+}
+.tab-right-menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background: #FFFFFF !important;
+}
+.tab-left-menu{
+    background-color: #F0F0F0;
+    height: 1200px;
+    text-align: center;
+}
+.nav-links-menu {
+    color: rgb(0, 0, 0);
+    font-size: .5em;
+}
+
+.tab-item {
+    display: flex;
+    font-size: 2em;
+    align-items: center;
+    justify-self: center;
+    justify-content: center;
+    margin: 10px 0;
+    border: 2px;
+}
+.tab-item:hover{
+    color: rgb(126, 125, 125) !important;
+
+}
+.design-tool{
+    background: #F2DCBB !important;
+    height: 30px;
+    display: block;
+    flex-grow: 1;
+    flex-direction: column;
+}
+.design-area{
+    background:#181313 !important;
+    height: 1000px;
+    flex-grow: 1;
+    display: block;
+    flex-direction: column;
+}
+
+.board{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    max-width: 500px;
+    background-color: #313131;
+    padding: 15px;
+    width: 550px;
+  
+  }
+.board .card{
+  padding: 15px 25px;
+  background: transparent;
+  cursor: pointer;
+  border: 0px;
+  }
+  a .tab-element-text{
+      color: black !important;
+  }
+  a .tab-element-text:hover{
+      color: rgb(126, 125, 125) !important;
+      text-decoration: none;
+  }
+  .nav-links-menu:hover{
+    color: rgb(126, 125, 125) !important;
+
+  }
+  .nav-links-menu:focus{
+    background: #FFFFFF;
+  }
+.row , .col {
+    margin: 0px !important;
+    padding: 0px !important;
+}
