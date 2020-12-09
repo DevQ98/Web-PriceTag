@@ -70,21 +70,26 @@
 .board{
     display: flex;
     flex-direction: column;
-    height: 300px;
-    max-width: 500px;
-    background-color: #313131;
+
+    background-color: #white;
     padding: 15px;
-    width: 550px;
-  
+    width: 100%;
+    height : 100%;
+    border: 6px  !important;
+ 
   }
 .board .card{
   padding: 15px 25px;
-  background: transparent;
+  background: #F2DCBB;
   cursor: pointer;
-  border: 0px;
+  border: 5px !important;
+  border-color: black
+  
+
   }
   a .tab-element-text{
       color: black !important;
+      font-size: 400 !important;
   }
   a .tab-element-text:hover{
       color: rgb(126, 125, 125) !important;
@@ -100,4 +105,50 @@
 .row , .col {
     margin: 0px !important;
     padding: 0px !important;
+}
+.nav-item {
+
+    font-size: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+}
+.nav-link{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.tab-item{
+    margin: 0px !important;
+    padding: 0px !important;
+    
+}
+a.nav-link {
+    text-align: center;
+    padding: 20px 0;
+    position:absolute;
+}
+.flex-column {
+    background: #F0F0F0;
+    
+}
+.menu-content {
+    background: #E5E5E5;
+    height : 800px
+}
+.col-2 , .col-10 , .col-3 , .col-9 {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.left-menu {
+    position: relative;
+    height : 800px;
+    background: #F0F0F0;
+    
+}
+div.nav-item > a {
+    color: black;
+}
+.tool-bar {
+    background:#F2DCBB;
 }

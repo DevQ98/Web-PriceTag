@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconify-icons/carbon": "^1.1.0",
+    "@iconify/react": "^1.1.3",
+    "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -13,6 +16,7 @@
     "react-color": "^2.19.3",
     "react-dom": "^17.0.1",
     "react-elastic-carousel": "^0.9.5",
+    "react-icons": "^4.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "reactstrap": "^8.7.1",
@@ -42,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "author": "Nguyễn Minh Quân <025804051l@gmail.com>",
+  "license": "MIT"
 }

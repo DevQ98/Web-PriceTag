@@ -8,7 +8,6 @@ function History() {
     <>
        <Search></Search>
       <HistoryPage></HistoryPage> 
-      <Polotno></Polotno>
     </>
   );
 }

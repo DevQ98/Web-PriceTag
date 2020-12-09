@@ -1,6 +1,6 @@
 .navbar {
   background: #1c1c1e;
-  height: 115px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,11 +23,12 @@
   align-items: center;
   height: 115px;
   cursor: pointer;
-  position: relative;
+  position: relative ;
   justify-self: start;
 }
 .img-logo {
   margin-right: 4em;
+  height:  80px;
 }
 .navbar-account {
   color: #fff;
@@ -59,11 +60,11 @@
 .nav-links {
   display: flex;
   color: #fff;
-  font-size: 36px;
+  font-size: 20px;
   font-weight: normal;
-  line-height: 45px;
+  line-height: 10px;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 1px;
   padding: 0px 20px;
   height: 100%;
 }
