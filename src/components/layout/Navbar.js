@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
+import { Button } from '../common/Button/Button.js';
 import { Link } from 'react-router-dom';
-import './Navbar.css';
+import '../../assets/css/Button.css';
+import '../../assets/css/Navbar.css'
+import { FaRegBell } from "react-icons/fa";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -30,7 +32,7 @@ function Navbar() {
         <div className='navbar-container'>
           <div className='navbar-logo'>
             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-              <img className='img-logo' src='./images/logo.png' />
+              <img className='img-logo' src='./images/logo-1.png' />
             </Link>
           </div>         
           <div className='menu-icon' onClick={handleClick}>
@@ -54,7 +56,7 @@ function Navbar() {
             </li>
           </ul>
           {button && <Button buttonStyle='btn--outline'> Create Stamp</Button>}
-
+          <div className='navbar-bell'><FaRegBell/></div>
           <div className='navbar-account'><i class="fas fa-user-circle"></i></div>  
        
         </div>

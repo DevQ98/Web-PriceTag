@@ -1,7 +1,7 @@
 import React from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import TagList from './TagList'
+import TagList from '../../components/common/Carousels/TagList.js'
 function HistoryPage() {
     return (
         <div className='container-fluid pt-3'>

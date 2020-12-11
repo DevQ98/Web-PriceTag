@@ -1,11 +1,12 @@
 import React from 'react';
+import Draggable from 'react-draggable'
 
 function Board(props) {
     const drop = e =>{
         e.preventDefault();
         const card_id = e.dataTransfer.getData('card_id');
         const card = document.getElementById(card_id);
-        card.style.display ='inline';
+        card.style.display ='block';
 
         e.target.appendChild(card);
     }

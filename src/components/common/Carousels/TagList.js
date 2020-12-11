@@ -4,7 +4,7 @@ import Carousel from 'react-elastic-carousel';
 import Item from "./Item";
 import  Row from 'react-bootstrap/Row';
 
-import "./Home.css";
+import "../../../assets/css/Home.css";
 const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2 },

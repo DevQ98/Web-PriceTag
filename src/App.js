@@ -1,16 +1,10 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './views/Home/Home';
+import History from './views/History/History.js';
+import Design from './views/Design/Design.js';
 
-import Home from './components/pages/Home';
-import History from './components/pages/History';
-import Design from './components/pages/Design';
-
-
-import Toolbar from 'polotno/toolbar/toolbar';
-import ZoomButtons from 'polotno/toolbar/zoom-buttons';
-import SidePanel from 'polotno/side-panel/side-panel';
-import Workspace from 'polotno/canvas/workspace';
 
 
 import './App.css';
