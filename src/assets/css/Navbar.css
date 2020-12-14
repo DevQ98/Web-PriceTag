@@ -76,7 +76,7 @@
 }
 
 .nav-links:hover {
-  border-bottom: 10px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
   text-decoration: none;
   color: #fff;
 }

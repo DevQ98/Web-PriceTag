@@ -17,13 +17,15 @@ export default class Design extends Component {
     constructor(props) {
         super(props);
         this.postID = 0;
-        this.Body = "I Phone 12 Pro Max";
+        this.Body = "0";
         this.state = {
             postArray: [
             ],
             fontSize: 16,
             color: "#333",
-            bold: "Bold"
+            isBold: true,
+            bold : "bold",
+            isItalic : true,
         }
     }
 
@@ -51,23 +53,54 @@ export default class Design extends Component {
         this.Body = " AAA"
     }
 
-    addPost = () => {
-        this.postID = this.postID + 1;
-        const copyPostArray = Object.assign([], this.state.postArray);
-        copyPostArray.push({
-            id: this.postID,
-            body: this.Body
-        })
+    addPost = (id) => {
+        console.log('11', id);
+        
+        
+         this.postID = id;
+         if(id == 1)
+         {
+             this.Body =" i Phone 11 "
+         }
+         if(id == 2)
+         {
+             this.Body =" 19000000 VND"
+         }
+         if(id == 3)
+         {
+             this.Body =" Tang sac "
+         }
+         if(id == 4)
+         {
+             this.Body =" 30%"
+         }
+         if(id == 5)
+         {
+             this.Body =" Apple"
+         }
+         if(id == 6)
+         {
+             this.Body =" lalala"
+         }
+         const copyPostArray = Object.assign([], this.state.postArray);
+         copyPostArray.push({
+             id: id,
+             body: this.Body
+         })
+         this.setState({
+             postArray: copyPostArray
+         })
+    }
+    onClickBold = (isBold) => {
         this.setState({
-            postArray: copyPostArray
+            isBold : !this.state.isBold
         })
     }
-    onClickBold = () => {
+    onClickItalic = (isItalic) =>{
         this.setState({
-            bold: "Bold"
+            isItalic : !this.state.isItalic
         })
     }
-
     render() {
         const { postArray } = this.state;
 
@@ -76,7 +109,7 @@ export default class Design extends Component {
             <div className='design-context'>
                 <div className='row'>
                     <div className='col-3'>
-                        <Menu add={this.addPost.bind(this)}   ></Menu>
+                        <Menu add={this.addPost.bind(this)}></Menu>
                     </div>
 
                     <div className='col-9 menu-content'>
@@ -90,11 +123,11 @@ export default class Design extends Component {
                             <div className='col-1 tool-bar__item ' onClick={this.onClickBold}>
                                 <AiOutlineBold />
                             </div>
-                            <div className='col-1 tool-bar__item'>
+                            <div className='col-1 tool-bar__item' onClick={this.onClickItalic}>
                                 <FiItalic />
                             </div>
                             <div className='col-1 tool-bar__item'>
-                                <ButtonExample setColors={this.setColor}></ButtonExample>
+                                <ButtonExample  setColors={this.setColor}></ButtonExample>
 
                             </div>
                             <div className='col-1 tool-bar__item'>
@@ -122,7 +155,8 @@ export default class Design extends Component {
                                                     delete ={this.deleteEvent.bind(this. index)}
                                                     color={this.state.color}
                                                     fontSize={this.state.fontSize}
-                                                    bold = {{fontSize: this.state.bold}}
+                                                    bold = {  this.state.isBold ?  'bold' : 'normal' }
+                                                    italic = { this.state.isItalic ? 'italic' : 'normal'}
                                                 />    
                                             )
                                         })  

@@ -1,3 +1,7 @@
+.design-context{
+    overflow: hidden !important;
+    height: 650px !important;
+}
 .design-container{
     display: flex;
     margin: 0px;
@@ -237,4 +241,14 @@ div[id^=font-picker]
     justify-content: space-around;
     align-items: center;
     margin: 15px 0;
+}
+.svg {
+    width: 100% !important;
+    border: 0px !important  ;
+}
+.svg:focus {
+    border: 0px !important  ;
+}
+.svg:active{
+    border: 0px !important  ;
 }
