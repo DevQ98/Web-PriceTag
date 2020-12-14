@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../common/Button/Button.js';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import '../../assets/css/Button.css';
 import '../../assets/css/Navbar.css'
 import { FaRegBell } from "react-icons/fa";
@@ -11,7 +11,6 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -28,7 +27,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className='navbar'>
+      <nav className='navbar-fluid'>
         <div className='navbar-container'>
           <div className='navbar-logo'>
             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
@@ -40,14 +39,14 @@ function Navbar() {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+              <NavLink activeClassName='active' exact to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className='nav-item'>
-              <Link to='/history' className='nav-links' onClick={closeMobileMenu}>
+              <NavLink activeClassName='active' to='/history' className='nav-links' onClick={closeMobileMenu}>
                 History
-              </Link>
+              </NavLink>
             </li>
             <li>
               <Link to='/design' className='nav-links-mobile' onClick={closeMobileMenu}>
@@ -57,8 +56,7 @@ function Navbar() {
           </ul>
           {button && <Button buttonStyle='btn--outline'> Create Stamp</Button>}
           <div className='navbar-bell'><FaRegBell/></div>
-          <div className='navbar-account'><i class="fas fa-user-circle"></i></div>  
-       
+          <div className='navbar-account'><i class="fas fa-user-circle"></i></div>         
         </div>
       </nav>
     </>

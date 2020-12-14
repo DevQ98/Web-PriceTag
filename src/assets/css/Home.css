@@ -50,3 +50,13 @@ font-size: 2.5em;
 .hidden{
     display:none;
 }
+.items-element{
+    height: 60px !important;
+    display: block;
+    width: 200px !important;
+    border: 2px solid black !important;
+    cursor: pointer;
+}
+.items-element:active {
+    border: 2px dashed rgb(82, 36, 190) !important;
+}

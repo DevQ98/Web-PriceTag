@@ -3,9 +3,13 @@ import { SketchPicker  } from 'react-color'
 import {MdFormatColorFill} from "react-icons/md";
 import '../../../assets/css/Menu.css';
 class ButtonExample extends React.Component {
-  state = {
-    displayColorPicker: false,
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      displayColorPicker: false,
+      color: '#fff',
+    }
+  }
 
   handleClick = () => {
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
@@ -14,6 +18,12 @@ class ButtonExample extends React.Component {
   handleClose = () => {
     this.setState({ displayColorPicker: false })
   };
+  handleChange = (colors) => {
+    this.setState({ 
+      color: colors.hex
+    });
+    this.props.setColors(colors.hex)
+  }
 
   render() {
     const popover = {
@@ -32,7 +42,7 @@ class ButtonExample extends React.Component {
         <button  className='fill-color' onClick={ this.handleClick }><MdFormatColorFill/></button>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
-          <SketchPicker  />
+          <SketchPicker color={ this.state.color }  onChange={ this.handleChange.bind(this) }  />
         </div> : null }
       </div>
     )

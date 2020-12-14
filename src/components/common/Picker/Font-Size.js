@@ -31,18 +31,17 @@ class FontSize extends Component {
      
     this.setState({
       fontSize: event.value
-
+     
     });
+    this.props.setSizes(event.value)
     
   }
-
+  
   render() {
-    let styleobj = { background: "blue", fontSize: 20 }
     return (
-      <section style={styleobj}>
-        {/* <h2 className="tryout" style={{fontSize: this.state.fontSize+'px'}}>{this.state.fontSize}</h2> */}
-        <Select classNamePrefix="Font"  onChange={this.changeSize.bind(this)}  options={options} placeholder="Font size" />  
-
+      
+      <section >
+        <Select classNamePrefix="Font"  onChange={ this.changeSize.bind(this)}  options={options} placeholder="Font size" />  
       </section>
     );
 

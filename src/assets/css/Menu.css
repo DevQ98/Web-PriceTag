@@ -220,3 +220,12 @@ div[id^=font-picker]
     border: 0px;
 
 }
+.bnt-element{
+    border-radius: 2px;
+    background-color: rosybrown;
+    width: 100%;
+    list-style-type: none !important;
+}
+.bold:active {
+    font-size: bold;
+}

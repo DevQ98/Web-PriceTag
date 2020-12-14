@@ -1,54 +1,35 @@
-import React from 'react';
-import Navbar from './components/layout/Navbar.js';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './views/Home/Home';
-import History from './views/History/History.js';
-import Design from './views/Design/Design.js';
-
-
+import Navbar from './components/layout/Navbar.js';
+import Routers from './Routers/Routers.js';
 
 import './App.css';
-function App(props) {
-    console.log("props", props)
-    const store = props;
-    return (
+class App extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+      };
+}
+    render(){
+      return (
         <>
-
           <Router>
             <Navbar></Navbar>
             <Switch>
-               <Route path='/' exact component={Home}  />
-               <Route path='/history'  component={History} />
-               <Route path='/design'  component={Design} />
+               {                 
+                Routers.map((route, index) =>{
+                     return <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.main}
+                    />
+                 })
+               }
             </Switch>
           </Router>
         </>
-        // <div
-        //     style={{
-        //         display: 'flex',
-        //         height: '100%',
-        //         width: '100%',
-        //     }}
-        // >
-        //     <div style={{ width: '300px', height: '100%', display: 'flex' }}>
-        //         <SidePanel store={store} />
-        //     </div>
-        //     <div
-        //         style={{
-        //             display: 'flex',
-        //             height: '100%',
-        //             margin: 'auto',
-        //             flex: 1,
-        //             flexDirection: 'column',
-        //             position: 'relative',
-        //         }}
-        //     >
-        //         <Toolbar store={store} />
-        //         <Workspace store={store} />
-        //         <ZoomButtons store={store} />
-        //     </div>
-        // </div>
-    );
+    );}
 }
 
 export default App;

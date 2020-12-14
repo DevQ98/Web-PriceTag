@@ -1,22 +1,14 @@
-import React ,{useState} from 'react';
+import React ,{  Component} from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
-import Card from '../common/Draggable/Card';
-import Board from '../common/Draggable/Board'
-import { SketchPicker } from 'react-color';
 import { GrTemplate } from "react-icons/gr";
 import { GrClone} from "react-icons/gr"
 import {AiOutlineCloudUpload} from "react-icons/ai";
 import {MdTexture} from "react-icons/md";
-import { Button } from '../common/Button/Button.js';
 import '../../assets/css/Menu.css'
-import Draggable from 'react-draggable';
-function Menu() {
-    const [button] = useState(true);
-    const [hidden, setHidden] = useState(false);
-    const handleClick = () => {
-      setHidden(!hidden);
-    };
+export default class Menu extends Component {   
+    render () {
+
     return (
         <>
             <Tab.Container  defaultActiveKey="1" >
@@ -41,8 +33,8 @@ function Menu() {
                                 <div>
                                     <a class="tab-element-text">Elements</a>
                                 </div>
-                        </Nav.Link>
-                        </Nav.Item >
+                            </Nav.Link>
+                        </Nav.Item>
                         <Nav.Item  className='nav-item_tab-menu'>
                             <Nav.Link eventKey="3">
                                 <div className='tab-item'>
@@ -78,35 +70,25 @@ function Menu() {
             
                 <div className='col-9'>
                     <Tab.Content>
-                        <Tab.Pane eventKey="1">
-                                    <Tab.Pane eventKey="1">
-                                        <Board id="board-1" className="board ">
-                                            <div>
-                                            <Card id="card-1" className="card" draggable="true">
-                                                <p >iPhone 8</p>
-                                            </Card>
-                                            <Card id="card-3" className="card" draggable="true">
-                                                <p >Apple</p>
-                                            </Card>
-                                            <Card id="card-2" className="card" draggable="true">
-                                            <p >$ABC</p>
-                                            </Card> 
-                                            <Card id="card-4" className="card" draggable="true">
-                                            <p >$ADC</p>
-                                            </Card> 
-                                            </div>
-                                        </Board>
-                                        <Draggable>
-                                        <div >
-                        <p className={!hidden && 'hidden'}>Xin chào Viblo</p>
-                        </div>  
-                                        </Draggable>
-                                        
-                                         <button onClick={handleClick}>
-                                            Click me
-                                        </button>
-                                    </Tab.Pane>                             
-  
+                        <Tab.Pane eventKey="1" className="tab-element">
+                            <div>
+                                <button className="bnt-element" onClick={this.props.add} > Name</button>
+                            </div>   
+                            <div>
+                                <button className="bnt-element"  > Price</button>
+                            </div>
+                            <div>
+                                <button className="bnt-element"  > Brand</button>
+                            </div>
+                            <div>
+                                <button className="bnt-element"  > Discount</button>
+                            </div>
+                            <div>
+                                <button className="bnt-element"  > Promotion</button>
+                            </div>
+                            <div>
+                                <button className="bnt-element"  > lalala</button>
+                            </div>                                            
                         </Tab.Pane>
                         <Tab.Pane eventKey="2">
                         <div>Element</div>
@@ -130,5 +112,4 @@ function Menu() {
     )
 }
 
-export default Menu
-
+}
