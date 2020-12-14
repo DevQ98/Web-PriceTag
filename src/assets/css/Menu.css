@@ -221,11 +221,20 @@ div[id^=font-picker]
 
 }
 .bnt-element{
-    border-radius: 2px;
-    background-color: rosybrown;
-    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 35px 10px;
+    width: 90%;
+    border-radius: 5px;
     list-style-type: none !important;
 }
 .bold:active {
     font-size: bold;
+}
+.tab-element {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 15px 0;
 }

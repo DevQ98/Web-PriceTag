@@ -72,19 +72,19 @@ export default class Menu extends Component {
                     <Tab.Content>
                         <Tab.Pane eventKey="1" className="tab-element">
                             <div>
-                                <button className="bnt-element" onClick={this.props.add} > Name</button>
+                                <button className="bnt-element" onClick={this.props.add} > Tên Sản phẩm</button>
                             </div>   
                             <div>
-                                <button className="bnt-element"  > Price</button>
+                                <button className="bnt-element"  > Giá </button>
                             </div>
                             <div>
-                                <button className="bnt-element"  > Brand</button>
+                                <button className="bnt-element"  > Khuyến mãi</button>
                             </div>
                             <div>
-                                <button className="bnt-element"  > Discount</button>
+                                <button className="bnt-element"  > Giảm giá</button>
                             </div>
                             <div>
-                                <button className="bnt-element"  > Promotion</button>
+                                <button className="bnt-element"  > Hãng</button>
                             </div>
                             <div>
                                 <button className="bnt-element"  > lalala</button>

@@ -19,12 +19,13 @@ class ButtonExample extends React.Component {
     this.setState({ displayColorPicker: false })
   };
   handleChange = (colors) => {
+    console.log("color",colors)
     this.setState({ 
       color: colors.hex
     });
     this.props.setColors(colors.hex)
   }
-
+  c
   render() {
     const popover = {
       position: 'absolute',
