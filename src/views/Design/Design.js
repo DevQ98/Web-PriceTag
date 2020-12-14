@@ -19,9 +19,9 @@ export default class Design extends Component {
         this.postID = 0;
         this.Body = "0";
         this.state = {
-            postArray: [
+            nameArray: [
             ],
-            cartArray: [
+            priceArray: [
             ],
             fontSize: 16,
             color: "#333",
@@ -43,60 +43,38 @@ export default class Design extends Component {
         });
     }
     deleteEvent = (index) => {
-        const copyPostArray = Object.assign([], this.state.postArray);
-        copyPostArray.splice(index, 1);
+        const copyNameArray = Object.assign([], this.state.nameArray);
+        copyNameArray.splice(index, 1);
 
         this.setState({
-            postArray: copyPostArray
+            nameArray: copyNameArray
         })
     }
 
-    setPost = (element) => {
-        this.Body = " AAA"
-    }
 
-    addPost = (id) => {
-        console.log('11', id);
-        
-        
+
+    addName = (id) => {
          this.postID = id;
-         if(id == 1)
-         {
-             this.Body =" i Phone 11 11"
-         }
-         if(id == 2)
-         {
-             this.Body =" 19000000 VND"
-         }
-         const copyPostArray = Object.assign([], this.state.postArray);
-         copyPostArray.push({
+         this.Body = " Tên Sản Phẩm"
+         const copyNameArray = Object.assign([], this.state.nameArray);
+         copyNameArray.push({
              id: id,
              body: this.Body
          })
          this.setState({
-             postArray: copyPostArray
+             nameArray: copyNameArray
          })
     }
-    addCart = (id) =>{
-        console.log('11', id);
-        
-        
+    addPrice = (id) =>{        
          this.postID = id;
-         if(id == 1)
-         {
-             this.Body =" i Phone 11 "
-         }
-         if(id == 2)
-         {
-             this.Body =" 19000000 VND"
-         }
-         const copyCartArray = Object.assign([], this.state.cartArray);
-         copyCartArray.push({
+         this.Body = "Giá Sản Phẩm  "
+         const copyPriceArray = Object.assign([], this.state.priceArray);
+         copyPriceArray.push({
              id: id,
              body: this.Body
          })
          this.setState({
-            cartArray: copyCartArray
+            priceArray: copyPriceArray
          })   
     }
     onClickBold = (isBold) => {
@@ -117,7 +95,7 @@ export default class Design extends Component {
             <div className='design-context'>
                 <div className='row'>
                     <div className='col-3'>
-                        <Menu add={this.addPost.bind(this)} addcart={this.addCart.bind(this)}></Menu>
+                        <Menu add={this.addName.bind(this)} addcart={this.addPrice.bind(this)}></Menu>
                     </div>
 
                     <div className='col-9 menu-content'>
@@ -154,7 +132,7 @@ export default class Design extends Component {
                         <div className='row design'>
                             <div>
                                     {                                    
-                                        this.state.postArray.map((tag , index) =>{
+                                        this.state.nameArray.map((tag , index) =>{
                                             return(        
                                                 <NameElement
                                                     key={index}
@@ -172,7 +150,7 @@ export default class Design extends Component {
                             </div>
                             <div>
                                     {                                    
-                                        this.state.cartArray.map((tag , index) =>{
+                                        this.state.priceArray.map((tag , index) =>{
                                             return(        
                                                 <PriceElement
                                                     key={index}

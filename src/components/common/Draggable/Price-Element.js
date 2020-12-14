@@ -21,7 +21,7 @@ class PriceElement extends Component {
             <Draggable>
                 <div className='items-element apply-font' style={{ color: this.props.color,fontSize: this.props.fontSize + "px", fontWeight: this.props.bold, fontStyle: this.props.italic }}>
                     {this.props.body}
-                    {this.props.id}
+                    {/* {this.props.id} */}
                      {/* <button onClick={this.props.delete} >Delete</button>  */}
                 </div>
             </Draggable>
