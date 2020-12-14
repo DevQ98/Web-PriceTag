@@ -10,8 +10,8 @@ import FontPicker from "../../components/common/Picker/Font-Picker";
 import ButtonExample from '../../components/common/Picker/Color-Picker';
 import '../../assets/css/Menu.css';
 import FontSize from '../../components/common/Picker/Font-Size';
-import Tag from '../../components/common/Draggable/Move';
-import Draggable from 'react-draggable';
+import NameElement from '../../components/common/Draggable/Name-Element';
+import PriceElement from '../../components/common/Draggable/Price-Element';
 
 export default class Design extends Component {
     constructor(props) {
@@ -20,6 +20,8 @@ export default class Design extends Component {
         this.Body = "0";
         this.state = {
             postArray: [
+            ],
+            cartArray: [
             ],
             fontSize: 16,
             color: "#333",
@@ -60,27 +62,11 @@ export default class Design extends Component {
          this.postID = id;
          if(id == 1)
          {
-             this.Body =" i Phone 11 "
+             this.Body =" i Phone 11 11"
          }
          if(id == 2)
          {
              this.Body =" 19000000 VND"
-         }
-         if(id == 3)
-         {
-             this.Body =" Tang sac "
-         }
-         if(id == 4)
-         {
-             this.Body =" 30%"
-         }
-         if(id == 5)
-         {
-             this.Body =" Apple"
-         }
-         if(id == 6)
-         {
-             this.Body =" lalala"
          }
          const copyPostArray = Object.assign([], this.state.postArray);
          copyPostArray.push({
@@ -90,6 +76,28 @@ export default class Design extends Component {
          this.setState({
              postArray: copyPostArray
          })
+    }
+    addCart = (id) =>{
+        console.log('11', id);
+        
+        
+         this.postID = id;
+         if(id == 1)
+         {
+             this.Body =" i Phone 11 "
+         }
+         if(id == 2)
+         {
+             this.Body =" 19000000 VND"
+         }
+         const copyCartArray = Object.assign([], this.state.cartArray);
+         copyCartArray.push({
+             id: id,
+             body: this.Body
+         })
+         this.setState({
+            cartArray: copyCartArray
+         })   
     }
     onClickBold = (isBold) => {
         this.setState({
@@ -109,7 +117,7 @@ export default class Design extends Component {
             <div className='design-context'>
                 <div className='row'>
                     <div className='col-3'>
-                        <Menu add={this.addPost.bind(this)}></Menu>
+                        <Menu add={this.addPost.bind(this)} addcart={this.addCart.bind(this)}></Menu>
                     </div>
 
                     <div className='col-9 menu-content'>
@@ -148,7 +156,25 @@ export default class Design extends Component {
                                     {                                    
                                         this.state.postArray.map((tag , index) =>{
                                             return(        
-                                                <Tag
+                                                <NameElement
+                                                    key={index}
+                                                    id ={tag.id}
+                                                    body = {tag.body}
+                                                    delete ={this.deleteEvent.bind(this. index)}
+                                                    color={this.state.color}
+                                                    fontSize={this.state.fontSize}
+                                                    bold = {  this.state.isBold ?  'bold' : 'normal' }
+                                                    italic = { this.state.isItalic ? 'italic' : 'normal'}
+                                                />    
+                                            )
+                                        })  
+                                    }
+                            </div>
+                            <div>
+                                    {                                    
+                                        this.state.cartArray.map((tag , index) =>{
+                                            return(        
+                                                <PriceElement
                                                     key={index}
                                                     id ={tag.id}
                                                     body = {tag.body}
@@ -163,6 +189,7 @@ export default class Design extends Component {
                                     }
                             </div>
                         </div>
+
 
                     </div>
                 </div>

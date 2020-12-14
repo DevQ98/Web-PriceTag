@@ -8,15 +8,6 @@ import { MdTexture } from "react-icons/md";
 import '../../assets/css/Menu.css'
 export default class Menu extends Component {
 
-
-    onClickMenu = (e) => {
-        debugger
-        if(e.target.attributes['data-id'].value != undefined || e.target.attributes['data-id'].value != null){
-            this.props.add(e.target.attributes['data-id'].value)
-        }
-      
-    }
-
     render() {
 
 
@@ -86,20 +77,9 @@ export default class Menu extends Component {
                                         <button className="bnt-element" onClick={()=>this.props.add(1)} data-id="1" > Tên Sản phẩm</button>
                                     </div>
                                     <div>
-                                        <button className="bnt-element" onClick={()=>this.props.add(2)}  data-id="2" > Giá </button>
+                                        <button className="bnt-element" onClick={()=>this.props.addcart(1)}  data-id="2" > Giá </button>
                                     </div>
-                                    <div>
-                                        <button className="bnt-element" onClick={()=>this.props.add(3)}  data-id="3"> Khuyến mãi</button>
-                                    </div>
-                                    <div>
-                                        <button className="bnt-element" onClick={()=>this.props.add(4)}  data-id="4"> Giảm giá</button>
-                                    </div>
-                                    <div>
-                                        <button className="bnt-element" onClick={()=>this.props.add(5)}  data-id="5"> Hãng</button>
-                                    </div>
-                                    <div>
-                                        <button className="bnt-element" onClick={()=>this.props.add(6)}  data-id="6"> lalala</button>
-                                    </div>
+                                
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="2">
                                     <div>Element</div>
