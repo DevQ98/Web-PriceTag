@@ -54,13 +54,10 @@ font-size: 2.5em;
     height: 60px !important;
     display: block;
     width: 200px !important;
-    border: 2px solid black !important;
+    border: 1px solid white !important;
     cursor: pointer;
 }
 .items-element:active {
-    border: 2px dashed rgb(82, 36, 190) !important;
+    border: 1px dashed rgb(82, 36, 190) !important;
 }
-.items-element:focus {
-    border: 2px dashed rgb(82, 36, 190) !important;
 
-}

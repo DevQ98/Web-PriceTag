@@ -1,3 +1,6 @@
+body{
+    overflow: hidden;
+}
 .design-context{
     overflow: hidden !important;
     height: 650px !important;
@@ -251,4 +254,36 @@ div[id^=font-picker]
 }
 .svg:active{
     border: 0px !important  ;
+}
+.sidebar-closed{
+    max-width: 80px !important;
+
+}
+.tab-menu {
+    display: flex;
+
+}
+.sidebar-open {
+    display: flex;
+    max-width:  300px !important;
+    flex-grow: 0;
+    flex: auto;
+    
+}
+
+.tab-content-normal {
+    display: none;
+}
+.tab-icons {
+    max-width:  60px !important;
+    height: 600px !important;
+    background: #F0F0F0;
+
+}
+.btn-sidebar{
+    background-color: darkgrey;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -7,15 +7,25 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdTexture } from "react-icons/md";
 import '../../assets/css/Menu.css'
 export default class Menu extends Component {
+    constructor(props){
+        super(props);
+        
+        this.state = {
+           
 
+        }
+       
+
+    }
+
+    componentDidMount() {
+        console.log("A", this.props)
+    }
     render() {
-
-
         return (
             <>
-                <Tab.Container defaultActiveKey="1" >
-                    <div className='row'>
-                        <div className='col-3 left-menu'>
+                <Tab.Container  defaultActiveKey="1"   >               
+                        <div className='col tab-icons'  >
                             <Nav className="flex-column">
                                 <Nav.Item className='nav-item_tab-menu'>
                                     <Nav.Link eventKey="1">
@@ -70,19 +80,33 @@ export default class Menu extends Component {
                             </Nav>
                         </div>
 
-                        <div className='col-9'>
+                        <div className={`col  tab-content-${this.props.visible}`}  >
                             <Tab.Content>
                                 <Tab.Pane eventKey="1" className="tab-element">
-                                    <div>
-                                        <button className="bnt-element" onClick={()=>this.props.add(1)} data-id="1" > Tên Sản phẩm</button>
-                                    </div>
-                                    <div>
-                                        <button className="bnt-element" onClick={()=>this.props.addcart(1)}  data-id="2" > Giá </button>
-                                    </div>
-                                
+                                    
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="2">
-                                    <div>Element</div>
+                                    <div>
+                                        <button className="bnt-element" onClick={()=>this.props.addName(1)} data-id="1" > Tên Sản phẩm</button>
+                                    </div>
+                                    <div>
+                                        <button className="bnt-element" onClick={()=>this.props.addPrice(1)}  data-id="1" > Giá Gốc </button>
+                                    </div>
+                                    <div>
+                                        <button className="bnt-element" onClick={()=>this.props.addBrand(1)}  data-id="1" > Hãng sản xuất </button>
+                                    </div>
+                                    <div>
+                                        <button className="bnt-element" onClick={()=>this.props.addDate(1)}  data-id="1" > Ngày in </button>
+                                    </div>
+                                    <div>
+                                        <button className="bnt-element" onClick={()=>this.props.addDiscount(1)}  data-id="1" > Giá khuyến mãi </button>
+                                    </div>
+                                    <div>
+                                        <button className="bnt-element" onClick={()=>this.props.addPromotion(1)}  data-id="1" > Chương trình khuyến mãi </button>
+                                    </div>
+                                    <div>
+                                        <button className="bnt-element" onClick={()=>this.props.addStatus(1)}  data-id="1" > Trang thái </button>
+                                    </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="3">
                                     <div>Uploads</div>
@@ -96,7 +120,7 @@ export default class Menu extends Component {
 
                             </Tab.Content>
                         </div>
-                    </div>
+
                 </Tab.Container>
 
             </>
