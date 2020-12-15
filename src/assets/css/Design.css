@@ -1,0 +1,118 @@
+.design-tool{
+    background: #F2DCBB !important;
+    height: 30px;
+    display: block;
+    flex-grow: 1;
+    flex-direction: column;
+    z-index: 2;
+}
+.design-area{
+    background:#181313 !important;
+    height: 1000px;
+    flex-grow: 1;
+    display: block;
+    flex-direction: column;
+}
+
+.board{
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    background-color: white;
+    padding: 15px;
+    width: 100%;
+    height : 100%;
+    border: 6px  !important;
+    position: relative;
+ 
+  }
+.board .card{
+  padding: 15px 25px;
+  background: #F2DCBB;
+  cursor: pointer;
+  max-width: 60px;
+  border: 5px !important;
+  border-color: black;
+  position: absolute ;
+
+  }
+  .menu-content {
+    background: #E5E5E5;
+    z-index: 1;
+    height : 800px
+}
+
+.tool-bar__item:hover {
+  background-color: white;
+  border-radius: 10px;
+}
+.tool-bar__item:focus {
+  background-color: rgb(71, 66, 66);
+  border-radius: 10px;
+}
+.col-2 {
+  max-width: none !important;
+}
+.col-2:hover {
+  background-color: transparent !important;
+}
+.dropdown-button{
+  background: #ffff !important;
+  height: 35px !important;
+  border-radius: 5px solid rgb(1, 1, 39) !important;
+}
+.css-yk16xz-control{
+  height: 35px !important;
+}
+.navbar-bell{
+  font-size: 30px;
+  color: white;
+  margin: 0 0 10px 20px;
+}
+div[id^=font-picker]
+{
+  width: 250px !important;
+}
+.fill-color {
+  background: transparent;
+  border: 0px;
+
+}
+.bold:active {
+  font-size: bold;
+}
+.tab-element {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 15px 0;
+}
+.svg {
+  width: 100% !important;
+  border: 0px !important  ;
+}
+.svg:focus {
+  border: 0px !important  ;
+}
+.svg:active{
+  border: 0px !important  ;
+}
+.tool-bar {
+  display: flex;
+  background:#F2DCBB;
+  align-items: center;
+  position: relative;
+  padding: 10px !important;
+  height: 10%;
+}
+
+
+.tool-bar__item {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px !important;
+  position: absolute;
+  text-align: center;
+  width: 300px !important;
+
+}

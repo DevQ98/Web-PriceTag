@@ -211,7 +211,7 @@ export default class Design extends Component {
                             ></Menu>
                                    
                     </div>
-                    <div className="btn-sidebar"  onClick={this.toggleSidebar} > x</div>
+                    <div className="btn-sidebar"  onClick={this.toggleSidebar} >O</div>
 
                     <div className='col menu-content'>
                         <div className='row tool-bar justify-content-around'>

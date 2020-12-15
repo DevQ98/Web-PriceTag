@@ -6,18 +6,13 @@ import { GrClone } from "react-icons/gr"
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdTexture } from "react-icons/md";
 import '../../assets/css/Menu.css'
+import '../../assets/css/Design.css'
 export default class Menu extends Component {
     constructor(props){
         super(props);
-        
         this.state = {
-           
-
         }
-       
-
     }
-
     componentDidMount() {
         console.log("A", this.props)
     }
@@ -25,56 +20,56 @@ export default class Menu extends Component {
         return (
             <>
                 <Tab.Container  defaultActiveKey="1"   >               
-                        <div className='col tab-icons'  >
+                        <div className='col menu'  >
                             <Nav className="flex-column">
                                 <Nav.Item className='nav-item_tab-menu'>
                                     <Nav.Link eventKey="1">
-                                        <div className='tab-item'>
+                                        <span className='menu_tab-item'>
                                             <GrTemplate />
-                                        </div>
-                                        <div>
+                                        </span>
+                                        <span>
                                             <a class="tab-element-text">Templates</a>
-                                        </div>
+                                        </span>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='nav-item_tab-menu'>
                                     <Nav.Link eventKey="2">
-                                        <div className='tab-item'>
+                                        <span className='menu_tab-item'>
                                             <GrClone />
-                                        </div>
-                                        <div>
+                                        </span>
+                                        <span>
                                             <a class="tab-element-text">Elements</a>
-                                        </div>
+                                        </span>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='nav-item_tab-menu'>
                                     <Nav.Link eventKey="3">
-                                        <div className='tab-item'>
+                                        <span className='menu_tab-item'>
                                             <AiOutlineCloudUpload />
-                                        </div>
-                                        <div>
+                                        </span>
+                                        <span>
                                             <a class="tab-element-text">Unload</a>
-                                        </div>
+                                        </span>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='nav-item_tab-menu'>
                                     <Nav.Link eventKey="4">
-                                        <div className='tab-item'>
+                                        <span className='menu_tab-item'>
                                             <MdTexture />
-                                        </div>
-                                        <div >
+                                        </span>
+                                        <span >
                                             <a class="tab-element-text">BGround</a>
-                                        </div>
+                                        </span>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='nav-item_tab-menu'>
                                     <Nav.Link eventKey="5">
-                                        <div className='tab-item'>
+                                        <span className='menu_tab-item'>
                                             <i class="fas fa-user-edit"></i>
-                                        </div>
-                                        <div >
+                                        </span>
+                                        <span >
                                             <a class="tab-element-text">Request</a>
-                                        </div>
+                                        </span>
                                     </Nav.Link>
                                 </Nav.Item>
                             </Nav>

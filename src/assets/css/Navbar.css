@@ -62,7 +62,7 @@
 
 .nav-links {
   display: flex;
-  color: #fff;
+  color: #fff !important;
   font-size: 20px;
   font-weight: normal;
   line-height: 10px;
@@ -78,7 +78,7 @@
 .nav-links:hover {
   border-bottom: 5px solid transparent !important;
   text-decoration: none;
-  color: #fff;
+  color: #fff !important;
 }
 .fa-bars {
   color: #fff;

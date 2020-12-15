@@ -8,7 +8,7 @@ function Home() {
     <>
      <Banner></Banner>
       <div className='container-fluid pt-3'>
-          <h2>Recent design</h2>
+          <h3>Recent design</h3>
           <TagList></TagList>
       </div> 
     </>
