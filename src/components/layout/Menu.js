@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
-import { GrTemplate } from "react-icons/gr";
-import { GrClone } from "react-icons/gr"
+import { HiTemplate } from "react-icons/hi";
+import { FaRegClone } from "react-icons/fa"
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdTexture } from "react-icons/md";
 import '../../assets/css/Menu.css'
@@ -22,70 +22,56 @@ export default class Menu extends Component {
         console.log(this.props)
             this.props.setSides(key)
       }
-    componentDidMount() {
-        console.log("A", this.props)
-    }
     render() {
         let leftOpen = this.state.leftOpen ? 'open' : 'closed';
         return (
             <>
                 <Tab.Container  defaultActiveKey="1"   >               
                         <div className='col menu'  >
-                            <Nav className="flex-column">
-                                <Nav.Item className={`nav-item_tab-menu `} onClick={this.toggleSidebar}>
+                            <Nav className="menu__colum">
+                                <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="1">
-                                        <span className='menu_tab-item'>
-                                            <GrTemplate />
-                                        </span>
-                                        <span>
-                                            <a class="tab-element-text" >Templates</a>
-                                        </span>
+                                        <div className='menu__item'>
+                                            <HiTemplate />
+                                            <span>Templates</span>
+                                        </div>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='nav-item_tab-menu' onClick={this.toggleSidebar}>
+                                <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="2">
-                                        <span className='menu_tab-item'>
-                                            <GrClone />
-                                        </span>
-                                        <span>
-                                            <a class="tab-element-text">Elements</a>
-                                        </span>
+                                        <div className='menu__item'>
+                                            <FaRegClone />                              
+                                            <span>Elements</span>
+                                        </div>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='nav-item_tab-menu' onClick={this.toggleSidebar}>
+                                <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="3">
-                                        <span className='menu_tab-item'>
-                                            <AiOutlineCloudUpload />
-                                        </span>
-                                        <span>
-                                            <a class="tab-element-text">Unload</a>
-                                        </span>
+                                        <div className='menu__item'>
+                                            <AiOutlineCloudUpload />                            
+                                            <span>Unload</span>
+                                        </div>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='nav-item_tab-menu' onClick={this.toggleSidebar}>
+                                <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="4">
-                                        <span className='menu_tab-item'>
-                                            <MdTexture />
-                                        </span>
-                                        <span >
-                                            <a class="tab-element-text">BGround</a>
-                                        </span>
+                                        <div className='menu__item'>
+                                            <MdTexture />                          
+                                            <span>BGround</span>
+                                        </div>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='nav-item_tab-menu'onClick={this.toggleSidebar}>
+                                <Nav.Item className=' move'onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="5">
-                                        <span className='menu_tab-item'>
-                                            <i class="fas fa-user-edit"></i>
-                                        </span>
-                                        <span >
-                                            <a class="tab-element-text">Request</a>
+                                        <span className='menu__item'>
+                                            <i className="fas fa-user-edit"></i>                            
+                                            <span>Request</span>
                                         </span>
                                     </Nav.Link>
                                 </Nav.Item>
                             </Nav>
                         </div>
-
-                        <div className={`col  tab-content-${this.props.visible}`}  >
+                        <div className={`col  menu-content-${this.props.visible}`}  >
                             <Tab.Content>
                                 <Tab.Pane eventKey="1" className="tab-element">
                                     <div className="tab-content__Element">
@@ -142,12 +128,10 @@ export default class Menu extends Component {
                                 <Tab.Pane eventKey="5">
                                     <div>Request</div>
                                 </Tab.Pane>
-
                             </Tab.Content>
                         </div>
 
                 </Tab.Container>
-
             </>
         )
     }

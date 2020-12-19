@@ -1,133 +1,149 @@
-.row , .col {
-    margin: 0px !important;
-    padding: 0px !important;
-}
 a{
-    text-align: center;
-    text-decoration: none !important;
-    color: black !important;
+	text-align: center;
+	text-decoration: none !important;
+	color: black !important;
 }
-    .tab-element {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        overflow: scroll;
-        height: 800px;
+.row , .col {
+		margin: 0px !important;
+		padding: 0px !important;
+}
+.menu__colum {
+	display: flex;
+	flex-direction: column;
+	height: 95vh;
+}
+.menu__items {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	height: 60px;
+}
+.menu__item { 
+	display: flex;
+	font-size: 1em;
+	align-items: center;
+	flex-direction: column;
+	justify-self: center;
+	justify-content: center;
+}
+.menu__items:hover{
+	background-color: #fff;
+}
+.menu__items > a > .menu__item:hover {
+	color: #f0f0f0;
+}
+.move{
+	position:absolute;
+	bottom: 0;
+	margin-left: 0.7em;
+}
+.menu__items:active{
+	background-color: #fff;
+}
+.tab-element {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		overflow: scroll;
+		height: 95vh;
 
-    }
-    a .tab-element-text:hover{
-        color: rgb(126, 125, 125) !important;}
-    .menu_tab-item {
-        display: flex;
-        font-size: 2em;
-        align-items: center;
-        justify-self: center;
-        justify-content: center;
-        margin: 10px 0;
-        border: 2px;
-    }
+}
 
 .nav-item {
 
-    font-size: 12px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-}
-.nav-item_tab-menu:hover {
-    background-color: white;
+	font-size: 12px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
 }
 
 .bnt-element{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 35px 10px;
-    width: 90%;
-    border-radius: 5px;
-    list-style-type: none !important;
-    border: 2px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 35px 10px;
+	width: 90%;
+	border-radius: 5px;
+	list-style-type: none !important;
+	border: 2px;
 }
 
 .sidebar-closed{
-    display: flex;
-    max-width: 60px !important;
-    transition: all 2s;
-
+	display: flex;
+	max-width: 60px !important;
+	transition: all 2s;
+	height: 95vh;
 }
 
 .sidebar-open {
-    display: flex;
-    max-width:  300px !important;
-    flex-grow: 0;
-    flex: auto;
- 
+	display: flex;
+	max-width:  300px !important;
+	height: 95vh;
+	flex-grow: 0;
+	flex: auto;
 }
 
-.tab-content-closed {    
-    display: none;
-    transition:  all 1s;
+.menu-content-closed {    
+	display: none;
+	transition:  all 1s;
 }
 .menu {
-    max-width:  60px !important;
-    background: #F0F0F0;
+	max-width:  60px !important;
+	background: #F0F0F0;
 }
 .btn-sidebar{
-
-    background-color: #F0F0F0;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	background-color: #F0F0F0;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .tab-content__Element {
-    background-color: #F0F0F0;
-    display: flex;
-    height: 160px;
-    width:  90%;
-    margin:  auto;
-
-    margin-top: 30px;
-    margin-bottom: 30px;
-    border: 2px;
+	background-color: #F0F0F0;
+	display: flex;
+	height: 160px;
+	width:  90%;
+	margin:  auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border: 2px;
 }
 
 .bnt-template{
-    display: flex;
-    background-color: white;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    
-    list-style-type: none !important;
-    border: 2px;
+	display: flex;
+	background-color: white;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	
+	list-style-type: none !important;
+	border: 2px;
 }
 .stamp1 {
-    height: 100px;
-    width: 100px;
+	height: 100px;
+	width: 100px;
 }
 .stamp2 {
-    height: 100px;
-    width: 200px;
+	height: 100px;
+	width: 200px;
 }
 .stamp3 {
-    height: 100px;
-    width: 70px;
+	height: 100px;
+	width: 70px;
 }
 .stamp4 {
-    height: 100px;
-    width: 130px;
+	height: 100px;
+	width: 130px;
 }
 .stamp5 {
-    height: 100px;
-    width: 150px;
+	height: 100px;
+	width: 150px;
 }
 .stamp6 {
-    height: 80px;
-    width: 180px;
+	height: 80px;
+	width: 180px;
 }
 .stamp7 {
-    height: 100px;
-    width: 80px;
+	height: 100px;
+	width: 80px;
 }

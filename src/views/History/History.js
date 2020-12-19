@@ -7,8 +7,7 @@ function History() {
   return (
     <>
        <Banner></Banner>
-      <HistoryPage></HistoryPage>  
-      
+       <HistoryPage></HistoryPage> 
     </>
   );
 

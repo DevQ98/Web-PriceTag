@@ -60,15 +60,15 @@ function NavbarCom(props) {
                         </Link>
                     </div>
                     <div className='navbar__menu '>
-                        <NavLink activeClassName='active' exact to='/' className='nav-links' onClick={closeMobileMenu}>
+                        <NavLink activeClassName='link_active' exact to='/' className='nav-links' onClick={closeMobileMenu}>
                             Home
                         </NavLink>
-                        <NavLink activeClassName='active' to='/history' className='nav-links' onClick={closeMobileMenu}>
+                        <NavLink activeClassName='link_active' to='/history' className='nav-links' onClick={closeMobileMenu}>
                             History
                         </NavLink>
                     </div>                  
                     <div className='navbar__user '>
-                        <Button onClick={showButtonOnDesign} buttonStyle='btn--outline'> Create Stamp</Button>    
+                        <Button onClick={showButtonOnDesign} buttonStyle='btn--primary'> Create Stamp</Button>    
                         <div className='navbar-bell'><FaRegBell /></div>
                         <div className='navbar-account'><i className="fas fa-user-circle"></i></div>
                     </div>
