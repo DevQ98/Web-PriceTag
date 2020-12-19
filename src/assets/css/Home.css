@@ -71,16 +71,71 @@ font-size: 2.5em;
 .items-element:active {
     border: 1px dashed rgb(82, 36, 190) !important;
 }
-.item{
-    background-color: transparent;
-    width: 300px;
-    height: 200px;
-}
+
 .stamp-name{
-    color: rgb(24, 23, 23);
-    font-weight: 300px;
-    font-size: 14px;
+    color: rgb(0, 0, 0);
+    font-weight:200;
+    font-size: 12px;
+    text-align: center;
 }
 .Tab-history{
     margin: 0 15px;
+}
+.home-body {
+    position: relative;
+}
+.home-content {
+    position: relative;
+    top: 0;
+}
+.list-item{
+    top : 0;
+    overflow: scroll ;
+    height: 75vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.list-item > div {
+    width:  calc(100% /6);
+    padding:  0 6px;
+    box-sizing: border-box;
+    flex: auto;
+    
+}
+.home-title{
+    border: 2px ;
+    height: 5vh;
+    border-bottom: 3px solid #f0f0f0;
+    box-shadow: 4px #f0f0f0 ;
+    margin: 0 16px;
+    position: sticky;
+    top :0;
+    z-index: 5;
+}
+.price-tag{
+    display: inline-block;
+    flex-direction: row;
+    width: calc(100% /6);
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    flex: auto;
+}
+.price-tag > img {
+    align-items: center;
+    width: 190px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.title-text{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: start;
+    font-weight: bold;
+    font-size: 1.5em;
 }

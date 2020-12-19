@@ -15,7 +15,7 @@ const TagList = (props) => {
     return (
         <div className='container-fluid pt-3'> 
             <Jumbotron className="jumbotron">                    
-                    <Row className="item-area" fluid={true}>                                 
+                    <Row className="item-area">                                 
                         <Carousel breakPoints={breakPoints} >
                             <Item number="1"></Item>
                             <Item number="2"></Item>

@@ -1,10 +1,10 @@
 import React, {Component } from 'react';
 import '../../App.css';
 import Banner from '../../components/layout/Banner.js';
-import TagList from '../../components/common/Carousels/TagList';
 import '../../assets/css/Home.css';
 import { connect } from 'react-redux';
 import { addSize, ChangeStatusNav } from '../../actions/designAction.js'
+import HomePage from './HomePage';
 
 class HomeCom extends Component {
     constructor(props) {
@@ -25,10 +25,7 @@ class HomeCom extends Component {
         return (
             <>
                 <Banner></Banner>
-                <div className='container-fluid pt-3'>
-                    <h3>Recent design</h3>
-                    <TagList></TagList>
-                </div>
+                <HomePage></HomePage>
             </>
         );
     }
