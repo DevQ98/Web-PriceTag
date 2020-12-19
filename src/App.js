@@ -4,17 +4,11 @@ import Navbar from './components/layout/Navbar.js';
 import Routers from './Routers/Routers.js';
 
 import './App.css';
-class App extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
-      };
-}
-    render(){
+function App() {
       return (
         <>
           <Router>
-            <Navbar></Navbar>
+            <Navbar design=" true"></Navbar>
             <Switch>
                {                 
                 Routers.map((route, index) =>{
@@ -29,7 +23,7 @@ class App extends Component {
             </Switch>
           </Router>
         </>
-    );}
+    )
 }
 
 export default App;

@@ -1,0 +1,2 @@
+export const ADDSIZE = 'ADDSIZE'
+export const CHANGESTATUSNAV = 'CHANGESTATUSNAV'

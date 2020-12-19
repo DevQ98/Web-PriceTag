@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import { addSize } from '../../../actions/designAction.js'
+import { connect } from 'react-redux';
+
 const options = [
     { value: '2', label: '2' },
     { value: '4', label: '4' },
@@ -16,36 +19,56 @@ const options = [
     { value: '32', label: '32' },
     { value: '36', label: '36' },
     { value: '40', label: '40' }
-  ]
-class FontSize extends Component {
-    
-  constructor(props) {
-    super(props)
-    this.state = {
-      fontSize: 24
+]
+class FontSizeCom extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            fontSize: 24
+        }
+
     }
-  
-  }
 
-  changeSize(event){
-     
-    this.setState({
-      fontSize: event.value
-     
-    });
-    this.props.setSizes(event.value)
-    
-  }
-  
-  render() {
-    return (
-      
-      <section >
-        <Select classNamePrefix="Font"  onChange={ this.changeSize.bind(this)}  options={options} placeholder="Font size" />  
-      </section>
-    );
 
+    changeSize(event) {
+
+        // this.setState({
+        //     fontSize: event.value
+
+        // });
+        // this.props.setSizes(event.value)
+        // this.props.onChange(event.value)
+        this.props.addSize(event.value)
+
+    }
+
+    render() {
+        return (
+
+            <section >
+                <Select classNamePrefix="Font" style=" minWidth  :120px " onChange={this.changeSize.bind(this)} options={options} placeholder="16" />
+            </section>
+        );
+
+    }
+}
+  
+const mapStateToProps = state => {
+  return {
+      Info: state
   }
 }
 
-export default FontSize ;
+const mapDispatchToProps = dispatch => {
+    return {
+        addSize: changeSize => {
+            dispatch(addSize(changeSize));
+        },
+
+    };
+};
+
+const FontSize = connect(mapStateToProps, mapDispatchToProps)(FontSizeCom);
+export default FontSize;
+

@@ -7,6 +7,14 @@ a{
     text-decoration: none !important;
     color: black !important;
 }
+    .tab-element {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: scroll;
+        height: 800px;
+
+    }
     a .tab-element-text:hover{
         color: rgb(126, 125, 125) !important;}
     .menu_tab-item {
@@ -44,7 +52,8 @@ a{
 
 .sidebar-closed{
     display: flex;
-    max-width: 61px !important;
+    max-width: 60px !important;
+    transition: all 2s;
 
 }
 
@@ -53,20 +62,72 @@ a{
     max-width:  300px !important;
     flex-grow: 0;
     flex: auto;
+ 
 }
 
-.tab-content-normal {
+.tab-content-closed {    
     display: none;
+    transition:  all 1s;
 }
 .menu {
     max-width:  60px !important;
     background: #F0F0F0;
 }
 .btn-sidebar{
-    box-shadow: 0 0 1px 2px #F0F0F0;
+
     background-color: #F0F0F0;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.tab-content__Element {
+    background-color: #F0F0F0;
+    display: flex;
+    height: 160px;
+    width:  90%;
+    margin:  auto;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 2px;
+}
+
+.bnt-template{
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+    list-style-type: none !important;
+    border: 2px;
+}
+.stamp1 {
+    height: 100px;
+    width: 100px;
+}
+.stamp2 {
+    height: 100px;
+    width: 200px;
+}
+.stamp3 {
+    height: 100px;
+    width: 70px;
+}
+.stamp4 {
+    height: 100px;
+    width: 130px;
+}
+.stamp5 {
+    height: 100px;
+    width: 150px;
+}
+.stamp6 {
+    height: 80px;
+    width: 180px;
+}
+.stamp7 {
+    height: 100px;
+    width: 80px;
 }

@@ -11,28 +11,38 @@ export default class Menu extends Component {
     constructor(props){
         super(props);
         this.state = {
+            leftOpen: true
         }
     }
+    toggleSidebar = (event) => {
+        let key = `${event.currentTarget.parentNode.id}Open`;
+        this.setState({ [key]: !this.state[key]  ,
+            leftOpen : !this.state.leftOpen
+        });
+        console.log(this.props)
+            this.props.setSides(key)
+      }
     componentDidMount() {
         console.log("A", this.props)
     }
     render() {
+        let leftOpen = this.state.leftOpen ? 'open' : 'closed';
         return (
             <>
                 <Tab.Container  defaultActiveKey="1"   >               
                         <div className='col menu'  >
                             <Nav className="flex-column">
-                                <Nav.Item className='nav-item_tab-menu'>
+                                <Nav.Item className={`nav-item_tab-menu `} onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="1">
                                         <span className='menu_tab-item'>
                                             <GrTemplate />
                                         </span>
                                         <span>
-                                            <a class="tab-element-text">Templates</a>
+                                            <a class="tab-element-text" >Templates</a>
                                         </span>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='nav-item_tab-menu'>
+                                <Nav.Item className='nav-item_tab-menu' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="2">
                                         <span className='menu_tab-item'>
                                             <GrClone />
@@ -42,7 +52,7 @@ export default class Menu extends Component {
                                         </span>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='nav-item_tab-menu'>
+                                <Nav.Item className='nav-item_tab-menu' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="3">
                                         <span className='menu_tab-item'>
                                             <AiOutlineCloudUpload />
@@ -52,7 +62,7 @@ export default class Menu extends Component {
                                         </span>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='nav-item_tab-menu'>
+                                <Nav.Item className='nav-item_tab-menu' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="4">
                                         <span className='menu_tab-item'>
                                             <MdTexture />
@@ -62,7 +72,7 @@ export default class Menu extends Component {
                                         </span>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='nav-item_tab-menu'>
+                                <Nav.Item className='nav-item_tab-menu'onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="5">
                                         <span className='menu_tab-item'>
                                             <i class="fas fa-user-edit"></i>
@@ -78,7 +88,27 @@ export default class Menu extends Component {
                         <div className={`col  tab-content-${this.props.visible}`}  >
                             <Tab.Content>
                                 <Tab.Pane eventKey="1" className="tab-element">
-                                    
+                                    <div className="tab-content__Element">
+                                        <button className="bnt-template stamp1" onClick={()=>this.props.addTemplate(1)} data-id="1" > </button>
+                                    </div>
+                                    <div className="tab-content__Element">
+                                        <button className="bnt-template stamp2" >  </button>
+                                    </div>
+                                    <div className="tab-content__Element">
+                                        <button className="bnt-template stamp3"  >  </button>
+                                    </div>
+                                    <div className="tab-content__Element">
+                                        <button className="bnt-template stamp4" > </button>
+                                    </div>
+                                    <div className="tab-content__Element">
+                                        <button className="bnt-template stamp5" >  </button>
+                                    </div>
+                                    <div className="tab-content__Element">
+                                        <button className="bnt-template stamp6" ></button>
+                                    </div>
+                                    <div className="tab-content__Element">
+                                        <button className="bnt-template stamp7">  </button>
+                                    </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="2">
                                     <div>
