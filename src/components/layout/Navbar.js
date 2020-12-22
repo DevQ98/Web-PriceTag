@@ -6,6 +6,7 @@ import '../../assets/css/Navbar.css'
 import { FaRegBell } from "react-icons/fa";
 import { connect } from 'react-redux';
 import { ChangeStatusNav } from '../../actions/designAction.js'
+import { AiOutlineSave } from "react-icons/ai";
 
 function NavbarCom(props) {
 
@@ -66,6 +67,8 @@ function NavbarCom(props) {
                         <NavLink activeClassName='link_active' to='/history' className='nav-links' onClick={closeMobileMenu}>
                             History
                         </NavLink>
+
+                       
                     </div>                  
                     <div className='navbar__user '>
                         <Button onClick={showButtonOnDesign} buttonStyle='btn--primary'> Create Stamp</Button>    

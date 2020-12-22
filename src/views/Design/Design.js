@@ -4,11 +4,12 @@ import { FaBorderAll } from "react-icons/fa";
 import { AiOutlineAlignRight, AiOutlineAlignLeft, AiOutlineAlignCenter } from "react-icons/ai";
 import { FiItalic } from "react-icons/fi";
 import { AiOutlineBold } from "react-icons/ai";
-import { IoIosSave } from "react-icons/io";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { FaListUl } from "react-icons/fa";
 import { ImTextHeight } from "react-icons/im";
-import { IoArrowRedoOutline } from "react-icons/io5";
-import { IoArrowUndoOutline } from "react-icons/io5";
+import { IoArrowRedoSharp } from "react-icons/io5";
+import { IoArrowUndoSharp } from "react-icons/io5";
+import { IoIosArrowDropleft} from "react-icons/io";
 import { Button } from '../../components/common/Button/Button';
 
 import FontPicker from "../../components/common/Picker/Font-Picker";
@@ -56,7 +57,8 @@ class DesignCom extends Component {
             isLineLeft: false,
             isLineCenter: false,
             isLineRight: false,
-
+            height: "800",
+            width : "800"
         }
     }
 
@@ -132,21 +134,20 @@ class DesignCom extends Component {
         })
     }
 
-    addTemplate = (id) => {
-        this.postID = id;
-        const copyTemplateArray = Object.assign([], this.state.templateArray);
-        copyTemplateArray.push({
-            id: id,
-            body: this.Body
-        })
+    addTemplate = (h , w) => {
+
         this.setState({
-            templateArray: copyTemplateArray
+            height :h,
+            width : w
         })
     }
-
-    addName = (id) => {
+    ChangeName()
+    {
+        console.log("kakka")
+    }
+    addName = (id , body) => {
         this.postID = id;
-        this.Body = " Tên Sản Phẩm"
+        this.Body = <div id={id} onClick={this.ChangeName}>body</div>;
         const copyNameArray = Object.assign([], this.state.nameArray);
         copyNameArray.push({
             id: id,
@@ -246,7 +247,6 @@ class DesignCom extends Component {
             [key]: !this.state[key],
             leftOpen: !this.state.leftOpen
         });
-        console.log(this.state.leftOpen)
     }
 
     onChangeFontSize(sizes) {
@@ -256,16 +256,12 @@ class DesignCom extends Component {
     }
 
     render() {
-
-        const { postArray } = this.state;
         let leftOpen = this.state.leftOpen ? 'open' : 'closed';
 
         return (
-            <div className='design-context'>
-                <div className='row' id='left'>
-                    <div className={`col sidebar-${leftOpen}`}>
-
-
+            <div className='design__page'>
+                <div className='row design__page' id='left'>
+                    <div className={` design__menu`}>
                         <Menu visible={this.state.leftOpen ? 'Open' : 'closed'}
                             addTemplate={this.addTemplate.bind(this)}
                             setSides={this.setSide}
@@ -278,23 +274,26 @@ class DesignCom extends Component {
                             addStatus={this.addStatus.bind(this)}
                             addPromotion={this.addPromotion.bind(this)}
                         ></Menu>
-
                     </div>
-                    <div className="btn-sidebar" onClick={this.toggleSidebar} >O</div>
-                    <div className='col menu-content'>
+                    <div className={`btn__sidebar--${this.state.leftOpen}`} onClick={this.toggleSidebar}  >
+                       <IoIosArrowDropleft/>
+                    </div>
+                    <div className={` design__content--${leftOpen}`}>
                         <div className='row tool-bar justify-content-around'>
+                            <div className=' tool-bar__item'>
+                                <IoArrowUndoSharp />
+                            </div>
+                            <div className=' tool-bar__item'>
+                                <IoArrowRedoSharp />
+                            </div>
                             <div className=' tool-bar__font'>
                                 <FontPicker> </FontPicker>
                             </div>
                             <div className=' tool-bar__size'>
-
                                 <FontSize
                                     setSizes={this.setSize}
                                     onChange={this.onChangeFontSize.bind(this)}
-
                                 />
-
-
                             </div>
                             <div className=' tool-bar__item ' onClick={this.onClickBold}>
                                 <AiOutlineBold />
@@ -305,7 +304,6 @@ class DesignCom extends Component {
                             <div className=' tool-bar__item'>
                                 <ButtonExample setColors={this.setColor}></ButtonExample>
                             </div>
-
                             <div className=' tool-bar__item' onClick={this.onClickLineLeft}>
                                 <AiOutlineAlignLeft />
                             </div>
@@ -324,147 +322,149 @@ class DesignCom extends Component {
                             <div className=' tool-bar__item'>
                                 <FaBorderAll />
                             </div>
-                        </div>
-                        <div className='row design'>
-                            <div className="">
-                                <div className="items-template">
-                                    <div className="container " style={{ height: 800, width: 2600, marginTop: 100 }}>
+                        </div > 
+                        <div className ="design__view">
+                        <div className="design__view--bg">
+                              <div className="items-template" style={{ height : this.state.height +"mm" , width : this.state.width + "mm"}}>
+                                                        
+                                      {
+                                          this.state.nameArray.map((tag, index) => {
+                                              return (
+                                                  <NameElement
+                                                      key={index}
+                                                      id={tag.id}
+                                                      body={tag.body}
+                                                      delete={this.deleteEvent.bind(this.index)}
+                                                      color={this.state.color}
+                                                      fontSize={this.state.fontSize}
+                                                      bold={this.state.isBold ? 'bold' : 'normal'}
+                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
+                                                      lineleft={this.state.isLineLeft ? 'left' : '!left'}
+                                                      linecenter={this.state.isLineCenter ? 'center' : '!center'}
+                                                      lineright={this.state.isLineRight ? 'right' : '!right'}
+                                                  />
+                                              )
+                                          })
+                                      }
 
-                                        {
-                                            this.state.nameArray.map((tag, index) => {
-                                                return (
-                                                    <NameElement
-                                                        key={index}
-                                                        id={tag.id}
-                                                        body={tag.body}
-                                                        delete={this.deleteEvent.bind(this.index)}
-                                                        color={this.state.color}
-                                                        fontSize={this.state.fontSize}
-                                                        bold={this.state.isBold ? 'bold' : 'normal'}
-                                                        italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                        lineleft={this.state.isLineLeft ? 'left' : '!left'}
-                                                        linecenter={this.state.isLineCenter ? 'center' : '!center'}
-                                                        lineright={this.state.isLineRight ? 'right' : '!right'}
-                                                    />
-                                                )
-                                            })
-                                        }
+       
 
-                                    </div>
-                                    <div>
-                                        {
-                                            this.state.priceArray.map((tag, index) => {
-                                                return (
-                                                    <PriceElement
-                                                        key={index}
-                                                        id={tag.id}
-                                                        body={tag.body}
-                                                        delete={this.deleteEvent.bind(this.index)}
-                                                        color={this.state.color}
-                                                        fontSize={this.state.fontSize}
-                                                        bold={this.state.isBold ? 'bold' : 'normal'}
-                                                        italic={this.state.isItalic ? 'italic' : 'normal'}
+                                      {
+                                          this.state.priceArray.map((tag, index) => {
+                                              return (
+                                                  <PriceElement
+                                                      key={index}
+                                                      id={tag.id}
+                                                      body={tag.body}
+                                                      delete={this.deleteEvent.bind(this.index)}
+                                                      color={this.state.color}
+                                                      fontSize={this.state.fontSize}
+                                                      bold={this.state.isBold ? 'bold' : 'normal'}
+                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
 
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            this.state.brandArray.map((tag, index) => {
-                                                return (
-                                                    <BrandElement
-                                                        key={index}
-                                                        id={tag.id}
-                                                        body={tag.body}
-                                                        delete={this.deleteEvent.bind(this.index)}
-                                                        color={this.state.color}
-                                                        fontSize={this.state.fontSize}
-                                                        bold={this.state.isBold ? 'bold' : 'normal'}
-                                                        italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            this.state.dateArray.map((tag, index) => {
-                                                return (
-                                                    <DateElement
-                                                        key={index}
-                                                        id={tag.id}
-                                                        body={tag.body}
-                                                        delete={this.deleteEvent.bind(this.index)}
-                                                        color={this.state.color}
-                                                        fontSize={this.state.fontSize}
-                                                        bold={this.state.isBold ? 'bold' : 'normal'}
-                                                        italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            this.state.discountArray.map((tag, index) => {
-                                                return (
-                                                    <DiscountElement
-                                                        key={index}
-                                                        id={tag.id}
-                                                        body={tag.body}
-                                                        delete={this.deleteEvent.bind(this.index)}
-                                                        color={this.state.color}
-                                                        fontSize={this.state.fontSize}
-                                                        bold={this.state.isBold ? 'bold' : 'normal'}
-                                                        italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            this.state.promotionArray.map((tag, index) => {
-                                                return (
-                                                    <PromotionElement
-                                                        key={index}
-                                                        id={tag.id}
-                                                        body={tag.body}
-                                                        delete={this.deleteEvent.bind(this.index)}
-                                                        color={this.state.color}
-                                                        fontSize={this.state.fontSize}
-                                                        bold={this.state.isBold ? 'bold' : 'normal'}
-                                                        italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            this.state.statusArray.map((tag, index) => {
-                                                return (
-                                                    <StatusElement
-                                                        key={index}
-                                                        id={tag.id}
-                                                        body={tag.body}
-                                                        delete={this.deleteEvent.bind(this.index)}
-                                                        color={this.state.color}
-                                                        fontSize={this.state.fontSize}
-                                                        bold={this.state.isBold ? 'bold' : 'normal'}
-                                                        italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
+                                                  />
+                                              )
+                                          })
+                                      }
 
-                                </div>
-                            </div>
 
-                        </div>
+                                      {
+                                          this.state.brandArray.map((tag, index) => {
+                                              return (
+                                                  <BrandElement
+                                                      key={index}
+                                                      id={tag.id}
+                                                      body={tag.body}
+                                                      delete={this.deleteEvent.bind(this.index)}
+                                                      color={this.state.color}
+                                                      fontSize={this.state.fontSize}
+                                                      bold={this.state.isBold ? 'bold' : 'normal'}
+                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
+                                                  />
+                                              )
+                                          })
+                                      }
+
+
+                                      {
+                                          this.state.dateArray.map((tag, index) => {
+                                              return (
+                                                  <DateElement
+                                                      key={index}
+                                                      id={tag.id}
+                                                      body={tag.body}
+                                                      delete={this.deleteEvent.bind(this.index)}
+                                                      color={this.state.color}
+                                                      fontSize={this.state.fontSize}
+                                                      bold={this.state.isBold ? 'bold' : 'normal'}
+                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
+                                                  />
+                                              )
+                                          })
+                                      }
+
+
+                                      {
+                                          this.state.discountArray.map((tag, index) => {
+                                              return (
+                                                  <DiscountElement
+                                                      key={index}
+                                                      id={tag.id}
+                                                      body={tag.body}
+                                                      delete={this.deleteEvent.bind(this.index)}
+                                                      color={this.state.color}
+                                                      fontSize={this.state.fontSize}
+                                                      bold={this.state.isBold ? 'bold' : 'normal'}
+                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
+                                                  />
+                                              )
+                                          })
+                                      }
+
+
+                                      {
+                                          this.state.promotionArray.map((tag, index) => {
+                                              return (
+                                                  <PromotionElement
+                                                      key={index}
+                                                      id={tag.id}
+                                                      body={tag.body}
+                                                      delete={this.deleteEvent.bind(this.index)}
+                                                      color={this.state.color}
+                                                      fontSize={this.state.fontSize}
+                                                      bold={this.state.isBold ? 'bold' : 'normal'}
+                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
+                                                  />
+                                              )
+                                          })
+                                      }
+
+
+                                      {
+                                          this.state.statusArray.map((tag, index) => {
+                                              return (
+                                                  <StatusElement
+                                                      key={index}
+                                                      id={tag.id}
+                                                      body={tag.body}
+                                                      delete={this.deleteEvent.bind(this.index)}
+                                                      color={this.state.color}
+                                                      fontSize={this.state.fontSize}
+                                                      bold={this.state.isBold ? 'bold' : 'normal'}
+                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
+                                                  />
+                                              )
+                                          })
+                                      }
+  
+                                                          
+                                    
+                                      </div>
+                                <div className='design__view--text'> {this.state.height} x {this.state.width}mm</div>
+                                
+                        </div>                
+                        
+                        </div>                    
                     </div>
                 </div>
             </div>

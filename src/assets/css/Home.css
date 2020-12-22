@@ -55,13 +55,12 @@ font-size: 2.5em;
 .items-element{
     height: 60px ;
     display: block;
-    background-color: black;
     width: 200px ;
-    border: 1px solid white !important;
+    border: 1px solid rgb(85, 84, 87) !important;
     cursor: pointer;
 }
 .items-template{
-    height: calc(100vh-50px);
+    height:75vh;
     border: 1px solid white !important;
     background-color: white;
     cursor: pointer;
@@ -81,17 +80,29 @@ font-size: 2.5em;
 .Tab-history{
     margin: 0 15px;
 }
-.home-body {
-    position: relative;
+.home--body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 212px ;
+    bottom: 0;
+}
+.history--body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 212px ;
+    bottom: 0;
 }
 .home-content {
-    position: relative;
-    top: 0;
+    position: absolute;
+    overflow: scroll;
+    min-height: 300px;
+    top: 48px ;
+    bottom: 0;
+    right: 0;
 }
 .list-item{
-    top : 0;
-    overflow: scroll ;
-    height: 75vh;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -107,7 +118,7 @@ font-size: 2.5em;
 }
 .home-title{
     border: 2px ;
-    height: 5vh;
+    height: 48px;
     border-bottom: 3px solid #f0f0f0;
     box-shadow: 4px #f0f0f0 ;
     margin: 0 16px;
@@ -138,4 +149,18 @@ font-size: 2.5em;
     justify-content: start;
     font-weight: bold;
     font-size: 1.5em;
+}
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+.history__tab{
+    height: 48px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.history__tab--content{
+    position: absolute;
+    overflow: scroll;
+    min-height: 300px;
+    top: 48px ;
+    bottom: 0;
+    right: 0;
 }

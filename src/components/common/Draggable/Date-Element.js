@@ -18,7 +18,7 @@ class DateElement extends Component {
     render() {
         const { color, fontSize } = this.state;
         return (
-            <Draggable>
+            <Draggable bounds="parent">
                 <div className='items-element apply-font' style={{ color: this.props.color,fontSize: this.props.fontSize + "px", fontWeight: this.props.bold, fontStyle: this.props.italic }}>
                     {this.props.body}
                     {this.props.id}

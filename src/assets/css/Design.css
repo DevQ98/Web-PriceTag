@@ -1,3 +1,8 @@
+.design__page{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
 .design-tool{
     background: #F2DCBB !important;
     height: 30px;
@@ -6,41 +11,31 @@
     flex-direction: column;
     z-index: 2;
 }
-.design-area{
-    background:#181313 !important;
-    height: 1000px;
-    flex-grow: 1;
-    display: block;
-    flex-direction: column;
-}
 
-.board{
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
-    background-color: white;
-    padding: 15px;
-    width: 100%;
-    height : 100%;
-    border: 6px  !important;
-    position: relative;
- 
-  }
-.board .card{
-  padding: 15px 25px;
-  background: #F2DCBB;
-  cursor: pointer;
-  max-width: 60px;
-  border: 5px !important;
-  border-color: black;
-  position: absolute ;
-
-  }
-  .menu-content {
+  
+  .design__content--open {
     background: #E5E5E5;
-    height : 800px;
-    width: 900px;
     display:block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 310px;
+    /* transition: all 1s; */
+    box-shadow: 1px 0px 3px 0px #aaa;
+    border: 5px black !important  ;
+
+}
+.design__content--closed {
+  background: #E5E5E5;
+  display:block;
+  position: absolute;
+  right: 0;
+  top:0;
+  bottom: 0;
+  left: 80px;
+  transition: all 0.5s;
+  box-shadow: -1px 0px 1px 0px #aaa;
 }
 
 .tool-bar__item:hover {
@@ -99,23 +94,29 @@ div[id^=font-picker]
   border: 0px !important  ;
 }
 .tool-bar {
-  display: block;
-  background:#F2DCBB;
+  background: #fff;
+  min-height: 56px;
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  min-width: 800px;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 1px 0 rgba(44,44,46,.16);
+  display: flex;
   align-items: center;
-  padding: 10px !important;
-  height: 60px;
-  z-index: 10;
+  justify-content: space-evenly;
 }
-
 
 .tool-bar__item {
   cursor: pointer;
-  font-size: 20px;
-  display: flex;
+  font-size: 1rem;
   flex-direction: row;
-  padding: 8px !important;
   text-align: center;
   width: 30px !important;
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
 
 }
 .tool-bar_font{
@@ -135,12 +136,16 @@ div[id^=font-picker]
   height: 50px !important;
 }
 .tool-bar__items {
-  display: flex;
+  display: none;
   cursor: pointer;
   font-size: 20px;
   padding: 0 !important;
-  align-items: center;
+  align-items: center !important;
   margin: 5px 15px !important;
+  
+}
+.tool-bar__item:hover{
+  background-color: blanchedalmond;
 }
 .save {
   display: flex;
@@ -203,11 +208,37 @@ div[id^=font-picker]
     ;
     outline: none;
   }
-  .design {
-
+  .design__view {
     display: flex;
-    width: calc(100vh -50px) !important;
-    height: calc(100vh -50px) !important;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    top: 56px;
+  }
+
+  .design__view--bg{
+    display: flex;
+    top: 20px;
+    height: 100%;
+    width: 100%;
+    margin:  auto;
+    position: absolute;
+    background-color:#f0f0f0;
+    z-index: 5;
+  }
+
+  .design__view--text{
+    position: fixed;
+    z-index: 9999;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    padding: 4px 8px;
+    background-color: rgba(255,255,255,.92);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.16), 0 0 1px rgba(0,0,0,.16);
   }
   .draggable {
     cursor: -webkit-grab;

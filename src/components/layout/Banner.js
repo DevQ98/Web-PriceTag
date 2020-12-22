@@ -6,8 +6,9 @@ function Banner() {
         <div className="container-fluid pt-3">           
             <form className="banner" >
                 <div className='banner__search'>
-                    <a className='search-icon'> <i  className="fas fa-search"> </i></a>
-                    <FormControl className='input-search'  type="text" placeholder=" Search price tag"  />                                                    
+                    <span className="icon__search"> <i class="fa fa-search "></i> </span> 
+                    <input type="text" className="panel-search-input" 
+                        autocomplete="off" data-toggle="db-search-input" placeholder="Search Pices Tag"></input>                                                
                 </div>                                              
             </form> 
         </div>
