@@ -20,7 +20,6 @@ class NameElement extends Component {
             
     
     }
-
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(prevProps.id !=prevState.id)
         {
@@ -39,6 +38,7 @@ class NameElement extends Component {
     render() {
         let line = "" ;
         const { color, fontSize,style,id,backgrounf } = this.state;
+        const { color, fontSize } = this.state;
         if( this.props.linecenter == "center")
             line = "center";
             else
@@ -48,7 +48,7 @@ class NameElement extends Component {
              else{
                     line = " right" ;
             }}
-         //   console.log(line)
+           //   console.log(line)
         return (
             // color: this.props.color,fontSize: this.props.fontSize + "px", fontWeight: this.props.bold, fontStyle: this.props.italic , textAlign: line 
             <Draggable bounds="parent">
@@ -56,8 +56,7 @@ class NameElement extends Component {
                 <div className='items-element apply-font' id= {this.props.id} onClick={()=>this.ChangeStyle(this.props.id)} style={{color:style,background:backgrounf }}>
                 
 
-               
-                    {this.props.body}
+                                   {this.props.body}
                     {this.props.id}
                     {/* <button onClick={this.props.delete} >Delete</button> *  onClick={this.onClickItem.bind(this)}*/}
                 </div>
