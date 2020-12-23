@@ -26,6 +26,7 @@ import StatusElement from '../../components/common/Draggable/Status-Element';
 import Template from '../../components/layout/Template';
 import { addSize, ChangeStatusNav } from '../../actions/designAction.js'
 import { connect } from 'react-redux';
+import DesignPage from './DesignPage';
 
 class DesignCom extends Component {
     constructor(props) {
@@ -145,9 +146,9 @@ class DesignCom extends Component {
     {
         console.log("kakka")
     }
-    addName = (id , body) => {
+    addName = (id ) => {
         this.postID = id;
-        this.Body = <div id={id} onClick={this.ChangeName}>body</div>;
+        this.Body = "Tên Sản phẩm";
         const copyNameArray = Object.assign([], this.state.nameArray);
         copyNameArray.push({
             id: id,
@@ -167,7 +168,9 @@ class DesignCom extends Component {
         })
         this.setState({
             priceArray: copyPriceArray
+            
         })
+        console.log("kaka",this.state.priceArray)
     }
     addBrand = (id) => {
         this.postID = id;
@@ -208,10 +211,12 @@ class DesignCom extends Component {
     addDiscount = (id) => {
         this.postID = id;
         this.Body = "Giá đã được giảm "
+        this.FontSize= 12
         const copyDiscountArray = Object.assign([], this.state.discountArray);
         copyDiscountArray.push({
             id: id,
-            body: this.Body
+            body: this.Body,
+            fontSize: this.FontSize
         })
         this.setState({
             discountArray: copyDiscountArray
@@ -257,7 +262,26 @@ class DesignCom extends Component {
 
     render() {
         let leftOpen = this.state.leftOpen ? 'open' : 'closed';
-
+        const{priceArray , 
+            fontSize,
+            color,
+            isBold,
+            bold,
+            isItalic,
+            isLineLeft,
+            isLineCenter,
+            isLineRight ,
+            height,
+            width,
+            nameArray,
+            brandArray,
+            detailArray,
+            dateArray,
+            discountArray,
+            promotionArray,
+            statusArray,
+        } = this.state;
+        console.log(priceArray);
         return (
             <div className='design__page'>
                 <div className='row design__page' id='left'>
@@ -325,143 +349,28 @@ class DesignCom extends Component {
                         </div> 
                         <div className ="design__view">
                         <div className="design__view--bg">
-                              <div className="items-template" style={{ height : this.state.height +"mm" , width : this.state.width + "mm"}}>
-                                                        
-                                      {
-                                          this.state.nameArray.map((tag, index) => {
-                                              return (
-                                                  /*{/* <NameElement
-                                                      key={index}
-                                                      id={tag.id}
-                                                      body={tag.body}
-                                                      delete={this.deleteEvent.bind(this.index)}
-                                                      color={this.state.color}
-                                                      fontSize={this.state.fontSize}
-                                                      bold={this.state.isBold ? 'bold' : 'normal'}
-                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                      lineleft={this.state.isLineLeft ? 'left' : '!left'}
-                                                      linecenter={this.state.isLineCenter ? 'center' : '!center'}
-                                                      lineright={this.state.isLineRight ? 'right' : '!right'}
-                                                  /> */
-                                                  <TxtElement/>
-                                              )
-                                          })
-                                      }
-
-       
-
-                                      {
-                                          this.state.priceArray.map((tag, index) => {
-                                              return (
-                                                  <PriceElement
-                                                      key={index}
-                                                      id={tag.id}
-                                                      body={tag.body}
-                                                      delete={this.deleteEvent.bind(this.index)}
-                                                      color={this.state.color}
-                                                      fontSize={this.state.fontSize}
-                                                      bold={this.state.isBold ? 'bold' : 'normal'}
-                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
-
-                                                  />
-                                              )
-                                          })
-                                      }
-
-
-                                      {
-                                          this.state.brandArray.map((tag, index) => {
-                                              return (
-                                                  <BrandElement
-                                                      key={index}
-                                                      id={tag.id}
-                                                      body={tag.body}
-                                                      delete={this.deleteEvent.bind(this.index)}
-                                                      color={this.state.color}
-                                                      fontSize={this.state.fontSize}
-                                                      bold={this.state.isBold ? 'bold' : 'normal'}
-                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                  />
-                                              )
-                                          })
-                                      }
-
-
-                                      {
-                                          this.state.dateArray.map((tag, index) => {
-                                              return (
-                                                  <DateElement
-                                                      key={index}
-                                                      id={tag.id}
-                                                      body={tag.body}
-                                                      delete={this.deleteEvent.bind(this.index)}
-                                                      color={this.state.color}
-                                                      fontSize={this.state.fontSize}
-                                                      bold={this.state.isBold ? 'bold' : 'normal'}
-                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                  />
-                                              )
-                                          })
-                                      }
-
-
-                                      {
-                                          this.state.discountArray.map((tag, index) => {
-                                              return (
-                                                  <DiscountElement
-                                                      key={index}
-                                                      id={tag.id}
-                                                      body={tag.body}
-                                                      delete={this.deleteEvent.bind(this.index)}
-                                                      color={this.state.color}
-                                                      fontSize={this.state.fontSize}
-                                                      bold={this.state.isBold ? 'bold' : 'normal'}
-                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                  />
-                                              )
-                                          })
-                                      }
-
-
-                                      {
-                                          this.state.promotionArray.map((tag, index) => {
-                                              return (
-                                                  <PromotionElement
-                                                      key={index}
-                                                      id={tag.id}
-                                                      body={tag.body}
-                                                      delete={this.deleteEvent.bind(this.index)}
-                                                      color={this.state.color}
-                                                      fontSize={this.state.fontSize}
-                                                      bold={this.state.isBold ? 'bold' : 'normal'}
-                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                  />
-                                              )
-                                          })
-                                      }
-
-
-                                      {
-                                          this.state.statusArray.map((tag, index) => {
-                                              return (
-                                                  <StatusElement
-                                                      key={index}
-                                                      id={tag.id}
-                                                      body={tag.body}
-                                                      delete={this.deleteEvent.bind(this.index)}
-                                                      color={this.state.color}
-                                                      fontSize={this.state.fontSize}
-                                                      bold={this.state.isBold ? 'bold' : 'normal'}
-                                                      italic={this.state.isItalic ? 'italic' : 'normal'}
-                                                  />
-                                              )
-                                          })
-                                      }
-  
-                                                          
-                                    
-                                      </div>
-                                <div className='design__view--text'> {this.state.height} x {this.state.width}mm</div>
+                                                         
+                              <DesignPage 
+                                    nameArray={nameArray}
+                                    brandArray={brandArray}
+                                    detailArray={detailArray}
+                                    dateArray={dateArray}
+                                    discountArray={discountArray}
+                                    promotionArray={promotionArray}
+                                    statusArray={statusArray}
+                                    priceArray={priceArray}   
+                                    color={color} 
+                                    bold={bold} 
+                                    fontSize={fontSize}
+                                    isItalic={isItalic}
+                                    leftOpen={leftOpen}
+                                    isLineCenter={isLineCenter}
+                                    isLineLeft = {isLineLeft}
+                                    isLineRight={isLineRight}
+                                    isBold ={isBold}
+                                    height={height}
+                                    width = {width}
+                                > </DesignPage>
                                 
                         </div>                
                         

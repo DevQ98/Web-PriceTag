@@ -14,31 +14,8 @@ class NameElement extends Component {
              backgrounf:""
         }
     }   
-
-    componentDidMount() {
-        
-            
-    
-    }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.id !=prevState.id)
-        {
-            console.log(prevProps,prevState)
-        }
-     
-    }
-    ChangeStyle(id)
-    {
-        
-            let color=this.props.color
-            this.setState({id:this.props.id,style:color,backgrounf:'blue'})
-        
-        
-    }
     render() {
             let line = "" ;
-            const { color, fontSize,style,id,backgrounf } = this.state;
-        // const { color, fontSize } = this.state;
         if( this.props.linecenter == "center")
             line = "center";
             else
@@ -48,19 +25,12 @@ class NameElement extends Component {
              else{
                     line = " right" ;
             }}
-           //   console.log(line)
-        return (
-            // color: this.props.color,fontSize: this.props.fontSize + "px", fontWeight: this.props.bold, fontStyle: this.props.italic , textAlign: line 
-            <Draggable bounds="parent">
-          
-                <div className='items-element apply-font' id= {this.props.id} >
-                
 
-                                   {this.props.body}
-                    {this.props.id}
-                    {/* <button onClick={this.props.delete} >Delete</button> *  onClick={this.onClickItem.bind(this)}*/}
+        return (
+            // color: this.props.color,fontSize: this.props.fontSize + "px", fontWeight: this.props.bold, fontStyle: this.props.italic , textAlign: line           
+                 <div className='items-element apply-font cube target'  id={this.props.id} >
+                    {this.props.body}
                 </div>
-            </Draggable>
         )
     }
 }

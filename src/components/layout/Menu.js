@@ -41,13 +41,19 @@ export default class Menu extends Component {
         console.log("aaaa",this.state.height)
 
         const copytemplateArray = Object.assign([], this.state.templateArray);
+        setTimeout(() => {
+            copytemplateArray.splice(this, 1);
+        }, 1);
+       
         copytemplateArray.push({
             h : this.state.height,
             w: this.state.width
         })
+      
         this.setState({
             templateArray: copytemplateArray
         })
+        
         console.log("aaaa",this.state.templateArray)
     }
     render() {
@@ -127,31 +133,31 @@ export default class Menu extends Component {
                                     }
                                     <div className="menu-content__template">
                                         <button className="btn__template stamp1" onClick={()=>this.props.addTemplate("56" , "56")} data-id="1" > </button>
-                                        <span> 66 x 69 px </span>
+                                        <span> 56 x 56 px </span>
                                     </div>
                                     <div className="menu-content__template"  >
                                         <button className="btn__template stamp2"  onClick={()=>this.props.addTemplate("100" , "100")} data-id="1" >  </button>
-                                        <span> 66 x 69 px </span>
+                                        <span> 100 x 100 px </span>
                                     </div>
                                     <div className="menu-content__template">
                                         <button className="btn__template stamp3"   onClick={()=>this.props.addTemplate("800" , "500")} data-id="1" >  </button>
-                                        <span> 66 x 69 px </span>
+                                        <span> 800 x 500 px </span>
                                     </div>
                                     <div className="menu-content__template" >
                                         <button className="btn__template stamp4" onClick={()=>this.props.addTemplate("700" , "800")} data-id="1"  > </button>
-                                        <span> 66 x 69 px </span>
+                                        <span> 700 x 800 px </span>
                                     </div>
                                     <div className="menu-content__template"  >
                                         <button className="btn__template stamp5" onClick={()=>this.props.addTemplate("600" , "800")} data-id="1">  </button>
-                                        <span> 66 x 69 px </span>
+                                        <span> 600 x 800 px </span>
                                     </div>
                                     <div className="menu-content__template">
                                         <button className="btn__template stamp6"  onClick={()=>this.props.addTemplate("650" , "750")} data-id="1" ></button>
-                                        <span> 66 x 69 px </span>
+                                        <span> 650 x 750 px </span>
                                     </div>
                                     <div className="menu-content__template"  >
                                         <button className="btn__template stamp7" onClick={()=>this.props.addTemplate("500" , "700")} data-id="1">  </button>
-                                        <span> 66 x 69 px </span>
+                                        <span> 500 x 700 px </span>
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="2">
@@ -165,22 +171,22 @@ export default class Menu extends Component {
                                         <button className="btn__element" onClick={()=>this.props.addName(0 + (Math.random() * (100-0)),"BABA")} data-id="1" > Tên Sản phẩm</button>
                                     </div>
                                     <div>
-                                        <button className="btn__element" onClick={()=>this.props.addName(0 + (Math.random() * (100-1)),"MANA")}  data-id="2" > Giá Gốc </button>
+                                        <button className="btn__element" onClick={()=>this.props.addPrice(0 + (Math.random() * (100-1)),"MANA")}  data-id="2" > Giá Gốc </button>
                                     </div>
                                     <div>
-                                        <button className="btn__element" onClick={()=>this.props.addBrand(1)}  data-id="1" > Hãng sản xuất </button>
+                                        <button className="btn__element" onClick={()=>this.props.addBrand(0 + (Math.random() * (100-1)),"MANA")}  data-id="1" > Hãng sản xuất </button>
                                     </div>
                                     <div>
-                                        <button className="btn__element" onClick={()=>this.props.addDate(1)}  data-id="1" > Ngày in </button>
+                                        <button className="btn__element" onClick={()=>this.props.addDate(0 + (Math.random() * (100-1)),"MANA")} data-id="1" > Ngày in </button>
                                     </div>
                                     <div>
-                                        <button className="btn__element" onClick={()=>this.props.addDiscount(1)}  data-id="1" > Giá khuyến mãi </button>
+                                        <button className="btn__element" onClick={()=>this.props.addDiscount(0 + (Math.random() * (100-1)),"MANA")} data-id="1" > Giá khuyến mãi </button>
                                     </div>
                                     <div>
-                                        <button className="btn__element" onClick={()=>this.props.addPromotion(1)}  data-id="1" > Chương trình khuyến mãi </button>
+                                        <button className="btn__element" onClick={()=>this.props.addPromotion(0 + (Math.random() * (100-1)),"MANA")} data-id="1" > Chương trình khuyến mãi </button>
                                     </div>
                                     <div>
-                                        <button className="btn__element" onClick={()=>this.props.addStatus(1)}  data-id="1" > Trang thái </button>
+                                        <button className="btn__element" onClick={()=>this.props.addStatus(0 + (Math.random() * (100-1)),"MANA")}  data-id="1" > Trang thái </button>
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="3">

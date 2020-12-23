@@ -95,7 +95,7 @@ div[id^=font-picker]
 }
 .tool-bar {
   background: #fff;
-  min-height: 56px;
+  min-height: 46px;
   position: absolute;
   padding: 0;
   width: 100%;
