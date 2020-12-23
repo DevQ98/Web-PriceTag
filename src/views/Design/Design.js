@@ -11,7 +11,7 @@ import { IoArrowRedoSharp } from "react-icons/io5";
 import { IoArrowUndoSharp } from "react-icons/io5";
 import { IoIosArrowDropleft} from "react-icons/io";
 import { Button } from '../../components/common/Button/Button';
-
+import TxtElement from "../../components/common/Draggable/TxtElement"
 import FontPicker from "../../components/common/Picker/Font-Picker";
 import ButtonExample from '../../components/common/Picker/Color-Picker';
 import '../../assets/css/Menu.css';
@@ -322,7 +322,7 @@ class DesignCom extends Component {
                             <div className=' tool-bar__item'>
                                 <FaBorderAll />
                             </div>
-                        </div > 
+                        </div> 
                         <div className ="design__view">
                         <div className="design__view--bg">
                               <div className="items-template" style={{ height : this.state.height +"mm" , width : this.state.width + "mm"}}>
@@ -330,7 +330,7 @@ class DesignCom extends Component {
                                       {
                                           this.state.nameArray.map((tag, index) => {
                                               return (
-                                                  <NameElement
+                                                  /*{/* <NameElement
                                                       key={index}
                                                       id={tag.id}
                                                       body={tag.body}
@@ -342,7 +342,8 @@ class DesignCom extends Component {
                                                       lineleft={this.state.isLineLeft ? 'left' : '!left'}
                                                       linecenter={this.state.isLineCenter ? 'center' : '!center'}
                                                       lineright={this.state.isLineRight ? 'right' : '!right'}
-                                                  />
+                                                  /> */
+                                                  <TxtElement/>
                                               )
                                           })
                                       }

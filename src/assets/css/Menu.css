@@ -7,6 +7,9 @@ a{
 	margin: 0px !important;
 	padding: 0px !important;
 }
+.fill-color:focus{
+	outline-style: none;
+}
 .menu {
 	max-width:  800px ;
 	background: #F0F0F0;
@@ -105,6 +108,39 @@ a{
 	text-align: center;
 	cursor: pointer;
 }
+.menu-content__size{
+	display: block;
+	position: relative;
+	height: 120px;
+	border: 1.5px solid gray;
+	margin: 10px auto;
+	width: 90%;
+	box-shadow: 1px 1px 0.2 gray;
+}
+.menu-content__size--height{
+	display: flex;
+	position: relative;
+	right: 0;
+	width: 100%;
+	top:15px;
+}
+.menu-content__size--width{
+	display: flex;
+	position: relative;
+	right: 0;
+	width: 100%;
+	top: 50px;
+}
+.panel-size-input {
+	right: 10px;
+	width:100px;
+	border-radius: 6px ;
+	position: absolute;
+}
+.span_txt{
+	position: absolute;
+	left: 20px;
+}
 .btn__template{
 	display: flex;
 	background-color: white;
@@ -113,6 +149,17 @@ a{
 	margin: auto;	
 	list-style-type: none !important;
 	border: 2px;
+}
+.btn__create--template{
+	background-color: rgb(185, 185, 131);
+	border-radius: 10px solid blue !important;
+	bottom: 2px;
+	display: block;
+	position: absolute;
+	bottom: 5px;
+	z-index: 90	;
+	left: 20px;
+	width: 80%;
 }
 .stamp1 {
 	height: 100px;

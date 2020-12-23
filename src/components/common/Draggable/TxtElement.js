@@ -2,7 +2,7 @@
 import React, { Component, useRef ,useEffect } from "react";
 import Moveable from "react-moveable";
 
-export default function History() {
+export default function TxtElement (props) {
     const [element, setTarget] = React.useState();
     const [frame, setFrame] = React.useState({
         translate: [0,0], 

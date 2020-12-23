@@ -13,7 +13,10 @@ export default class Menu extends Component {
         super(props);
         this.state = {
             leftOpen: true,
-            nono : true
+            nono : true,
+            templateArray: [],
+            height :"",
+            width :""
 
         }
     }
@@ -27,9 +30,31 @@ export default class Menu extends Component {
             this.props.setSides(key)
             
       }
+      handleHeightChange= (e)  =>{
+        this.setState({height: e.target.value});
+     }
+     handleWidthChange = (e) => {
+        this.setState({width: e.target.value});
+     }
+     handleLogin=() => {
+
+        console.log("aaaa",this.state.height)
+
+        const copytemplateArray = Object.assign([], this.state.templateArray);
+        copytemplateArray.push({
+            h : this.state.height,
+            w: this.state.width
+        })
+        this.setState({
+            templateArray: copytemplateArray
+        })
+        console.log("aaaa",this.state.templateArray)
+    }
     render() {
 
-
+        let  heights = this.state.height;
+        console.log("aa " , heights)
+        let widths = this.state.width;
         return (
             <>
                 <Tab.Container  defaultActiveKey="1"    >               
@@ -78,6 +103,28 @@ export default class Menu extends Component {
                                         <input type="text" className="panel-search-input" 
                                         autocomplete="off" data-toggle="db-search-input" placeholder="Search templates"></input>
                                     </div>
+                                    <div className="menu-content__size">
+                                        <div className="menu-content__size--height">
+                                                <span className="span_txt"> Dài</span>
+                                                <input className="panel-size-input" type="text" value={this.state.height} onChange={this.handleHeightChange}></input>
+                                        </div>
+                                        <div  className="menu-content__size--width">
+                                                <span className="span_txt">Rộng</span>
+                                                <input className="panel-size-input" type="text" value={this.state.width} onChange={this.handleWidthChange}></input>
+                                        </div>
+                                        <button type="button" className=" btn btn__create--template" onClick={this.handleLogin}>Tao</button>
+                                    </div>
+                                    {                                    
+                                       this.state.templateArray.map((tag , index) =>{
+                                           console.log(this.state.height)
+                                           return(        
+                                            <div className="menu-content__template">
+                                        <button className="btn__template stamp1" onClick={()=>this.props.addTemplate(heights,widths)} data-id="1" > </button>
+                                        <span> {this.state.height} x {this.state.width} px </span>
+                                              </div>  
+                                           )
+                                       })  
+                                    }
                                     <div className="menu-content__template">
                                         <button className="btn__template stamp1" onClick={()=>this.props.addTemplate("56" , "56")} data-id="1" > </button>
                                         <span> 66 x 69 px </span>
@@ -113,6 +160,7 @@ export default class Menu extends Component {
                                         <input type="text" className="panel-search-input" 
                                         autocomplete="off" data-toggle="db-search-input" placeholder="Search elements"></input>
                                     </div>
+                                   
                                     <div>
                                         <button className="btn__element" onClick={()=>this.props.addName(0 + (Math.random() * (100-0)),"BABA")} data-id="1" > Tên Sản phẩm</button>
                                     </div>

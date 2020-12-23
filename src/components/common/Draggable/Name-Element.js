@@ -36,9 +36,9 @@ class NameElement extends Component {
         
     }
     render() {
-        let line = "" ;
-        const { color, fontSize,style,id,backgrounf } = this.state;
-        const { color, fontSize } = this.state;
+            let line = "" ;
+            const { color, fontSize,style,id,backgrounf } = this.state;
+        // const { color, fontSize } = this.state;
         if( this.props.linecenter == "center")
             line = "center";
             else
@@ -53,7 +53,7 @@ class NameElement extends Component {
             // color: this.props.color,fontSize: this.props.fontSize + "px", fontWeight: this.props.bold, fontStyle: this.props.italic , textAlign: line 
             <Draggable bounds="parent">
           
-                <div className='items-element apply-font' id= {this.props.id} onClick={()=>this.ChangeStyle(this.props.id)} style={{color:style,background:backgrounf }}>
+                <div className='items-element apply-font' id= {this.props.id} >
                 
 
                                    {this.props.body}
