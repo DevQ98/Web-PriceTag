@@ -60,7 +60,7 @@ class DesignCom extends Component {
             isLineCenter: true,
             isLineRight: false,
             height: "500",
-            width : "500",
+            width : "350",
             BG :""
         }
     }
@@ -311,8 +311,11 @@ class DesignCom extends Component {
                             addBG={this.addBG.bind(this)}
                         ></Menu>
                     </div>
-                    <div className={`btn__sidebar--${this.state.leftOpen}`} onClick={this.toggleSidebar}  >
-                       <IoIosArrowDropleft/>
+                    <div className={`btn__sidebar--${this.state.leftOpen} ` } onClick={this.toggleSidebar}  >
+                        <div className=" btn__push">
+                           <IoIosArrowDropleft />
+                        </div>
+                       
                     </div>
                     <div className={` design__content--${leftOpen}`}>
                         <div className='row tool-bar justify-content-around'>
@@ -350,7 +353,7 @@ class DesignCom extends Component {
                                 <AiOutlineAlignRight data-rh="AlignRight" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item'>
-                                <FaListUl data-rh="List" data-rh-at="bottom"/>
+                                <FaListUl data-rh="Bullet" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item'>
                                 <ImTextHeight data-rh="HeightText" data-rh-at="bottom"/>
@@ -360,6 +363,14 @@ class DesignCom extends Component {
                             </div>
                         </div> 
                         <div className ="design__view">
+                            <div>
+                                <div className=" btn btn__save">
+                                    Save
+                                </div>
+                                <div className= " btn btn__version">
+                                    Version
+                                </div>
+                            </div>
                         <div className="design__view--bg">
                                                          
                               <DesignPage 

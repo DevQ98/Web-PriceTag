@@ -77,28 +77,24 @@ export default class Menu extends Component {
                 <Tab.Container  defaultActiveKey="1"    >               
                         <div className='menu'  >
                             <Nav className="menu__colum"  >
-                                <Nav.Item className='menu__items' onClick={this.toggleSidebar} >
-                                    <Nav.Link eventKey="1" className='menu__item'>
+                                <Nav.Item className='menu__items ' onClick={this.toggleSidebar} >
+                                    <Nav.Link eventKey="1" className='menu__item '>
                                             <HiTemplate  data-rh="Templates" />
-                                            <div>Templates</div>
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
+                                <Nav.Item className='menu__items ' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="2" className='menu__item'>
                                             <FaRegClone  data-rh="Elements" />                              
-                                            <div>Elements</div>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="3" className='menu__item'>    
                                             <AiOutlineCloudUpload  data-rh="Unload" />                            
-                                            <div>Unload</div>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="4" className='menu__item'>
-                                            <MdTexture   data-rh="BGround"/>                          
-                                            <div>BGround</div>
+                                            <MdTexture   data-rh="Background"/>                          
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className=' move'onClick={this.toggleSidebar}>
@@ -117,7 +113,7 @@ export default class Menu extends Component {
                                     <div className="menu-content__search">
                                         <span className="icon__search"> <i class="fa fa-search "></i> </span> 
                                         <input type="text" className="panel-search-input" 
-                                        autocomplete="off" data-toggle="db-search-input" placeholder="Search templates"></input>
+                                        autocomplete="off" data-toggle="db-search-input" placeholder="Search "></input>
                                     </div>
                                     <div className="menu-content__size">
                                         <div className="menu-content__size--height">
@@ -128,7 +124,7 @@ export default class Menu extends Component {
                                                 <span className="span_txt">Rộng</span>
                                                 <input className="panel-size-input" type="text" value={this.state.width} onChange={this.handleWidthChange}></input>
                                         </div>
-                                        <button type="button" className=" btn btn__create--template" onClick={this.handleLogin}>Tao</button>
+                                        <button type="button" className=" btn btn__create--template" onClick={this.handleLogin}>Create</button>
                                     </div>
                                     {                                    
                                        this.state.templateArray.map((tag , index) =>{
@@ -174,7 +170,7 @@ export default class Menu extends Component {
                                     <div className="menu-content__search">
                                         <span className="icon__search"> <i class="fa fa-search "></i> </span> 
                                         <input type="text" className="panel-search-input" 
-                                        autocomplete="off" data-toggle="db-search-input" placeholder="Search elements"></input>
+                                        autocomplete="off" data-toggle="db-search-input" placeholder="Search"></input>
                                     </div>
                                    
                                     <div>
@@ -205,7 +201,7 @@ export default class Menu extends Component {
                                 <Tab.Pane eventKey="4">
                                     <div>
                                         <BGComponent setBGs={this.setBG} ></BGComponent>
-                                        <button type="button" className=" btn bnt__request" onClick={()=>this.props.addBG(BG)} >ChangeBg </button>
+                                        <button type="button" className=" btn bnt__request" onClick={()=>this.props.addBG(BG)} >Change </button>
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="5">

@@ -8,7 +8,7 @@ function Banner() {
                 <div className='banner__search'>
                     <span className="icon__search"> <i class="fa fa-search "></i> </span> 
                     <input type="text" className="panel-search-input" 
-                        autocomplete="off" data-toggle="db-search-input" placeholder="Search Pices Tag"></input>                                                
+                        autocomplete="off" data-toggle="db-search-input" placeholder="Search Prices Tag"></input>                                                
                 </div>                                              
             </form> 
         </div>

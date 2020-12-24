@@ -156,6 +156,18 @@ div[id^=font-picker]
   align-items: center ;
   font-size: 20px;
 }
+.btn__version{
+  position: absolute;
+  left: 1rem;
+  top: 0.3rem;
+}
+.btn__save{
+  position: absolute;
+  right: 1rem;
+  top: 0.3rem;
+   
+  ;
+}
 .btn-panel {
   border: none;
   align-items: center;
@@ -174,7 +186,9 @@ div[id^=font-picker]
   border: none;
 
 }
-
+.active {
+  background-color: white;
+}
 .btn-panel:focus {
   border: none;
   background-color: #f3f3f3;
@@ -213,15 +227,16 @@ div[id^=font-picker]
     height: 100%;
     width: 100%;
     position: relative;
-    top: 56px;
+    top: 46px;
+    background-color:#f0f0f0;
   }
 
   .design__view--bg{
     display: flex;
-    top: 20px;
+    top: 35px;
     height: 100%;
     width: 100%;
-    margin:  auto;
+    margin: auto;
     position: absolute;
     background-color:#f0f0f0;
     z-index: 5;
