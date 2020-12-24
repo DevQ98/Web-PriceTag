@@ -27,7 +27,8 @@ import Template from '../../components/layout/Template';
 import { addSize, ChangeStatusNav } from '../../actions/designAction.js'
 import { connect } from 'react-redux';
 import DesignPage from './DesignPage';
-
+import ReactHintFactory from 'react-hint';
+const ReactHint = ReactHintFactory(React)
 class DesignCom extends Component {
     constructor(props) {
         super(props);
@@ -51,15 +52,16 @@ class DesignCom extends Component {
             templateArray: [],
             fontSize: 16,
             color: "#333",
-            isBold: true,
+            isBold: false,
             bold: "bold",
-            isItalic: true,
+            isItalic: false,
             leftOpen: true,
             isLineLeft: false,
-            isLineCenter: false,
+            isLineCenter: true,
             isLineRight: false,
-            height: "800",
-            width : "800"
+            height: "500",
+            width : "500",
+            BG :""
         }
     }
 
@@ -140,6 +142,12 @@ class DesignCom extends Component {
         this.setState({
             height :h,
             width : w
+        })
+    }
+    addBG = (colors) => {
+
+        this.setState({
+            BG: colors
         })
     }
     ChangeName()
@@ -280,10 +288,13 @@ class DesignCom extends Component {
             discountArray,
             promotionArray,
             statusArray,
+            BG
         } = this.state;
-        console.log(priceArray);
+        console.log(BG);
         return (
+            
             <div className='design__page'>
+             <ReactHint autoPosition events delay />
                 <div className='row design__page' id='left'>
                     <div className={` design__menu`}>
                         <Menu visible={this.state.leftOpen ? 'Open' : 'closed'}
@@ -297,6 +308,7 @@ class DesignCom extends Component {
                             addDiscount={this.addDiscount.bind(this)}
                             addStatus={this.addStatus.bind(this)}
                             addPromotion={this.addPromotion.bind(this)}
+                            addBG={this.addBG.bind(this)}
                         ></Menu>
                     </div>
                     <div className={`btn__sidebar--${this.state.leftOpen}`} onClick={this.toggleSidebar}  >
@@ -305,10 +317,10 @@ class DesignCom extends Component {
                     <div className={` design__content--${leftOpen}`}>
                         <div className='row tool-bar justify-content-around'>
                             <div className=' tool-bar__item'>
-                                <IoArrowUndoSharp />
+                                <IoArrowUndoSharp data-rh="Undo" data-rh-at="bottom" />
                             </div>
                             <div className=' tool-bar__item'>
-                                <IoArrowRedoSharp />
+                                <IoArrowRedoSharp data-rh="Redo" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__font'>
                                 <FontPicker> </FontPicker>
@@ -320,31 +332,31 @@ class DesignCom extends Component {
                                 />
                             </div>
                             <div className=' tool-bar__item ' onClick={this.onClickBold}>
-                                <AiOutlineBold />
+                                <AiOutlineBold data-rh="Bold" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item' onClick={this.onClickItalic}>
-                                <FiItalic />
+                                <FiItalic data-rh="Italic" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item'>
-                                <ButtonExample setColors={this.setColor}></ButtonExample>
+                                <ButtonExample data-rh="Fill Color" data-rh-at="bottom" setColors={this.setColor}></ButtonExample>
                             </div>
                             <div className=' tool-bar__item' onClick={this.onClickLineLeft}>
-                                <AiOutlineAlignLeft />
+                                <AiOutlineAlignLeft data-rh="AlignLeft" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item' onClick={this.onClickLineCenter}>
-                                <AiOutlineAlignCenter />
+                                <AiOutlineAlignCenter data-rh="AlignCenter" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item' onClick={this.onClickLineRight}>
-                                <AiOutlineAlignRight />
+                                <AiOutlineAlignRight data-rh="AlignRight" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item'>
-                                <FaListUl />
+                                <FaListUl data-rh="List" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item'>
-                                <ImTextHeight />
+                                <ImTextHeight data-rh="HeightText" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item'>
-                                <FaBorderAll />
+                                <FaBorderAll data-rh="Border" data-rh-at="bottom"/>
                             </div>
                         </div> 
                         <div className ="design__view">
@@ -370,6 +382,7 @@ class DesignCom extends Component {
                                     isBold ={isBold}
                                     height={height}
                                     width = {width}
+                                    BG={BG}
                                 > </DesignPage>
                                 
                         </div>                

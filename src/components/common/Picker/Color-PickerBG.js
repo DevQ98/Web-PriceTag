@@ -2,12 +2,19 @@ import React from 'react'
 import { CompactPicker } from 'react-color';
 
 class BGComponent extends React.Component {
-  state = {
-    background: '#fff',
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      
+      background: '#fff',
+    }
+  }
 
   handleChangeComplete = (color) => {
     this.setState({ background: color.hex });
+    this.props.setBGs(color.hex)
+    
+    
   };
 
   render() {

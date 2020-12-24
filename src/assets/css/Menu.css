@@ -44,6 +44,10 @@ a{
 	justify-content: center;
 	
 }
+.menu__items.active{
+	background-color: black;
+}
+
 .menu__item { 
 	display: flex;
 	height: 100%;
@@ -58,7 +62,7 @@ a{
 
 }
 .active{
-	background-color: white;
+	/* background-color: white; */
 }
 .icon_search{
 	position: absolute;
@@ -66,10 +70,9 @@ a{
 }
 .move{
 	position:absolute;
-	font-size: 0.75rem;
-
+	font-size: 1rem;
+	margin-left: 2rem;
 	bottom: 2rem;
-	margin-left: 0.7em;
 }
 .menu__items:active{
 	background-color: #fff;
@@ -79,6 +82,7 @@ a{
 		flex-direction: column;
 		justify-content: space-between;
 		overflow: scroll;
+		width: 250px;
 		height: 100vh;
 }
 .menu-content__search{
@@ -86,7 +90,7 @@ a{
 	margin-top: 10px;
 	margin-left: 10px;
 	font-size: 1rem;
-    width: 90%;
+    width: 220px;
     border: 1px solid transparent;
     background: #f2f2f7;
     border-radius: 8px;
@@ -169,7 +173,7 @@ a{
 }
 .stamp2 {
 	height: 100px;
-	width: 200px;
+	width: 120px;
 }
 .stamp3 {
 	height: 100px;
@@ -181,11 +185,11 @@ a{
 }
 .stamp5 {
 	height: 100px;
-	width: 150px;
+	width: 120px;
 }
 .stamp6 {
 	height: 80px;
-	width: 180px;
+	width: 120px;
 }
 .stamp7 {
 	height: 100px;
@@ -220,7 +224,7 @@ a{
 }
 .menu__content--Open{
 	display: flex;
-	max-width: 250px;
+	max-width: 20px;
 }
 .menu__content--closed{
 	display: none;
@@ -246,4 +250,31 @@ a{
 .btn__sidebar--closed{
 	display: none;
 
+}
+.compact-picker{
+	width: 224px !important ;
+}
+.menu-content__request{
+	display: block;
+	height: 150px;
+	width: 200px;
+	margin-left: 15px;
+	margin-top: 30px;
+	background-color: #f9f9f9;
+	box-shadow: 4px 4px 0.8 gray !important;
+	border-radius: 8px;
+	border: 1.5px solid gray;
+}
+.bnt__request {
+	display: block;
+	margin: 10px 15px 5px 40px !important;
+	color: white;
+	background-color: #f2f2f7 !important;
+}
+.txt_decription{
+	height: 60px;
+	border-radius: 4px ;
+	border-color: gray;
+	box-shadow: 2px 2px 0.5 gray;
+	margin: 10px 5px 10px 10px;
 }

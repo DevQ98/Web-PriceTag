@@ -5,9 +5,12 @@ import { HiTemplate } from "react-icons/hi";
 import { FaRegClone } from "react-icons/fa"
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdTexture } from "react-icons/md";
-import BGComponent from "../../components/common/Picker/Color-PickerBG"
-import '../../assets/css/Menu.css'
-import '../../assets/css/Design.css'
+import BGComponent from "../../components/common/Picker/Color-PickerBG";
+import ReactHintFactory from 'react-hint';
+import 'react-hint/css/index.css';
+import '../../assets/css/Menu.css';
+import '../../assets/css/Design.css';
+const ReactHint = ReactHintFactory(React)
 export default class Menu extends Component {
     constructor(props){
         super(props);
@@ -16,7 +19,8 @@ export default class Menu extends Component {
             nono : true,
             templateArray: [],
             height :"",
-            width :""
+            width :"",
+            color:""
 
         }
     }
@@ -36,6 +40,12 @@ export default class Menu extends Component {
      handleWidthChange = (e) => {
         this.setState({width: e.target.value});
      }
+     setBG = (colors) => {
+        this.setState({
+            color: colors
+
+        });
+    }
      handleLogin=() => {
 
         console.log("aaaa",this.state.height)
@@ -57,44 +67,44 @@ export default class Menu extends Component {
         console.log("aaaa",this.state.templateArray)
     }
     render() {
-
+        let  BG = this.state.color;
         let  heights = this.state.height;
-        console.log("aa " , heights)
+        console.log("aa " , this.state)
         let widths = this.state.width;
         return (
             <>
+            <ReactHint autoPosition events delay />
                 <Tab.Container  defaultActiveKey="1"    >               
                         <div className='menu'  >
                             <Nav className="menu__colum"  >
                                 <Nav.Item className='menu__items' onClick={this.toggleSidebar} >
                                     <Nav.Link eventKey="1" className='menu__item'>
-                                            <HiTemplate />
+                                            <HiTemplate  data-rh="Templates" />
                                             <div>Templates</div>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="2" className='menu__item'>
-                                            <FaRegClone />                              
+                                            <FaRegClone  data-rh="Elements" />                              
                                             <div>Elements</div>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="3" className='menu__item'>    
-                                            <AiOutlineCloudUpload />                            
+                                            <AiOutlineCloudUpload  data-rh="Unload" />                            
                                             <div>Unload</div>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="4" className='menu__item'>
-                                            <MdTexture />                          
+                                            <MdTexture   data-rh="BGround"/>                          
                                             <div>BGround</div>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className=' move'onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="5">
                                         <span className='menu__item'>
-                                            <i className="fas fa-user-edit"></i>                            
-                                            <div>Request</div>
+                                            <i className="fas fa-user-edit"  data-rh="Request"></i>                            
                                         </span>
                                     </Nav.Link>
                                 </Nav.Item>
@@ -194,11 +204,15 @@ export default class Menu extends Component {
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="4">
                                     <div>
-                                        <BGComponent></BGComponent>
+                                        <BGComponent setBGs={this.setBG} ></BGComponent>
+                                        <button type="button" className=" btn bnt__request" onClick={()=>this.props.addBG(BG)} >ChangeBg </button>
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="5">
-                                    <div>Request</div>
+                                    <div  className="menu-content__request">
+                                        <input className="txt_decription" type="text" placeholder="Desciptions" ></input>
+                                        <button type="button" className=" btn bnt__request" > Send Request</button>
+                                    </div>
                                 </Tab.Pane>
                             </Tab.Content>
                         </div>

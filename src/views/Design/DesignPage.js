@@ -29,7 +29,7 @@ export default function DesignPage (props) {
     // const aarr = Object.assign([], arr);
 
 
-   return <div className="moveable app">
+   return <div className="moveable app" style={{margin: "auto"}}>
           
             <Moveable
                 ref={moveableRef}
@@ -48,9 +48,26 @@ export default function DesignPage (props) {
                     }
                     const frame = frameMap.get(target);
                     target.style.fontSize= props.fontSize+"px";
+
                     target.style.fontWeight = props.isBold ?  'bold' : 'normal';
-                    target.style.fontWeight = props.isItalic ?  'italic' : 'normal';
+                    target.style.fontStyle = props.isItalic ?  'italic' : 'normal';
                     target.style.color = props.color;
+                    if(props.isLineCenter == true)
+                    {
+                        target.style.textAlign = 'center';
+                    }
+                    else
+                    {
+                        if(props.isLineLeft == true)
+                        {
+                            target.style.textAlign = "left";
+                        }
+                        else
+                        {
+                            target.style.textAlign = "right";
+                        }
+                    }
+
                     e.set(frame.translate);
                 }}
                 onDrag={e => {
@@ -122,7 +139,7 @@ export default function DesignPage (props) {
                 }}
             ></Selecto>
 
-            <div className="elements selecto-area items-template " style={{ height : props.height +"mm" , width : props.width + "mm"}}>
+            <div className="elements selecto-area items-template " style={{ height : props.height +"mm" , width : props.width + "mm" , background : props.BG}}>
                 {                                    
                     props.priceArray.map((tag , index) =>{
                                                 
