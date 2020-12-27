@@ -3,7 +3,6 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import ItemList from '../../components/common/Carousels/ItemList.js'
 import '../../assets/css/Home.css'
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 function HistoryPage() {
     return (
         <div className='history--body'>

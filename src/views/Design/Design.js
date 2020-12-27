@@ -1,7 +1,8 @@
 import React, { useState, Component } from 'react';
 
 import { FaBorderAll ,FaListUl } from "react-icons/fa";
-import { AiOutlineAlignRight, AiOutlineAlignLeft, AiOutlineAlignCenter  ,AiOutlineBold} from "react-icons/ai";
+import { AiOutlineAlignRight, AiOutlineAlignLeft, AiOutlineAlignCenter  ,AiOutlineBold 
+    , AiOutlineBorderBottom,AiOutlineBorderLeft,AiOutlineBorderRight,AiOutlineBorderTop} from "react-icons/ai";
 import { FiItalic } from "react-icons/fi";
 import { ImTextHeight } from "react-icons/im";
 import { IoArrowRedoSharp , IoArrowUndoSharp} from "react-icons/io5";
@@ -32,6 +33,13 @@ const options = [
     { value: '4', label: '142784_IphoneTem_V4' },
     { value: '5', label: '142784_IphoneTem_V5' },
     { value: '6', label: '142784_IphoneTem_V6' }
+]
+const border = [
+    { value: '1', label: <AiOutlineBorderLeft/> },
+    { value: '2', label: <AiOutlineBorderRight/> },
+    { value: '3', label: <AiOutlineBorderBottom/> },
+    { value: '4', label: <AiOutlineBorderTop/> },
+
 ]
 const ReactHint = ReactHintFactory(React)
 class DesignCom extends Component {
@@ -67,7 +75,10 @@ class DesignCom extends Component {
             isLineRight: false,
             height: "500",
             width : "300",
-            BG :""
+            BG :"",
+            border : "",
+            isHeightText: true,
+            isBullet : false
         }
     }
 
@@ -96,6 +107,19 @@ class DesignCom extends Component {
 
         })
     }
+    onClickHeightText = (isHeightText) => {
+        this.setState({
+            isHeightText: !this.state.isHeightText
+
+        })
+    }
+    onClickHeightText = (isHeightText) => {
+        this.setState({
+            isHeightText: !this.state.isHeightText
+
+        })
+        console.log('heightss ' ,isHeightText)
+    }
     onClickLineLeft = () => {
         this.setState({
             isLineLeft: true
@@ -103,6 +127,12 @@ class DesignCom extends Component {
         })
         this.setState({ isLineCenter: false })
         this.setState({ isLineRight: false })
+    }
+    onClickBullet =(isBullet) =>{
+        this.setState({
+            isBullet: !this.state.isBullet
+
+        })
     }
     onClickLineCenter = () => {
         this.setState({
@@ -156,9 +186,9 @@ class DesignCom extends Component {
             BG: colors
         })
     }
-    ChangeName()
-    {
-        console.log("kakka")
+
+    changeBorder(event) {
+
     }
     addName = (id ) => {
         this.postID = id;
@@ -224,7 +254,7 @@ class DesignCom extends Component {
     }
     addDiscount = (id) => {
         this.postID = id;
-        this.Body = "Giá đã được giảm "
+        this.Body = "Giá đã được giảm "     
         this.FontSize= 12
         const copyDiscountArray = Object.assign([], this.state.discountArray);
         copyDiscountArray.push({
@@ -294,7 +324,9 @@ class DesignCom extends Component {
             discountArray,
             promotionArray,
             statusArray,
-            BG
+            BG,
+            isHeightText,
+            isBullet
         } = this.state;
         console.log(BG);
         return (
@@ -358,15 +390,16 @@ class DesignCom extends Component {
                             <div className=' tool-bar__item' onClick={this.onClickLineRight}>
                                 <AiOutlineAlignRight data-rh="AlignRight" data-rh-at="bottom"/>
                             </div>
-                            <div className=' tool-bar__item'>
+                            <div className=' tool-bar__item' onClick={this.onClickBullet}>
                                 <FaListUl data-rh="Bullet" data-rh-at="bottom"/>
                             </div>
-                            <div className=' tool-bar__item'>
+                            <div className=' tool-bar__item' onClick={this.onClickHeightText}>
                                 <ImTextHeight data-rh="HeightText" data-rh-at="bottom"/>
                             </div>
-                            <div className=' tool-bar__item'>
-                                <FaBorderAll data-rh="Border" data-rh-at="bottom"/>
-                            </div>
+                            <section  className=' tool-bar__item' data-rh="Border" data-rh-at="bottom">
+                                    <Select classNamePrefix="Font" className='cb_border' onChange={this.changeBorder(this)}
+                                     options={border} placeholder={ <FaBorderAll />} />
+                            </section>
                         </div> 
                         <div className ="design__view">
                             <div>
@@ -396,6 +429,8 @@ class DesignCom extends Component {
                                     isLineCenter={isLineCenter}
                                     isLineLeft = {isLineLeft}
                                     isLineRight={isLineRight}
+                                    isHeightText={isHeightText}
+                                    isBullet = {isBullet}
                                     isBold ={isBold}
                                     height={height}
                                     width = {width}

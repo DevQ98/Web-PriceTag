@@ -114,7 +114,6 @@ div[id^=font-picker]
   font-size: 2rem;
   flex-direction: row;
   text-align: center;
-  width: 30px !important;
   box-sizing: border-box;
   position: relative;
   top: 0;
@@ -265,8 +264,15 @@ div[id^=font-picker]
     z-index: 800;
     width: 20rem;
   }
+  .cb_border{
+    width: 5rem;
+    font-size: 1.8rem;
+  }
   .btn__save{
     margin: 1.6rem;
     z-index: 800;
     background-color: white !important;
+  }
+  .btn__upload{
+    margin-left: 5rem;
   }

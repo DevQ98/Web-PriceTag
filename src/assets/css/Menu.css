@@ -281,3 +281,19 @@
 	box-shadow: 2px 2px 0.5 gray;
 	margin: 10px 5px 10px 10px;
 }
+.menu-content__upload{
+
+}
+.upload__content{
+	height: 200px;
+	width: 200px;
+	margin: 1.3rem !important;
+	background-color: #f7f7f7;
+	border-radius: 2px;
+	margin: auto;
+}
+.upload__content-icon{
+	font-size: 5rem;
+	cursor: pointer;
+	margin: 5.5rem 7.5rem;
+}

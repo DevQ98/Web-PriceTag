@@ -49,9 +49,10 @@ export default function DesignPage (props) {
                     }
                     const frame = frameMap.get(target);
                     target.style.fontSize= props.fontSize+"px";
-
+                    target.style.lineHeight = props.isHeightText ?  '1.6' : '1';
                     target.style.fontWeight = props.isBold ?  'bold' : 'normal';
                     target.style.fontStyle = props.isItalic ?  'italic' : 'normal';
+                    target.style.listStyleType = props.isBullet ?  'circle' : 'none';
                     target.style.color = props.color;
                     
                     if(props.isLineCenter == true)

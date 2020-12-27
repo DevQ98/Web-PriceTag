@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import { HiTemplate } from "react-icons/hi";
 import { FaRegClone } from "react-icons/fa"
 import { AiOutlineCloudUpload } from "react-icons/ai";
+import { IoMdCloudUpload } from "react-icons/io";
 import { MdTexture } from "react-icons/md";
 import BGComponent from "../../components/common/Picker/Color-PickerBG";
 import Card from "../common/Draggable/Card"
@@ -193,7 +194,13 @@ export default class Menu extends Component {
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="3">
-                                    <div>Uploads</div>
+                                    <div className="menu-content__upload">
+                                        <h3> Upload file here</h3>
+                                        <div className='upload__content'>
+                                            <IoMdCloudUpload className='upload__content-icon' ></IoMdCloudUpload>
+                                        </div>
+                                        <button className='btn btn__upload'>Unload</button>
+                                    </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="4">
                                     <div>
