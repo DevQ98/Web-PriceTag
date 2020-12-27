@@ -11,8 +11,9 @@ import DiscountElement from "../../components/common/Draggable/Discount-Element"
 import PromotionElement from "../../components/common/Draggable/Promotion-Element";
 import NameElement from "../../components/common/Draggable/Name-Element";
 import StatusElement from "../../components/common/Draggable/Status-Element";
+import Board from "../../components/common/Draggable/Board"
 export default function DesignPage (props) {
-    console.log("props", props)
+    console.log("propssss", props)
     const [targets, setTargets] = React.useState([]);
     const [frameMap] = React.useState(() => new Map());
     const moveableRef = React.useRef(null);
@@ -29,8 +30,8 @@ export default function DesignPage (props) {
     // const aarr = Object.assign([], arr);
 
 
-   return <div className="moveable app" style={{margin: "auto"}}>
-          
+   return <div className="moveable app" style={{margin: "auto"} }>
+          <Board>
             <Moveable
                 ref={moveableRef}
                 draggable={true}
@@ -40,7 +41,7 @@ export default function DesignPage (props) {
                 }}
                 onDragStart={e => {
                     const target = e.target;
-                
+                    const inputTarget = e.inputTarget;
                     if (!frameMap.has(target)) {
                         frameMap.set(target, {
                             translate: [0, 0],
@@ -52,6 +53,7 @@ export default function DesignPage (props) {
                     target.style.fontWeight = props.isBold ?  'bold' : 'normal';
                     target.style.fontStyle = props.isItalic ?  'italic' : 'normal';
                     target.style.color = props.color;
+                    
                     if(props.isLineCenter == true)
                     {
                         target.style.textAlign = 'center';
@@ -131,10 +133,7 @@ export default function DesignPage (props) {
                     const moveable = moveableRef.current;
                     if (e.isDragStart) {
                         e.inputEvent.preventDefault();
-                
-                        setTimeout(() => {
-                             moveable.dragStart(e.inputEvent);
-                        });
+
                     }
                 }}
             ></Selecto>
@@ -256,5 +255,6 @@ export default function DesignPage (props) {
 
 
             </div>
+            </Board>
     </div>;
 }

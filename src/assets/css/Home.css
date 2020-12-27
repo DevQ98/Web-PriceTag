@@ -1,4 +1,29 @@
-
+.home__body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 21rem ;
+    bottom: 0;
+}
+.home__body-title{
+    border: 2px ;
+    height: 48px;
+    border-bottom: 3px solid var(--white-color);
+    box-shadow: 4px var(--white-color);
+    margin: 0 1rem;
+    position: relative;
+    top :0;
+    z-index: 5;
+}
+.home__body-content {
+    position: absolute;
+    width: 100%;
+    overflow: scroll;
+    border: 2px !important ;
+    min-height: 300px;
+    top: 48px ;
+    bottom: 0;
+}
 .jumbotron{
     background-color: white !important;
     margin: 0px !important;
@@ -80,13 +105,7 @@ font-size: 2.5em;
 .Tab-history{
     margin: 0 15px;
 }
-.home--body {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 212px ;
-    bottom: 0;
-}
+
 .history--body {
     position: absolute;
     left: 0;
@@ -94,14 +113,7 @@ font-size: 2.5em;
     top: 212px ;
     bottom: 0;
 }
-.home-content {
-    position: absolute;
-    overflow: scroll;
-    min-height: 300px;
-    top: 48px ;
-    bottom: 0;
-    right: 0;
-}
+
 .list-item{
     width: 100vw;
     display: flex;
@@ -116,16 +128,7 @@ font-size: 2.5em;
     flex: auto;
     
 }
-.home-title{
-    border: 2px ;
-    height: 48px;
-    border-bottom: 3px solid #f0f0f0;
-    box-shadow: 4px #f0f0f0 ;
-    margin: 0 16px;
-    position: sticky;
-    top :0;
-    z-index: 5;
-}
+
 .price-tag{
     display: inline-block;
     flex-direction: row;

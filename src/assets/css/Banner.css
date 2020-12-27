@@ -1,28 +1,45 @@
-.banner{
+.banner-fluid{
     display: flex;
-    height: 140px;
+    margin: auto;
+    width: calc(100% -3.2rem);
+    height: 14.4rem;
+}
+.banner__from{
+    display: flex;
+    margin: 1rem ;
     align-items: center;
-    padding:0   17em;
-    margin: 0  em;
     background: linear-gradient(90deg, rgba(156,113,185,1) 0%, rgba(29,199,253,1) 50%, rgba(69,252,164,1) 100%);
     background-size: cover;
-    border-radius: 7px ;
+    border-radius: 8px ;
     position: relative;
     width: 100%;
+    justify-content: center;
 }
-.banner__search {
-	display: block;
-	margin-top: 10px;
-	margin-left: 10px;
-	font-size: 1.5rem;
+.banner__from-search {
+	display:flex;
+	font-size: 2.2rem;
     width: 90%;
     border: 1px solid transparent;
-    background: #f2f2f7;
+    box-shadow:  0 0 1px 1px var(--white-color);
+    background: var(--menu-color);
     border-radius: 1rem;
     transition: all .3s cubic-bezier(.25,.8,.25,1);
 	outline: 0;
-	position: relative;
+    position: relative;
+    align-items: center;
+}
+.banner__from-search:hover{
+    cursor: text;
+}
 
+.from-search__icon{
+    font-size: 3rem;    
+}
+.from-search__input{
+    width: 100%;
+    background-color: transparent;
+    outline: 0;
+    border: 0px;
 }
 
 

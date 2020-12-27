@@ -6,8 +6,7 @@ class BrandElement extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // color: this.props.color,
-            // fontSize: this.props.fontSize
+            
         }
     }   
 
@@ -18,7 +17,7 @@ class BrandElement extends Component {
     render() {
         const { color, fontSize } = this.state;
         return (
-            <div className='items-element apply-font cube target'  id={this.props.id} >
+            <div className='items-element apply-font cube target' style={{color : this.props.color}}  id={this.props.id} >
             {this.props.body}
         </div>
         )

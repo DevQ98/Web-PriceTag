@@ -1,14 +1,15 @@
 import React from 'react';
 import FormControl from 'react-bootstrap/FormControl';
+import { IoIosSearch } from "react-icons/io";
 import '../../assets/css/Banner.css';
 function Banner() {
     return (
-        <div className="container-fluid pt-3">           
-            <form className="banner" >
-                <div className='banner__search'>
-                    <span className="icon__search"> <i class="fa fa-search "></i> </span> 
-                    <input type="text" className="panel-search-input" 
-                        autocomplete="off" data-toggle="db-search-input" placeholder="Search Prices Tag"></input>                                                
+        <div className="banner-fluid ">           
+            <form className='banner__from' >
+                <div className='banner__from-search'>
+                    <IoIosSearch className='from-search__icon'/> 
+                    <input type="text" className="from-search__input" 
+                        autocomplete="off" data-toggle="db-search-input" placeholder="   Search Prices Tag"></input>                                                
                 </div>                                              
             </form> 
         </div>

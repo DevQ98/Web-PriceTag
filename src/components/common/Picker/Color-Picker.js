@@ -40,7 +40,7 @@ class ButtonExample extends React.Component {
     }
     return (
       <div>
-        <button  className='fill-color' onClick={ this.handleClick }><MdFormatColorFill className="svg"/></button>
+        <button  className='fill-color' onClick={ this.handleClick }><MdFormatColorFill className="tool-bar__color"/></button>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
           <SketchPicker color={ this.state.color }  onChange={ this.handleChange.bind(this) }  />

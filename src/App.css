@@ -1,13 +1,25 @@
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'PT Sans', sans-serif;
-  user-select: none
+:root{
+  --header-color : #212519;
+  --menu-color: #f3f3f3 ;
+  --white-color : #f1f1f1;
+  --text-color : #333 ;
+  
+  
 }
+html{
+  font-size: 62.5%;
+  height: 1.6rem;
+  font-family: 'Roboto', sans-serif;
 
-.nav-link{
-  margin: 0px !important;
-  padding: 0px !important;
+}
+* {
+  user-select: none ;
+  box-sizing: inherit;
+}
+a{
+	text-align: center;
+	text-decoration: none !important;
+	color: black !important;
 }
 body{
 overflow: hidden;

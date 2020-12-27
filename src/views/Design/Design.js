@@ -1,33 +1,38 @@
 import React, { useState, Component } from 'react';
-import Menu from '../../components/layout/Menu';
-import { FaBorderAll } from "react-icons/fa";
-import { AiOutlineAlignRight, AiOutlineAlignLeft, AiOutlineAlignCenter } from "react-icons/ai";
+
+import { FaBorderAll ,FaListUl } from "react-icons/fa";
+import { AiOutlineAlignRight, AiOutlineAlignLeft, AiOutlineAlignCenter  ,AiOutlineBold} from "react-icons/ai";
 import { FiItalic } from "react-icons/fi";
-import { AiOutlineBold } from "react-icons/ai";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import { FaListUl } from "react-icons/fa";
 import { ImTextHeight } from "react-icons/im";
-import { IoArrowRedoSharp } from "react-icons/io5";
-import { IoArrowUndoSharp } from "react-icons/io5";
+import { IoArrowRedoSharp , IoArrowUndoSharp} from "react-icons/io5";
 import { IoIosArrowDropleft} from "react-icons/io";
-import { Button } from '../../components/common/Button/Button';
-import TxtElement from "../../components/common/Draggable/TxtElement"
+
 import FontPicker from "../../components/common/Picker/Font-Picker";
 import ButtonExample from '../../components/common/Picker/Color-Picker';
-import '../../assets/css/Menu.css';
+
 import FontSize from '../../components/common/Picker/Font-Size';
-import NameElement from '../../components/common/Draggable/Name-Element';
-import PriceElement from '../../components/common/Draggable/Price-Element';
-import BrandElement from '../../components/common/Draggable/Brand-Element';
-import DateElement from '../../components/common/Draggable/Date-Element';
-import DiscountElement from '../../components/common/Draggable/Discount-Element';
-import PromotionElement from '../../components/common/Draggable/Promotion-Element';
-import StatusElement from '../../components/common/Draggable/Status-Element';
-import Template from '../../components/layout/Template';
+
 import { addSize, ChangeStatusNav } from '../../actions/designAction.js'
 import { connect } from 'react-redux';
+
+
+import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
 import ReactHintFactory from 'react-hint';
+import Select from 'react-select';
+
+import '../../assets/css/Menu.css';
+import '../../assets/css/Design.css';
+import Board from '../../components/common/Draggable/Board';
+import Card from '../../components/common/Draggable/Card';
+const options = [
+    { value: '1', label: '142784_IphoneTem_V1' },
+    { value: '2', label: '142784_IphoneTem_V2' },
+    { value: '3', label: '142784_IphoneTem_V3' },
+    { value: '4', label: '142784_IphoneTem_V4' },
+    { value: '5', label: '142784_IphoneTem_V5' },
+    { value: '6', label: '142784_IphoneTem_V6' }
+]
 const ReactHint = ReactHintFactory(React)
 class DesignCom extends Component {
     constructor(props) {
@@ -35,6 +40,7 @@ class DesignCom extends Component {
         this.postID = 0;
         this.Body = "0";
         this.state = {
+            Bigarray :[],
             nameArray: [
             ],
             priceArray: [
@@ -60,7 +66,7 @@ class DesignCom extends Component {
             isLineCenter: true,
             isLineRight: false,
             height: "500",
-            width : "350",
+            width : "300",
             BG :""
         }
     }
@@ -296,8 +302,8 @@ class DesignCom extends Component {
             <div className='design__page'>
              <ReactHint autoPosition events delay />
                 <div className='row design__page' id='left'>
-                    <div className={` design__menu`}>
-                        <Menu visible={this.state.leftOpen ? 'Open' : 'closed'}
+
+                        <Menu className={` design__menu`} visible={this.state.leftOpen ? 'Open' : 'closed'}
                             addTemplate={this.addTemplate.bind(this)}
                             setSides={this.setSide}
                             addName={this.addName.bind(this)}
@@ -310,7 +316,7 @@ class DesignCom extends Component {
                             addPromotion={this.addPromotion.bind(this)}
                             addBG={this.addBG.bind(this)}
                         ></Menu>
-                    </div>
+
                     <div className={`btn__sidebar--${this.state.leftOpen} ` } onClick={this.toggleSidebar}  >
                         <div className=" btn__push">
                            <IoIosArrowDropleft />
@@ -318,7 +324,7 @@ class DesignCom extends Component {
                        
                     </div>
                     <div className={` design__content--${leftOpen}`}>
-                        <div className='row tool-bar justify-content-around'>
+                        <div className=' tool-bar '>
                             <div className=' tool-bar__item'>
                                 <IoArrowUndoSharp data-rh="Undo" data-rh-at="bottom" />
                             </div>
@@ -367,12 +373,12 @@ class DesignCom extends Component {
                                 <div className=" btn btn__save">
                                     Save
                                 </div>
-                                <div className= " btn btn__version">
-                                    Version
-                                </div>
+                                <section >
+                                    <Select classNamePrefix="Font" className='cb_version'
+                                     options={options} placeholder="142784_IphoneTem_Now" />
+                                </section>
                             </div>
-                        <div className="design__view--bg">
-                                                         
+                        <div className="design__view--bg">         
                               <DesignPage 
                                     nameArray={nameArray}
                                     brandArray={brandArray}
@@ -397,7 +403,6 @@ class DesignCom extends Component {
                                 > </DesignPage>
                                 
                         </div>                
-                        
                         </div>                    
                     </div>
                 </div>
@@ -405,17 +410,7 @@ class DesignCom extends Component {
         )
     }
 }
-/* <div>
-                                   {                                    
-                                       this.state.templateArray.map((tag , index) =>{
-                                           return(        
-                                               <Template
-                                                  
-                                               />    
-                                           )
-                                       })  
-                                   }
-                           </div> */
+
 
 
 const mapStateToProps = state => {

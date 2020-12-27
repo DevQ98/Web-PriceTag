@@ -6,10 +6,12 @@ import { FaRegClone } from "react-icons/fa"
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdTexture } from "react-icons/md";
 import BGComponent from "../../components/common/Picker/Color-PickerBG";
+import Card from "../common/Draggable/Card"
 import ReactHintFactory from 'react-hint';
 import 'react-hint/css/index.css';
 import '../../assets/css/Menu.css';
 import '../../assets/css/Design.css';
+import Board from '../common/Draggable/Board';
 const ReactHint = ReactHintFactory(React)
 export default class Menu extends Component {
     constructor(props){
@@ -21,7 +23,6 @@ export default class Menu extends Component {
             height :"",
             width :"",
             color:""
-
         }
     }
     toggleSidebar = (event) => {
@@ -73,43 +74,42 @@ export default class Menu extends Component {
         let widths = this.state.width;
         return (
             <>
-            <ReactHint autoPosition events delay />
-                <Tab.Container  defaultActiveKey="1"    >               
+                <ReactHint autoPosition events delay />
+                <Tab.Container  defaultActiveKey="1" >               
                         <div className='menu'  >
-                            <Nav className="menu__colum"  >
-                                <Nav.Item className='menu__items ' onClick={this.toggleSidebar} >
-                                    <Nav.Link eventKey="1" className='menu__item '>
-                                            <HiTemplate  data-rh="Templates" />
+                            <Nav className="menu__col"  >
+                                <Nav.Item className='menu__col-items ' onClick={this.toggleSidebar} >
+                                    <Nav.Link eventKey="1" className='menu__col-item ' data-rh="Templates" data-rh-at="right">
+                                            <HiTemplate   />
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='menu__items ' onClick={this.toggleSidebar}>
-                                    <Nav.Link eventKey="2" className='menu__item'>
-                                            <FaRegClone  data-rh="Elements" />                              
+                                <Nav.Item className='menu__col-items ' onClick={this.toggleSidebar}>
+                                    <Nav.Link eventKey="2" className='menu__col-item'  data-rh="Elements" data-rh-at="right">
+                                            <FaRegClone  />                              
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
-                                    <Nav.Link eventKey="3" className='menu__item'>    
-                                            <AiOutlineCloudUpload  data-rh="Unload" />                            
+                                <Nav.Item className='menu__col-items' onClick={this.toggleSidebar}>
+                                    <Nav.Link eventKey="3" className='menu__col-item' data-rh="Unload"  data-rh-at="right">    
+                                            <AiOutlineCloudUpload  />                            
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className='menu__items' onClick={this.toggleSidebar}>
-                                    <Nav.Link eventKey="4" className='menu__item'>
-                                            <MdTexture   data-rh="Background"/>                          
+                                <Nav.Item className='menu__col-items' onClick={this.toggleSidebar}>
+                                    <Nav.Link eventKey="4" className='menu__col-item' data-rh="Background" data-rh-at="right">
+                                            <MdTexture   />                          
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item className=' move'onClick={this.toggleSidebar}>
+                                <Nav.Item className='menu__col-request'onClick={this.toggleSidebar}>
                                     <Nav.Link eventKey="5">
-                                        <span className='menu__item'>
-                                            <i className="fas fa-user-edit"  data-rh="Request"></i>                            
+                                        <span className='menu__item' data-rh="Request" data-rh-at="right">
+                                            <i className="fas fa-user-edit"  ></i>                            
                                         </span>
                                     </Nav.Link>
                                 </Nav.Item>
                             </Nav>
                         </div>
                         <div className={` menu__content--${this.props.visible}`}  >
-                            <Tab.Content>
+                            <Tab.Content className='layout--none' >
                                 <Tab.Pane eventKey="1" className="menu__template">
-                                    
                                     <div className="menu-content__search">
                                         <span className="icon__search"> <i class="fa fa-search "></i> </span> 
                                         <input type="text" className="panel-search-input" 
@@ -128,13 +128,10 @@ export default class Menu extends Component {
                                     </div>
                                     {                                    
                                        this.state.templateArray.map((tag , index) =>{
-                                           console.log(this.state.height)
-                                           return(        
-                                            <div className="menu-content__template">
-                                        <button className="btn__template stamp1" onClick={()=>this.props.addTemplate(heights,widths)} data-id="1" > </button>
-                                        <span> {this.state.height} x {this.state.width} px </span>
-                                              </div>  
-                                           )
+                                           return<div className="menu-content__template">
+                                                    <button className="btn__template stamp1" onClick={()=>this.props.addTemplate(heights,widths)} data-id="1" > </button>
+                                                    <span> {this.state.height} x {this.state.width} px </span>
+                                                 </div>  
                                        })  
                                     }
                                     <div className="menu-content__template">
@@ -176,7 +173,7 @@ export default class Menu extends Component {
                                     <div>
                                         <button className="btn__element" onClick={()=>this.props.addName(0 + (Math.random() * (100-0)),"BABA")} data-id="1" > Tên Sản phẩm</button>
                                     </div>
-                                    <div>
+                                    <div style={{zIndex : 999}}>
                                         <button className="btn__element" onClick={()=>this.props.addPrice(0 + (Math.random() * (100-1)),"MANA")}  data-id="2" > Giá Gốc </button>
                                     </div>
                                     <div>

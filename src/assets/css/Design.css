@@ -5,15 +5,15 @@
 }
 .design-tool{
     background: #F2DCBB !important;
-    height: 30px;
+    height: 46px;
     display: block;
     flex-grow: 1;
     flex-direction: column;
-    z-index: 2;
+    z-index: 998;
 }
 
   
-  .design__content--open {
+.design__content--open {
     background: #E5E5E5;
     display:block;
     position: absolute;
@@ -21,7 +21,6 @@
     top: 0;
     bottom: 0;
     left: 310px;
-    /* transition: all 1s; */
     box-shadow: 1px 0px 3px 0px #aaa;
     border: 5px black !important  ;
 
@@ -72,6 +71,7 @@ div[id^=font-picker]
 .fill-color {
   background: transparent;
   border: 0px;
+  font-size: 2rem;
 
 }
 .bold:active {
@@ -95,11 +95,12 @@ div[id^=font-picker]
 }
 .tool-bar {
   background: #fff;
-  min-height: 46px;
+  min-height: 4.6rem;
   position: absolute;
   padding: 0;
   width: 100%;
   min-width: 800px;
+  max-height: 4.6rem;
   top: 0;
   z-index: 999;
   box-shadow: 0 1px 0 rgba(44,44,46,.16);
@@ -110,24 +111,24 @@ div[id^=font-picker]
 
 .tool-bar__item {
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 2rem;
   flex-direction: row;
   text-align: center;
   width: 30px !important;
   box-sizing: border-box;
   position: relative;
   top: 0;
-
 }
-.tool-bar_font{
-  display: flex;
-  flex-direction: row;
-  width: 80px;
+.tool-bar__font{
+  font-size: 1.8rem;
 }
-.tool-bar_size{
-  display: flex;
+.tool-bar__size{
   flex-direction: row;
-  width: 100px !important;
+  width: 60px !important;
+  font-size: 1.8rem;
+}
+.tool-bar__color{
+  font-size: 2rem;
 }
 .panel-design {
   display: flex;
@@ -258,4 +259,14 @@ div[id^=font-picker]
   .draggable {
     cursor: -webkit-grab;
     cursor: grab;
+  }
+  .cb_version{
+    margin: 1.6rem;
+    z-index: 800;
+    width: 20rem;
+  }
+  .btn__save{
+    margin: 1.6rem;
+    z-index: 800;
+    background-color: white !important;
   }
