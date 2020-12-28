@@ -282,6 +282,7 @@
 	margin: 10px 5px 10px 10px;
 }
 .menu-content__upload{
+	display: block;
 
 }
 .upload__content{

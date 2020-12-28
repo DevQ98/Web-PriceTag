@@ -411,6 +411,7 @@ class DesignCom extends Component {
                                      options={options} placeholder="142784_IphoneTem_Now" />
                                 </section>
                             </div>
+                            <div className='design__size-zoom'>Zoom : 100% | {this.state.height} x { this.state.width}</div>
                         <div className="design__view--bg">         
                               <DesignPage 
                                     nameArray={nameArray}

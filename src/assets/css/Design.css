@@ -233,9 +233,10 @@ div[id^=font-picker]
 
   .design__view--bg{
     display: flex;
-    top: 35px;
-    height: 100%;
-    width: 100%;
+    top: 46px;
+    overflow: scroll;
+    height: 80vh;
+    width: 80vw;
     margin: auto;
     position: absolute;
     background-color:#f0f0f0;
@@ -275,4 +276,18 @@ div[id^=font-picker]
   }
   .btn__upload{
     margin-left: 5rem;
+  }
+  .design__size-zoom{
+    background-color: #E5E5E5;
+    width: auto;
+    height: 24px;
+    border-radius: 5px  !important;
+    font-weight: bold;
+    box-shadow: 0 0 1px 2px gray;
+    font-size: 1.6rem;
+    position: absolute;
+    padding: 0 0.2rem;
+    z-index: 900;
+    top: 80vh;
+    right: 10vw;
   }
