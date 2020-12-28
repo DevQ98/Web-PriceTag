@@ -276,10 +276,11 @@
 }
 .txt_decription{
 	height: 60px;
+	width: 165px;
 	border-radius: 4px ;
 	border-color: gray;
 	box-shadow: 2px 2px 0.5 gray;
-	margin: 10px 5px 10px 10px;
+	margin: 10px 15px;
 }
 .menu-content__upload{
 	display: block;
