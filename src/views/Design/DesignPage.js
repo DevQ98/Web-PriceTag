@@ -3,31 +3,23 @@ import * as React from "react";
 import Selecto from "react-selecto";
 import Moveable from "react-moveable";
 
-import "../../components/common/Draggable/TxtElement.css"
 import PriceElement from "../../components/common/Draggable/Price-Element";
-import BrandElement from "../../components/common/Draggable/Brand-Element";
-import DateElement from "../../components/common/Draggable/Date-Element";
-import DiscountElement from "../../components/common/Draggable/Discount-Element";
-import PromotionElement from "../../components/common/Draggable/Promotion-Element";
-import NameElement from "../../components/common/Draggable/Name-Element";
-import StatusElement from "../../components/common/Draggable/Status-Element";
-import Board from "../../components/common/Draggable/Board"
 
 import {  isTarget } from '../../actions/designAction.js'
 import { connect } from 'react-redux';
  function DesignPageCom (props) {
-    // console.log("propssss", props.addPrice.Array[0].body)
     const [targets, setTargets] = React.useState([]);
     const [frameMap] = React.useState(() => new Map());
     const moveableRef = React.useRef(null);
     const selectoRef = React.useRef(null);
     const cubes = [];
     // const PriceArray = props.addPrice.Array[0]
-   // console.log("ri" , props);
-    console.log("Ass" ,  props)
+    console.log("Props of DesignPage" ,  props)
 
-    const PriceArray = props.addPrice.ArrayPRice;
-    const NameArray = props.addName.ArrayName;
+    const PriceArray = props.Price.ArrayPRice;
+
+    // console.log(NameArray , "priceArray");
+    // const NameArray = props.addName.ArrayName;
     // const arr=  props.priceArray.filter(function (item) {
     //     return item.id = e.target.attributes.id
     // })
@@ -125,43 +117,26 @@ import { connect } from 'react-redux';
             ></Selecto>
 
             <div className="elements selecto-area items-template " style={{ height : props.height +"mm" , width : props.width + "mm" , background : props.BG}}>
-                {/* {                                    
+                {                                   
                     PriceArray.map((tag , index) =>{
-                        console.log(props.addPrice.isActive , " activev2")                     
                         return(        
                             <PriceElement 
                                 key={index}
                                 id = {tag.id}
                                 body = {tag.body}                                            
-                                isTarget = {props.addPrice.isActive}
+                                isTarget = {props.Price.isActive}
                                 fontWeight = { tag.fontWeight}
-                                                                
+                                fontStyle = { tag.fontStyle}                          
                             ></PriceElement>
                         )
                     })  
                 }
-                {                                    
-                    NameArray.map((tag , index) =>{
-                                                
-                        return(        
-                            <NameElement 
-                               key={index}
-                                id = {tag.id}
-                                body = {tag.body}                                            
-                                isTarget = {props.addPrice.isActive}
-                                fontWeight = { tag.fontWeight}
-                            ></NameElement> 
-                            )
-                        
-                    })  
-                } */}
                 </div>
     </div>;
 }
 const mapStateToProps = state => {
     return {
        Price : state.Price,
-       Name : state.Name
     }
 }
 

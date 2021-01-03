@@ -12,7 +12,7 @@ import ButtonExample from '../../components/common/Picker/Color-Picker';
 
 import FontSize from '../../components/common/Picker/Font-Size';
 
-import { addPrice, changeBold , addName } from '../../actions/designAction.js'
+import { addPrice, changeBold , changeItalic } from '../../actions/designAction.js'
 import { connect } from 'react-redux';
 import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
@@ -164,81 +164,6 @@ class DesignCom extends Component {
     changeBorder(event) {
 
     }
-
-    addBrand = (id) => {
-        this.postID = id;
-        this.Body = "Nhà sản xuất "
-        const copyBrandArray = Object.assign([], this.state.brandArray);
-        copyBrandArray.push({
-            id: id,
-            body: this.Body
-        })
-        this.setState({
-            brandArray: copyBrandArray
-        })
-    }
-    addDetail = (id) => {
-        this.postID = id;
-        this.Body = "Chi tiết sản phẩm "
-        const copyDetailArray = Object.assign([], this.state.detailArray);
-        copyDetailArray.push({
-            id: id,
-            body: this.Body
-        })
-        this.setState({
-            detailArray: copyDetailArray
-        })
-    }
-    addDate = (id) => {
-        this.postID = id;
-        this.Body = "Ngày in "
-        const copyDateArray = Object.assign([], this.state.dateArray);
-        copyDateArray.push({
-            id: id,
-            body: this.Body
-        })
-        this.setState({
-            dateArray: copyDateArray
-        })
-    }
-    addDiscount = (id) => {
-        this.postID = id;
-        this.Body = "Giá đã được giảm "     
-        this.FontSize= 12
-        const copyDiscountArray = Object.assign([], this.state.discountArray);
-        copyDiscountArray.push({
-            id: id,
-            body: this.Body,
-            fontSize: this.FontSize
-        })
-        this.setState({
-            discountArray: copyDiscountArray
-        })
-    }
-    addStatus = (id) => {
-        this.postID = id;
-        this.Body = "Trang thái sản phẩm "
-        const copyStatusArray = Object.assign([], this.state.statusArray);
-        copyStatusArray.push({
-            id: id,
-            body: this.Body
-        })
-        this.setState({
-            statusArray: copyStatusArray
-        })
-    }
-    addPromotion = (id) => {
-        this.postID = id;
-        this.Body = "Chương trình khuyến mãi"
-        const copyPromotionArray = Object.assign([], this.state.promotionArray);
-        copyPromotionArray.push({
-            id: id,
-            body: this.Body
-        })
-        this.setState({
-            promotionArray: copyPromotionArray
-        })
-    }
     toggleSidebar = (event) => {
         let key = `${event.currentTarget.parentNode.id}Open`;
         this.setState({
@@ -254,7 +179,7 @@ class DesignCom extends Component {
     }
 
     render() {
-        const { addPrice , changeBold , Price , addName , Name } = this.props
+        const { changeBold , Price , changeItalic } = this.props
         let leftOpen = this.state.leftOpen ? 'open' : 'closed';
         const { height , width} = this.state
         return (
@@ -266,12 +191,6 @@ class DesignCom extends Component {
                         <Menu className={` design__menu`} visible={this.state.leftOpen ? 'Open' : 'closed'}
                             addTemplate={this.addTemplate.bind(this)}
                             setSides={this.setSide}
-                            addBrand={this.addBrand.bind(this)}
-                            addDetail={this.addDetail.bind(this)}
-                            addDate={this.addDate.bind(this)}
-                            addDiscount={this.addDiscount.bind(this)}
-                            addStatus={this.addStatus.bind(this)}
-                            addPromotion={this.addPromotion.bind(this)}
                             addBG={this.addBG.bind(this)}
                         ></Menu>
 
@@ -301,7 +220,7 @@ class DesignCom extends Component {
                             <div className=' tool-bar__item ' onClick={() =>changeBold(Price.isActive)}>
                                 <AiOutlineBold data-rh="Bold" data-rh-at="bottom"/>
                             </div>
-                            <div className=' tool-bar__item' onClick={this.onClickItalic}>
+                            <div className=' tool-bar__item' onClick={()=> changeItalic(Price.isActive)}>
                                 <FiItalic data-rh="Italic" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item'>
@@ -340,13 +259,10 @@ class DesignCom extends Component {
                             <div className='design__size-zoom'>Zoom : 100% | {this.state.height} x { this.state.width}</div>
                         <div className="design__view--bg">         
                               <DesignPage 
-                                    addPrice = {Price}
-                                    addName = {addName}
-                                    changeBold = {changeBold}
+                                    Price = {Price}
                                     height = {height}
                                     width = {width}
                                 > </DesignPage>
-                                
                             </div>                
                         </div>                    
                     </div>
@@ -361,22 +277,18 @@ class DesignCom extends Component {
 const mapStateToProps = state => {
     return {
        Price : state.Price,
-       Name : state.Name
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
     
-        addPrice :  (id , body , fontWeight) => {
-            dispatch(addPrice( id , body , fontWeight))
-        },
-        addName :  (id , body , fontWeight) => {
-            dispatch(addName( id , body , fontWeight))
-        },
         changeBold : id  => {
             dispatch(changeBold(id ))
         },
+        changeItalic : id => {
+            dispatch(changeItalic(id))
+        }
        
     };
 };

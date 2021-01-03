@@ -35,7 +35,6 @@ class Menu extends Component {
             leftOpen: !this.state.leftOpen,
 
         });
-        console.log("aa", key)
         this.props.setSides(key)
 
     }
@@ -52,8 +51,6 @@ class Menu extends Component {
         });
     }
     handleLogin = () => {
-
-        console.log("aaaa", this.state.height)
 
         const copytemplateArray = Object.assign([], this.state.templateArray);
         setTimeout(() => {
@@ -73,10 +70,9 @@ class Menu extends Component {
    
     render() {
         let { addPrice  } = this.props;
-        let { addName } = this.props;
         let BG = this.state.color;
         let heights = this.state.height;
-        console.log("aa ", this.state, this.props)
+        console.log(" State and Props of Menu ", this.state, this.props)
         let widths = this.state.width;
         return (
             <>
@@ -177,12 +173,23 @@ class Menu extends Component {
                                 </div>
 
                                 <div>
-                                    <button className="btn__element" onClick={() => addName(0 + (Math.random() * (100 - 0)), "BABA" ,"") } data-id="1" > Tên Sản phẩm</button>
+                                    <button className="btn__element" onClick={() => addPrice(0 + (Math.random() * (100 - 0)), "Ten San Pham" ,"","") } data-id="1" > Tên Sản phẩm</button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia San Pham" ,"")} data-id="2" > Giá Gốc </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia San Pham" ,"" ,"")} data-id="2" > Giá Gốc </button>
                                 </div>
-                                
+                                <div >
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Khuyen Mai" ,"" ,"")} data-id="2" > Khuyen Mai </button>
+                                </div>
+                                <div >
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia Gach" ,"" ,"")} data-id="2" > Gia Gach </button>
+                                </div>
+                                <div >
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Tra Gop" ,"" ,"")} data-id="2" > Tra Gop </button>
+                                </div>
+                                <div >
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Ngay thang" ,"" ,"")} data-id="2" > Ngay thang </button>
+                                </div>
                             </Tab.Pane>
                             <Tab.Pane eventKey="3">
                                 <div className="menu-content__upload">
@@ -216,22 +223,17 @@ class Menu extends Component {
 }
 const mapStateToProps = state => {
 
-    /// lay mang cua TextField tu redux xuong
     return {
-        TextField: state.TextField,
-        Price: state.Price,
-        Name : state.Name
+
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addName : (ArrayName, isActive , id , fontWeight ) => {
-            dispatch(addName(ArrayName, isActive , id , fontWeight ));
-        },
-        addPrice: (ArrayPRice, isActive , id , fontWeight ,) => {
-            dispatch(addPrice(ArrayPRice, isActive , id , fontWeight ));
-        },
+     
+        addPrice: (ArrayPRice, isActive , id , fontWeight ,fontStyle) => {
+            dispatch(addPrice(ArrayPRice, isActive , id , fontWeight ,fontStyle ));
+        }
 
     };
 };

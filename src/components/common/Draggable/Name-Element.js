@@ -8,10 +8,17 @@ class NameElement extends Component {
         }
     }   
     render() {
+        if(this.props.isTarget  == this.props.id)
+        {
+            document.getElementById(`${this.props.id}`).style.fontWeight = this.props.fontWeight
+            console.log("Style" ,this.props.fontWeight  , this.props.fontStyle)
+            document.getElementById(`${this.props.id}`).style.fontStyle = this.props.fontStyle
+        }    
+    
         return (
-            <div className='items-element apply-font cube target'   id={this.props.id}  >
+                <div className='items-element apply-font cube target'   id={this.props.id}  >
                     {this.props.body}
-            </div>
+                </div>
         )
     }
 }

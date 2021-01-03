@@ -5,33 +5,44 @@ const initialState  =  {
     isActive : "" 
  }
 
-
+const findIndex = (state , id) => {
+    let result = -1 ;
+    state.map((state, index) => {
+        if(state.id == id)
+        {
+            result = index ;
+        }
+       
+    });
+    return result ;
+}
 function Price(state = initialState , action){
-     console.log('redux' , action);
-    let arr = { id : action.id , body : action.body , fontWeight : action.fontWeight}
+     console.log('redux Price' , action);
+     console.log(state , "State add price")
+    let arr = { id : action.id , body : action.body , fontWeight : action.fontWeight , fontStyle : action.fontStyle}
+    let id = action.id
+    let index = findIndex(state.ArrayPRice , id)
     switch (action.type) {
         
         case types.FillDATA :
             return action.data
 
         case types.ADDPRICE: 
-
-        return   { ...state, ArrayPRice: [...state.ArrayPRice, arr]
         
-        }
-          
+        return  { ...state , 
+                 ArrayPRice: [...state.ArrayPRice , arr] }
+        
         case types.CHANGEBOLD :    
-            return {...state ,
-                       ArrayPRice :[  { id : action.id,  body : "aas", fontWeight : "bold"}]
-            }
-            // return { ...state ,
-            //             ArrayPRice : [ 
-            //                 ...state.ArrayPRice.slice(0,2),
-            //                 {...state.ArrayPRice[2],fontWeight:"bold"},
-            //                 ...state.ArrayPRice.slice(3),
-            //             ]}
+                console.log(state.ArrayPRice[index].fontWeight , "fontweight")
+                state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , fontWeight : state.ArrayPRice[index].fontWeight == 'bold' ? "normal" : "bold"}
+                return { ...state ,
+                    ArrayPRice : [...state.ArrayPRice]}
+        case types.CHANGEITALIC :    
+                console.log(state.ArrayPRice[index].Italic , "Italic")
+                state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , fontStyle : state.ArrayPRice[index].fontStyle == 'italic' ? "normal" : "italic"}
+                return { ...state ,
+                        ArrayPRice : [...state.ArrayPRice]}                   
         case types.ISTARGET : 
-        console.log(action , "action")
                 return {
                     ... state ,
                     isActive : action.id                  
