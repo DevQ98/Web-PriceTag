@@ -1,5 +1,4 @@
 import React, { useState, Component } from 'react';
-
 import { FaBorderAll ,FaListUl } from "react-icons/fa";
 import { AiOutlineAlignRight, AiOutlineAlignLeft, AiOutlineAlignCenter  ,AiOutlineBold 
     , AiOutlineBorderBottom,AiOutlineBorderLeft,AiOutlineBorderRight,AiOutlineBorderTop} from "react-icons/ai";
@@ -13,19 +12,15 @@ import ButtonExample from '../../components/common/Picker/Color-Picker';
 
 import FontSize from '../../components/common/Picker/Font-Size';
 
-import { addSize, ChangeStatusNav } from '../../actions/designAction.js'
+import { addPrice, changeBold , addName } from '../../actions/designAction.js'
 import { connect } from 'react-redux';
-
-
 import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
 import ReactHintFactory from 'react-hint';
 import Select from 'react-select';
-
 import '../../assets/css/Menu.css';
 import '../../assets/css/Design.css';
-import Board from '../../components/common/Draggable/Board';
-import Card from '../../components/common/Draggable/Card';
+
 const options = [
     { value: '1', label: '142784_IphoneTem_V1' },
     { value: '2', label: '142784_IphoneTem_V2' },
@@ -66,8 +61,6 @@ class DesignCom extends Component {
             templateArray: [],
             fontSize: 16,
             color: "#333",
-            isBold: false,
-            bold: "bold",
             isItalic: false,
             leftOpen: true,
             isLineLeft: false,
@@ -82,25 +75,6 @@ class DesignCom extends Component {
         }
     }
 
-    componentDidMount() {
-        console.log("11", this.props)
-        this.props.ChangeStatusNav(true)
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (JSON.stringify(this.props.Info.Designs.changeSize) !== JSON.stringify(nextProps.Info.Designs.changeSize)) {
-            this.setState({
-                fontSize: nextProps.Info.Designs.changeSize
-            })
-        }
-    }
-
-    onClickBold = (isBold) => {
-        this.setState({
-            isBold: !this.state.isBold
-        })
-    }
     onClickItalic = (isItalic) => {
         this.setState({
             isItalic: !this.state.isItalic
@@ -190,32 +164,7 @@ class DesignCom extends Component {
     changeBorder(event) {
 
     }
-    addName = (id ) => {
-        this.postID = id;
-        this.Body = "Tên Sản phẩm";
-        const copyNameArray = Object.assign([], this.state.nameArray);
-        copyNameArray.push({
-            id: id,
-            body: this.Body
-        })
-        this.setState({
-            nameArray: copyNameArray
-        })
-    }
-    addPrice = (id) => {
-        this.postID = id;
-        this.Body = "Giá Sản Phẩm  "
-        const copyPriceArray = Object.assign([], this.state.priceArray);
-        copyPriceArray.push({
-            id: id,
-            body: this.Body
-        })
-        this.setState({
-            priceArray: copyPriceArray
-            
-        })
-        console.log("kaka",this.state.priceArray)
-    }
+
     addBrand = (id) => {
         this.postID = id;
         this.Body = "Nhà sản xuất "
@@ -305,30 +254,9 @@ class DesignCom extends Component {
     }
 
     render() {
+        const { addPrice , changeBold , Price , addName , Name } = this.props
         let leftOpen = this.state.leftOpen ? 'open' : 'closed';
-        const{priceArray , 
-            fontSize,
-            color,
-            isBold,
-            bold,
-            isItalic,
-            isLineLeft,
-            isLineCenter,
-            isLineRight ,
-            height,
-            width,
-            nameArray,
-            brandArray,
-            detailArray,
-            dateArray,
-            discountArray,
-            promotionArray,
-            statusArray,
-            BG,
-            isHeightText,
-            isBullet
-        } = this.state;
-        console.log(BG);
+        const { height , width} = this.state
         return (
             
             <div className='design__page'>
@@ -338,8 +266,6 @@ class DesignCom extends Component {
                         <Menu className={` design__menu`} visible={this.state.leftOpen ? 'Open' : 'closed'}
                             addTemplate={this.addTemplate.bind(this)}
                             setSides={this.setSide}
-                            addName={this.addName.bind(this)}
-                            addPrice={this.addPrice.bind(this)}
                             addBrand={this.addBrand.bind(this)}
                             addDetail={this.addDetail.bind(this)}
                             addDate={this.addDate.bind(this)}
@@ -372,7 +298,7 @@ class DesignCom extends Component {
                                     onChange={this.onChangeFontSize.bind(this)}
                                 />
                             </div>
-                            <div className=' tool-bar__item ' onClick={this.onClickBold}>
+                            <div className=' tool-bar__item ' onClick={() =>changeBold(Price.isActive)}>
                                 <AiOutlineBold data-rh="Bold" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item' onClick={this.onClickItalic}>
@@ -414,31 +340,14 @@ class DesignCom extends Component {
                             <div className='design__size-zoom'>Zoom : 100% | {this.state.height} x { this.state.width}</div>
                         <div className="design__view--bg">         
                               <DesignPage 
-                                    nameArray={nameArray}
-                                    brandArray={brandArray}
-                                    detailArray={detailArray}
-                                    dateArray={dateArray}
-                                    discountArray={discountArray}
-                                    promotionArray={promotionArray}
-                                    statusArray={statusArray}
-                                    priceArray={priceArray}   
-                                    color={color} 
-                                    bold={bold} 
-                                    fontSize={fontSize}
-                                    isItalic={isItalic}
-                                    leftOpen={leftOpen}
-                                    isLineCenter={isLineCenter}
-                                    isLineLeft = {isLineLeft}
-                                    isLineRight={isLineRight}
-                                    isHeightText={isHeightText}
-                                    isBullet = {isBullet}
-                                    isBold ={isBold}
-                                    height={height}
+                                    addPrice = {Price}
+                                    addName = {addName}
+                                    changeBold = {changeBold}
+                                    height = {height}
                                     width = {width}
-                                    BG={BG}
                                 > </DesignPage>
                                 
-                        </div>                
+                            </div>                
                         </div>                    
                     </div>
                 </div>
@@ -451,18 +360,24 @@ class DesignCom extends Component {
 
 const mapStateToProps = state => {
     return {
-        Info: state
+       Price : state.Price,
+       Name : state.Name
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addSize: changeSize => {
-            dispatch(addSize(changeSize));
+    
+        addPrice :  (id , body , fontWeight) => {
+            dispatch(addPrice( id , body , fontWeight))
         },
-        ChangeStatusNav: status => {
-            dispatch(ChangeStatusNav(status));
+        addName :  (id , body , fontWeight) => {
+            dispatch(addName( id , body , fontWeight))
         },
+        changeBold : id  => {
+            dispatch(changeBold(id ))
+        },
+       
     };
 };
 

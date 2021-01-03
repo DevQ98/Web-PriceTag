@@ -1,2 +1,8 @@
 export const ADDSIZE = 'ADDSIZE'
 export const CHANGESTATUSNAV = 'CHANGESTATUSNAV'
+export const ADDPRICE = 'ADDPRICE'
+export const ADDNAME = 'ADDNAME'
+export const REMOVEPRICE ='REMOVEPRICE'
+export const CHANGEBOLD = 'CHANGEBOLD'
+export const ISTARGET = 'ISTARGET'
+export const FillDATA = 'FILLDATA'

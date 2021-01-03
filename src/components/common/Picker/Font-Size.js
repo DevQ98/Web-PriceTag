@@ -20,7 +20,7 @@ const options = [
     { value: '36', label: '36' },
     { value: '40', label: '40' }
 ]
-class FontSizeCom extends Component {
+class FontSize extends Component {
 
     constructor(props) {
         super(props)
@@ -54,21 +54,5 @@ class FontSizeCom extends Component {
     }
 }
   
-const mapStateToProps = state => {
-  return {
-      Info: state
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        addSize: changeSize => {
-            dispatch(addSize(changeSize));
-        },
-
-    };
-};
-
-const FontSize = connect(mapStateToProps, mapDispatchToProps)(FontSizeCom);
 export default FontSize;
 

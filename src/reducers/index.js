@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import designs  from './designs';
-import ChangeStatusNav  from './ChangeStatusNav';
+import price from './Price';
+import Name from './Name';
 
 const myReducer = combineReducers({
-    Designs: designs,
-    ChangeStatusNav: ChangeStatusNav
+    Price : price,
+    Name : Name
 });  
 
 export default myReducer ;

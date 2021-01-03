@@ -12,26 +12,37 @@ import PromotionElement from "../../components/common/Draggable/Promotion-Elemen
 import NameElement from "../../components/common/Draggable/Name-Element";
 import StatusElement from "../../components/common/Draggable/Status-Element";
 import Board from "../../components/common/Draggable/Board"
-export default function DesignPage (props) {
-    console.log("propssss", props)
+
+import {  isTarget } from '../../actions/designAction.js'
+import { connect } from 'react-redux';
+ function DesignPageCom (props) {
+    // console.log("propssss", props.addPrice.Array[0].body)
     const [targets, setTargets] = React.useState([]);
     const [frameMap] = React.useState(() => new Map());
     const moveableRef = React.useRef(null);
     const selectoRef = React.useRef(null);
     const cubes = [];
+    // const PriceArray = props.addPrice.Array[0]
+   // console.log("ri" , props);
+    console.log("Ass" ,  props)
 
+    const PriceArray = props.addPrice.ArrayPRice;
+    const NameArray = props.addName.ArrayName;
     // const arr=  props.priceArray.filter(function (item) {
     //     return item.id = e.target.attributes.id
     // })
 
     // arr[0].fontSize = 434;
 
+    // setTargerElement =(e) => {
+    //     setTargets(e.selected);
+    //     props.changeBold(e.selected);
 
-    // const aarr = Object.assign([], arr);
+    // }
+    // // const aarr = Object.assign([], arr);
 
 
    return <div className="moveable app" style={{margin: "auto"} }>
-          <Board>
             <Moveable
                 ref={moveableRef}
                 draggable={true}
@@ -41,40 +52,17 @@ export default function DesignPage (props) {
                 }}
                 onDragStart={e => {
                     const target = e.target;
-                    const inputTarget = e.inputTarget;
                     if (!frameMap.has(target)) {
                         frameMap.set(target, {
                             translate: [0, 0],
                         });
                     }
                     const frame = frameMap.get(target);
-                    target.style.fontSize= props.fontSize+"px";
-                    target.style.lineHeight = props.isHeightText ?  '1.6' : '1';
-                    target.style.fontWeight = props.isBold ?  'bold' : 'normal';
-                    target.style.fontStyle = props.isItalic ?  'italic' : 'normal';
-                    target.style.listStyleType = props.isBullet ?  'circle' : 'none';
-                    target.style.color = props.color;
-                    
-                    if(props.isLineCenter == true)
-                    {
-                        target.style.textAlign = 'center';
-                    }
-                    else
-                    {
-                        if(props.isLineLeft == true)
-                        {
-                            target.style.textAlign = "left";
-                        }
-                        else
-                        {
-                            target.style.textAlign = "right";
-                        }
-                    }
+
 
                     e.set(frame.translate);
                 }}
                 onDrag={e => {
-                    debugger
                     const target = e.target;
                     const frame = frameMap.get(target);
                 
@@ -86,13 +74,7 @@ export default function DesignPage (props) {
                     e.events.forEach(ev => {
                         
                         const target = ev.target;
-                        debugger
-                        target.style.fontSize= props.fontSize+"px";
-                        if (!frameMap.has(target)) {
-                            frameMap.set(target, {
-                                translate: [0, 0],
-                            });
-                        }
+                        
                         const frame = frameMap.get(target);
                 
                         ev.set(frame.translate);
@@ -113,6 +95,7 @@ export default function DesignPage (props) {
                 dragContainer={".elements"}
                 selectableTargets={[".selecto-area .cube"]}
                 hitRate={0}
+                autofocus = {true}
                 selectByClick={true}
                 selectFromInside={true}
                 toggleContinueSelect={["shift"]}
@@ -120,6 +103,8 @@ export default function DesignPage (props) {
                 onDragStart={e => {
                     const moveable = moveableRef.current;
                     const target = e.inputEvent.target;
+                    props.isTarget(target.id);
+
                     if (
                         moveable.isMoveableElement(target)
                         || targets.some(t => t === target || t.contains(target))
@@ -140,122 +125,56 @@ export default function DesignPage (props) {
             ></Selecto>
 
             <div className="elements selecto-area items-template " style={{ height : props.height +"mm" , width : props.width + "mm" , background : props.BG}}>
-                {                                    
-                    props.priceArray.map((tag , index) =>{
-                                                
+                {/* {                                    
+                    PriceArray.map((tag , index) =>{
+                        console.log(props.addPrice.isActive , " activev2")                     
                         return(        
                             <PriceElement 
                                 key={index}
-                                id ={tag.id}
-                                body = {tag.body}                                                   
-                                color={props.color}
-                                fontSize={props.fontSize}
-                                bold = {  props.isBold ?  'bold' : 'normal' }
-                                italic = { props.isItalic ? 'italic' : 'normal'}>
-                            </PriceElement>
+                                id = {tag.id}
+                                body = {tag.body}                                            
+                                isTarget = {props.addPrice.isActive}
+                                fontWeight = { tag.fontWeight}
+                                                                
+                            ></PriceElement>
                         )
                     })  
                 }
                 {                                    
-                    props.nameArray.map((tag , index) =>{
+                    NameArray.map((tag , index) =>{
                                                 
                         return(        
                             <NameElement 
-                                key={index}
-                                id ={tag.id}
-                                body = {tag.body}                                                   
-                                color={props.color}
-                                fontSize={props.fontSize}
-                                bold = {  props.isBold ?  'bold' : 'normal' }
-                                italic = { props.isItalic ? 'italic' : 'normal'}>
-                            </NameElement> 
+                               key={index}
+                                id = {tag.id}
+                                body = {tag.body}                                            
+                                isTarget = {props.addPrice.isActive}
+                                fontWeight = { tag.fontWeight}
+                            ></NameElement> 
                             )
                         
                     })  
-                }
-                {                                    
-                    props.brandArray.map((tag , index) =>{
-                                                
-                        return(        
-                            <BrandElement 
-                                key={index}
-                                id ={tag.id}
-                                body = {tag.body}                                                   
-                                color={props.color}
-                                fontSize={props.fontSize}
-                                bold = {  props.isBold ?  'bold' : 'normal' }
-                                italic = { props.isItalic ? 'italic' : 'normal'}>
-                            </BrandElement>
-                        )
-                    })  
-                }
-                {                                    
-                    props.dateArray.map((tag , index) =>{
-                                                
-                        return(        
-                            <DateElement 
-                                key={index}
-                                id ={tag.id}
-                                body = {tag.body}                                                   
-                                color={props.color}
-                                fontSize={props.fontSize}
-                                bold = {  props.isBold ?  'bold' : 'normal' }
-                                italic = { props.isItalic ? 'italic' : 'normal'}>
-                            </DateElement>
-                        )
-                    })  
-                }
-                {                                    
-                    props.discountArray.map((tag , index) =>{
-                                                
-                        return(        
-                            <DiscountElement 
-                                key={index}
-                                id ={tag.id}
-                                body = {tag.body}                                                   
-                                color={props.color}
-                                fontSize={props.fontSize}
-                                bold = {  props.isBold ?  'bold' : 'normal' }
-                                italic = { props.isItalic ? 'italic' : 'normal'}>
-                            </DiscountElement>
-                        )
-                    })  
-                }
-                {                                    
-                    props.promotionArray.map((tag , index) =>{
-                                                
-                        return(        
-                            <PromotionElement 
-                                key={index}
-                                id ={tag.id}
-                                body = {tag.body}                                                   
-                                color={props.color}
-                                fontSize={props.fontSize}
-                                bold = {  props.isBold ?  'bold' : 'normal' }
-                                italic = { props.isItalic ? 'italic' : 'normal'}>
-                            </PromotionElement>
-                        )
-                    })  
-                }
-                {                                    
-                    props.statusArray.map((tag , index) =>{
-                                                
-                        return(        
-                            <StatusElement 
-                                key={index}
-                                id ={tag.id}
-                                body = {tag.body}                                                   
-                                color={props.color}
-                                fontSize={props.fontSize}
-                                bold = {  props.isBold ?  'bold' : 'normal' }
-                                italic = { props.isItalic ? 'italic' : 'normal'}>
-                            </StatusElement>
-                        )
-                    })  
-                }
-
-
-            </div>
-            </Board>
+                } */}
+                </div>
     </div>;
 }
+const mapStateToProps = state => {
+    return {
+       Price : state.Price,
+       Name : state.Name
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+
+        isTarget : id => {
+            dispatch(isTarget(id))
+        }
+       
+    };
+};
+
+const DesignPage = connect(mapStateToProps, mapDispatchToProps)(DesignPageCom);
+
+export default DesignPage

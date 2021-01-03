@@ -278,12 +278,12 @@ div[id^=font-picker]
     margin-left: 5rem;
   }
   .design__size-zoom{
-    background-color: #E5E5E5;
+    background-color: white;
     width: auto;
     height: 24px;
     border-radius: 5px  !important;
     font-weight: bold;
-    box-shadow: 0 0 1px 2px gray;
+    box-shadow: 0 0 1px 2px 0.4 gray;
     font-size: 1.6rem;
     position: absolute;
     padding: 0 0.2rem;

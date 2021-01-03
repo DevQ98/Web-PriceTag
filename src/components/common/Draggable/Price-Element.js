@@ -6,11 +6,16 @@ class PriceElement extends Component {
         this.state = {
         }
     }   
-
     render() {
-        const { color, fontSize } = this.state;
+        if(this.props.isTarget  == this.props.id)
+        {
+            document.getElementById(`${this.props.id}`).style.fontWeight = this.props.fontWeight
+            console.log("ass" ,this.props.fontWeight )
+        }
+            
+    
         return (
-                <div className='items-element apply-font cube target'  id={this.props.id} >
+                <div className='items-element apply-font cube target'   id={this.props.id}  >
                     {this.props.body}
                 </div>
         )
