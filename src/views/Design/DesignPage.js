@@ -2,10 +2,10 @@
 import * as React from "react";
 import Selecto from "react-selecto";
 import Moveable from "react-moveable";
-
+import parse from 'html-react-parser';
 import PriceElement from "../../components/common/Draggable/Price-Element";
-
-import {  isTarget } from '../../actions/designAction.js'
+import "../../components/common/Draggable/TxtElement.css"
+import {  isTarget, saveTem } from '../../actions/designAction.js'
 import { connect } from 'react-redux';
  function DesignPageCom (props) {
     const [targets, setTargets] = React.useState([]);
@@ -32,8 +32,26 @@ import { connect } from 'react-redux';
 
     // }
     // // const aarr = Object.assign([], arr);
-
-
+    const html = document.getElementById('element__show');
+    if( html != null )
+    {
+      const  htmlString =  html.outerHTML;
+      console.log(htmlString);
+    }
+    
+    React.useEffect(()=> {
+        // {
+        //     props.Tem.map( (tag ) => {
+                
+        //         {
+        //             tag.lenght != html.lenght ?  ()=> saveTem(1 , html) : true
+        //         }
+               
+        //     })
+        // }
+     
+        
+    })
    return <div className="moveable app" style={{margin: "auto"} }>
             <Moveable
                 ref={moveableRef}
@@ -108,15 +126,18 @@ import { connect } from 'react-redux';
                     setTargets(e.selected);
                 }}
                 onSelectEnd={e => {
+                    console.log(html.outerHTML , "HTML");
+                    props.saveTem( html.outerHTML);
                     const moveable = moveableRef.current;
                     if (e.isDragStart) {
                         e.inputEvent.preventDefault();
 
                     }
+
                 }}
             ></Selecto>
-
-            <div className="elements selecto-area items-template " style={{ height : props.height +"mm" , width : props.width + "mm" , background : props.BG}}>
+            { 
+            <div id ='element__show' className="elements selecto-area items-template " style={{ height : props.height +"mm" , width : props.width + "mm" , background : props.BG}}>
                 {                                   
                     PriceArray.map((tag , index) =>{
                         return(        
@@ -126,23 +147,40 @@ import { connect } from 'react-redux';
                                 body = {tag.body}                                            
                                 isTarget = {props.Price.isActive}
                                 fontWeight = { tag.fontWeight}
-                                fontStyle = { tag.fontStyle}                          
+                                fontStyle = { tag.fontStyle}   
+                                textAlign = { tag.textAlign}    
+                                bullet = { tag.bullet}
+                                lineHeight = { tag.lineHeight}       
+                                html = {<div className="items-element apply-font cube target" id="50.362001319757475" style={{fontWeight: 'bold'}}>Gia San Pham</div>}        
                             ></PriceElement>
                         )
                     })  
                 }
-                </div>
+               
+                
+                </div> 
+  
+                }
+                {/* {console.log(props.Tem.state , " HTML")}
+                {parse(props.Tem.state)} */}
+
+                
     </div>;
 }
+// parse(html.toString()) 
 const mapStateToProps = state => {
     return {
        Price : state.Price,
+       Tem : state.Tem
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
 
+        saveTem : html => {
+            dispatch(saveTem(html))
+        },
         isTarget : id => {
             dispatch(isTarget(id))
         }

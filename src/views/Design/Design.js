@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, {  Component } from 'react';
 import { FaBorderAll ,FaListUl } from "react-icons/fa";
 import { AiOutlineAlignRight, AiOutlineAlignLeft, AiOutlineAlignCenter  ,AiOutlineBold 
     , AiOutlineBorderBottom,AiOutlineBorderLeft,AiOutlineBorderRight,AiOutlineBorderTop} from "react-icons/ai";
@@ -12,7 +12,7 @@ import ButtonExample from '../../components/common/Picker/Color-Picker';
 
 import FontSize from '../../components/common/Picker/Font-Size';
 
-import { addPrice, changeBold , changeItalic } from '../../actions/designAction.js'
+import {  changeLineHeight , changeBullet,changeBold , changeItalic, saveTem  , changeAlignLeft,changeAlignCenter,changeAlignRight} from '../../actions/designAction.js'
 import { connect } from 'react-redux';
 import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
@@ -74,13 +74,6 @@ class DesignCom extends Component {
             isBullet : false
         }
     }
-
-    onClickItalic = (isItalic) => {
-        this.setState({
-            isItalic: !this.state.isItalic
-
-        })
-    }
     onClickHeightText = (isHeightText) => {
         this.setState({
             isHeightText: !this.state.isHeightText
@@ -94,33 +87,11 @@ class DesignCom extends Component {
         })
         console.log('heightss ' ,isHeightText)
     }
-    onClickLineLeft = () => {
-        this.setState({
-            isLineLeft: true
-
-        })
-        this.setState({ isLineCenter: false })
-        this.setState({ isLineRight: false })
-    }
     onClickBullet =(isBullet) =>{
         this.setState({
             isBullet: !this.state.isBullet
 
         })
-    }
-    onClickLineCenter = () => {
-        this.setState({
-            isLineCenter: true
-        })
-        this.setState({ isLineLeft: false })
-        this.setState({ isLineRight: false })
-    }
-    onClickLineRight = () => {
-        this.setState({
-            isLineRight: true
-        })
-        this.setState({ isLineCenter: false })
-        this.setState({ isLineLeft: false })
     }
     setColor = (colors) => {
         this.setState({
@@ -179,7 +150,9 @@ class DesignCom extends Component {
     }
 
     render() {
-        const { changeBold , Price , changeItalic } = this.props
+        console.log(this.props , "prop of design")
+        const { changeBold , Price , changeItalic   ,changeLineHeight , changeBullet,
+             changeAlignLeft ,changeAlignCenter,changeAlignRight, saveTem } = this.props
         let leftOpen = this.state.leftOpen ? 'open' : 'closed';
         const { height , width} = this.state
         return (
@@ -226,19 +199,19 @@ class DesignCom extends Component {
                             <div className=' tool-bar__item'>
                                 <ButtonExample data-rh="Fill Color" data-rh-at="bottom" setColors={this.setColor}></ButtonExample>
                             </div>
-                            <div className=' tool-bar__item' onClick={this.onClickLineLeft}>
+                            <div className=' tool-bar__item' onClick={()=> changeAlignLeft(Price.isActive)}>
                                 <AiOutlineAlignLeft data-rh="AlignLeft" data-rh-at="bottom"/>
                             </div>
-                            <div className=' tool-bar__item' onClick={this.onClickLineCenter}>
+                            <div className=' tool-bar__item' onClick={()=> changeAlignCenter(Price.isActive)}>
                                 <AiOutlineAlignCenter data-rh="AlignCenter" data-rh-at="bottom"/>
                             </div>
-                            <div className=' tool-bar__item' onClick={this.onClickLineRight}>
+                            <div className=' tool-bar__item' onClick={()=> changeAlignRight(Price.isActive)}>
                                 <AiOutlineAlignRight data-rh="AlignRight" data-rh-at="bottom"/>
                             </div>
-                            <div className=' tool-bar__item' onClick={this.onClickBullet}>
+                            <div className=' tool-bar__item' onClick={()=> changeBullet(Price.isActive)}>
                                 <FaListUl data-rh="Bullet" data-rh-at="bottom"/>
                             </div>
-                            <div className=' tool-bar__item' onClick={this.onClickHeightText}>
+                            <div className=' tool-bar__item' onClick={()=> changeLineHeight(Price.isActive)}>
                                 <ImTextHeight data-rh="HeightText" data-rh-at="bottom"/>
                             </div>
                             <section  className=' tool-bar__item' data-rh="Border" data-rh-at="bottom">
@@ -248,7 +221,7 @@ class DesignCom extends Component {
                         </div> 
                         <div className ="design__view">
                             <div>
-                                <div className=" btn btn__save">
+                                <div className=" btn btn__save" onClick={() => saveTem( 1 , ) } >
                                     Save
                                 </div>
                                 <section >
@@ -263,6 +236,8 @@ class DesignCom extends Component {
                                     height = {height}
                                     width = {width}
                                 > </DesignPage>
+                            {/* <div className="elements selecto-area items-template " style={{height: '500mm', width: '300mm'}}><div className="items-element apply-font cube target" id="4.049045638421966" style={{fontWeight: 'bold', fontStyle: 'italic'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="80.5723268226495" style={{fontStyle: 'italic', fontWeight: 'bold'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="7.65505840659555" style={{fontStyle: 'italic'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="71.37352728387103" style={{fontWeight: 'bold'}}>Ten San Pham</div></div> */}
+      
                             </div>                
                         </div>                    
                     </div>
@@ -277,6 +252,7 @@ class DesignCom extends Component {
 const mapStateToProps = state => {
     return {
        Price : state.Price,
+       Tem : state.Tem
     }
 }
 
@@ -288,7 +264,26 @@ const mapDispatchToProps = dispatch => {
         },
         changeItalic : id => {
             dispatch(changeItalic(id))
+        },
+        changeAlignLeft : id => {
+            dispatch(changeAlignLeft(id))
+        },
+        changeAlignCenter : id => {
+            dispatch(changeAlignCenter(id))
+        },
+        changeAlignRight : id => {
+            dispatch(changeAlignRight(id))
+        },
+        changeBullet : id => {
+            dispatch(changeBullet(id))
+        },
+        changeLineHeight : id => {
+            dispatch(changeLineHeight(id))
+        },
+        saveTem : (id , html) => {
+            dispatch(saveTem(id , html))
         }
+
        
     };
 };

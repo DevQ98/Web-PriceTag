@@ -11,6 +11,8 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.5.3",
     "font-picker-react": "^3.5.2",
+    "html-react-parser": "^1.1.1",
+    "material-ui-dropzone": "^3.5.0",
     "moveable": "^0.22.0",
     "polotno": "^0.3.1",
     "react": "^17.0.1",
