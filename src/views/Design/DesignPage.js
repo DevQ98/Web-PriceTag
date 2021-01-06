@@ -5,8 +5,9 @@ import Moveable from "react-moveable";
 import parse from 'html-react-parser';
 import PriceElement from "../../components/common/Draggable/Price-Element";
 import "../../components/common/Draggable/TxtElement.css"
-import {  isTarget, saveTem } from '../../actions/designAction.js'
+import {  isTarget, saveElement, saveTem } from '../../actions/designAction.js'
 import { connect } from 'react-redux';
+import Price from "../../reducers/Price";
  function DesignPageCom (props) {
     const [targets, setTargets] = React.useState([]);
     const [frameMap] = React.useState(() => new Map());
@@ -52,6 +53,7 @@ import { connect } from 'react-redux';
      
         
     })
+
    return <div className="moveable app" style={{margin: "auto"} }>
             <Moveable
                 ref={moveableRef}
@@ -75,10 +77,10 @@ import { connect } from 'react-redux';
                 onDrag={e => {
                     const target = e.target;
                     const frame = frameMap.get(target);
-                
+
                     frame.translate = e.beforeTranslate;
                     target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
-
+                    console.log(target.style.transform , " transformgg");
                 }}
                 onDragGroupStart={e => {
                     e.events.forEach(ev => {
@@ -97,8 +99,18 @@ import { connect } from 'react-redux';
                 
                         frame.translate = ev.beforeTranslate;
                         target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
+
                     });
                 }}
+                onDragEnd ={ e => {
+                    const target = e.target;
+                    console.log(target.style.transform , " transfoddrmgg");
+                    props.saveElement(target.id, target.style.transform )
+
+
+                }
+
+                }
             ></Moveable>
             <Selecto
                 ref={selectoRef}
@@ -113,8 +125,6 @@ import { connect } from 'react-redux';
                 onDragStart={e => {
                     const moveable = moveableRef.current;
                     const target = e.inputEvent.target;
-                    props.isTarget(target.id);
-
                     if (
                         moveable.isMoveableElement(target)
                         || targets.some(t => t === target || t.contains(target))
@@ -122,12 +132,16 @@ import { connect } from 'react-redux';
                         e.stop();
                     }
                 }}
+                
                 onSelect={e => {
                     setTargets(e.selected);
+                    const target = e.inputEvent.target;
+
+                    props.isTarget(target.id);
+
+                    
                 }}
                 onSelectEnd={e => {
-                    console.log(html.outerHTML , "HTML");
-                    props.saveTem( html.outerHTML);
                     const moveable = moveableRef.current;
                     if (e.isDragStart) {
                         e.inputEvent.preventDefault();
@@ -138,7 +152,9 @@ import { connect } from 'react-redux';
             ></Selecto>
             { 
             <div id ='element__show' className="elements selecto-area items-template " style={{ height : props.height +"mm" , width : props.width + "mm" , background : props.BG}}>
-                {                                   
+            
+                {
+               
                     PriceArray.map((tag , index) =>{
                         return(        
                             <PriceElement 
@@ -150,19 +166,20 @@ import { connect } from 'react-redux';
                                 fontStyle = { tag.fontStyle}   
                                 textAlign = { tag.textAlign}    
                                 bullet = { tag.bullet}
-                                lineHeight = { tag.lineHeight}       
-                                html = {<div className="items-element apply-font cube target" id="50.362001319757475" style={{fontWeight: 'bold'}}>Gia San Pham</div>}        
+                                lineHeight = { tag.lineHeight}    
+                                html = { tag.html}   
+                                transform = {tag.transform}
                             ></PriceElement>
                         )
                     })  
                 }
-               
+
                 
-                </div> 
+      </div>
+                
   
-                }
-                {/* {console.log(props.Tem.state , " HTML")}
-                {parse(props.Tem.state)} */}
+            }
+                {/* {parse(props.Tem.state)}   */}
 
                 
     </div>;
@@ -178,6 +195,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
 
+        saveElement : (id , transform) =>{
+            dispatch(saveElement(id , transform))
+        },
         saveTem : html => {
             dispatch(saveTem(html))
         },

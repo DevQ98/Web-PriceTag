@@ -1,4 +1,5 @@
 import * as types from './../constants/ActionTypes' 
+
  const data = JSON.parse(localStorage.getItem('tem'));
  const initialState  = data ? data :  ""
 //  const initialState = "";
@@ -9,7 +10,7 @@ console.log(data , "data")
     switch (action.type) {
         
       case types.SAVETEM :
-             localStorage.setItem('tem' , JSON.stringify(state))
+             localStorage.setItem('tem_' , JSON.stringify(state))
           return {...state , state : action.html}
 
       

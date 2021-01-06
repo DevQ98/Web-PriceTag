@@ -1,9 +1,9 @@
 import { ADDNAME, ADDPRICE , CHANGEALIGNCENTER, CHANGEALIGNLEFT, CHANGEALIGNRIGHT, 
-    CHANGEBOLD, CHANGEITALIC, CHANGELINEHEIGHT, CHANGEBULLET, ISTARGET, SAVETEM, SHOWTEM } from './../constants/ActionTypes';
+    CHANGEBOLD, CHANGEITALIC, CHANGELINEHEIGHT, CHANGEBULLET, ISTARGET, SAVETEM, SHOWTEM, SAVEELEMENT } from './../constants/ActionTypes';
 
 
 
-export function addPrice (id ,body , fontWeight , textAlign , bullet , lineHeight) {
+export function addPrice (id ,body , fontWeight , textAlign , bullet , lineHeight , transform) {
     return {
         type: ADDPRICE,
         id ,
@@ -11,8 +11,18 @@ export function addPrice (id ,body , fontWeight , textAlign , bullet , lineHeigh
         fontWeight,
         textAlign,
         bullet,
-        lineHeight
+        lineHeight,
+        transform
     }
+    
+}
+export function  saveElement( id , transform ) {
+    return {
+        type : SAVEELEMENT,
+        id,
+        transform
+    }
+
     
 }
 export function changeBold( id ) {

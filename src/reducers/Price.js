@@ -1,10 +1,10 @@
-import * as types from './../constants/ActionTypes' 
-const initialState  =  {
-//    ArrayPRice :  [{id : "11" , body : "BLALD" , fontSize :16 , color : "#333" }] ,
-    ArrayPRice :[] , 
-    isActive : "" 
- }
+import * as types from './../constants/ActionTypes'
+import  * as store  from './store'
 
+const PriceData = JSON.parse(localStorage.getItem('Price'));
+ const initialState  = PriceData ? PriceData :  store.PriceTag ;
+
+ console.log(PriceData , " data redux")
 const findIndex = (state , id) => {
     let result = -1 ;
     state.map((state, index) => {
@@ -17,19 +17,30 @@ const findIndex = (state , id) => {
     return result ;
 }
 function Price(state = initialState , action){
+    console.log(store.PriceTag , " data redux")
      console.log('redux Price' , action);
+     console.log(initialState , "Init add price")
+
      console.log(state , "State add price")
-    let arr = { id : action.id , body : action.body , fontWeight : action.fontWeight , 
+    let arr = { id : action.id , body : action.body , fontWeight : action.fontWeight , transform : action.transform , 
         fontStyle : action.fontStyle  , bullet : action.bullet , lineHeight : action.lineHeight}
     let id = action.id
     let index = findIndex(state.ArrayPRice , id)
+    console.log(state , "state data")
+
     switch (action.type) {
         
         case types.FillDATA :
             return action.data
 
         case types.ADDPRICE: 
-        
+        let arrrIndex=[];
+        arrrIndex.push(arr);
+            let obj={
+                ...state,
+                ArrayPRice: [...state.ArrayPRice ,arr]
+            }
+            localStorage.setItem('Price' , JSON.stringify(obj))
         return  { ...state , 
                  ArrayPRice: [...state.ArrayPRice , arr] }
         
@@ -37,7 +48,10 @@ function Price(state = initialState , action){
                 if( index < 0)
                     return state
                 else {
+                    console.log(state , "bold")
                     state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , fontWeight : state.ArrayPRice[index].fontWeight == 'bold' ? "normal" : "bold"}
+                    localStorage.setItem('Price' , JSON.stringify(state))
+
                     return { ...state ,
                         ArrayPRice : [...state.ArrayPRice]}
                 }
@@ -50,6 +64,8 @@ function Price(state = initialState , action){
                 else
                 {
                     state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , fontStyle : state.ArrayPRice[index].fontStyle == 'italic' ? "normal" : "italic"}
+                    localStorage.setItem('Price' , JSON.stringify(state))
+
                     return { ...state ,
                             ArrayPRice : [...state.ArrayPRice]}     
                 }
@@ -61,6 +77,8 @@ function Price(state = initialState , action){
                 else
                 {
                     state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , textAlign : state.ArrayPRice[index].textAlign == 'left' ? "" : "left"}
+                    localStorage.setItem('Price' , JSON.stringify(state))
+
                     return { ...state ,
                             ArrayPRice : [...state.ArrayPRice]}     
                 }
@@ -73,6 +91,8 @@ function Price(state = initialState , action){
                 {
                     console.log(state.ArrayPRice[index].textAlign , "center")
                     state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , textAlign : state.ArrayPRice[index].textAlign == 'center' ? "" : "center"}
+                    localStorage.setItem('Price' , JSON.stringify(state))
+
                     return { ...state ,
                             ArrayPRice : [...state.ArrayPRice]}     
                 }
@@ -85,6 +105,8 @@ function Price(state = initialState , action){
                 {
                     console.log(state.ArrayPRice[index].textAlign , "right")
                     state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , textAlign : state.ArrayPRice[index].textAlign == 'right' ? "" : "right"}
+                    localStorage.setItem('Price' , JSON.stringify(state))
+
                     return { ...state ,
                             ArrayPRice : [...state.ArrayPRice]}     
                 }
@@ -97,7 +119,10 @@ function Price(state = initialState , action){
                 else
                 {
                     console.log(state.ArrayPRice[index].Italic , "Italic")
+                   
                     state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , fontStyle : state.ArrayPRice[index].fontStyle == 'italic' ? "normal" : "italic"}
+                    localStorage.setItem('Price' , JSON.stringify(state))
+
                     return { ...state ,
                             ArrayPRice : [...state.ArrayPRice]}     
                 }
@@ -110,6 +135,8 @@ function Price(state = initialState , action){
                 {
                     console.log(state.ArrayPRice[index].bullet , "circle")
                     state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , bullet : state.ArrayPRice[index].bullet == 'circle' ? "none" : "circle"}
+                    localStorage.setItem('Price' , JSON.stringify(state))
+
                     return { ...state ,
                             ArrayPRice : [...state.ArrayPRice]}     
                 }
@@ -121,18 +148,34 @@ function Price(state = initialState , action){
                 else
                 {
                     console.log(state.ArrayPRice[index].lineHeight , "1.6")
-                    state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , lineHeight : state.ArrayPRice[index].lineHeight == '1.6' ? "normal" : "1.6"}
+                    state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , lineHeight : state.ArrayPRice[index].lineHeight == '5' ? "normal" : "5"}
+                    localStorage.setItem('Price' , JSON.stringify(state))
+
                     return { ...state ,
                             ArrayPRice : [...state.ArrayPRice]}     
                 }
                                                  
         case types.ISTARGET : 
                 return {
-                    ... state ,
-                    isActive : action.id                  
+                    ...state,
+                    isActive : action.id     
                 }
+        case types.SAVEELEMENT :
+            if(index <0)
+            {
+                return state
+            }
+            else
+            {
+                console.log(state.ArrayPRice[index].transform ,action, "transform in Price")
+                state.ArrayPRice[index] =  { ...state.ArrayPRice[index] , transform : action.transform  }
+                localStorage.setItem('Price' , JSON.stringify(state))
+
+                return { ...state ,
+                        ArrayPRice : [...state.ArrayPRice]}     
+            }
         default : return state;  
-        
+
         
     };
 

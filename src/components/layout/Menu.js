@@ -181,22 +181,22 @@ class Menu extends Component {
                                 </div>
 
                                 <div>
-                                    <button className="btn__element" onClick={() => addPrice(0 + (Math.random() * (100 - 0)), "Ten San Pham" ,"","" ,"","" ,"" ) } data-id="1" > Tên Sản phẩm</button>
+                                    <button className="btn__element" onClick={() => addPrice(0 + (Math.random() * (100 - 0)), "Ten San Pham" ,"","" ,"","" ,"" ,"") } data-id="1" > Tên Sản phẩm</button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia San Pham" ,"" ,"","","" ,"" )} data-id="2" > Giá Gốc </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia San Pham" ,"" ,"","","" ,"","" )} data-id="2" > Giá Gốc </button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Khuyen Mai" ,"" ,"","","" ,"" )} data-id="2" > Khuyen Mai </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Khuyen Mai" ,"" ,"","","" ,"" ,"")} data-id="2" > Khuyen Mai </button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia Gach" ,"" ,"","" ,"" ,"")} data-id="2" > Gia Gach </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia Gach" ,"" ,"","" ,"" ,"","")} data-id="2" > Gia Gach </button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Tra Gop" ,"" ,"","" ,"" ,"")} data-id="2" > Tra Gop </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Tra Gop" ,"" ,"","" ,"" ,"","")} data-id="2" > Tra Gop </button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Ngay thang" ,"" ,"","" , "","","" ,"")} data-id="2" > Ngay thang </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Ngay thang" ,"" ,"","" , "","","" ,"","")} data-id="2" > Ngay thang </button>
                                 </div>
                             </Tab.Pane>
                             <Tab.Pane eventKey="3">
@@ -243,8 +243,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
      
-        addPrice: (ArrayPRice, isActive , id , fontWeight ,fontStyle ,textAlign ,bullet , lineHeight) => {
-            dispatch(addPrice(ArrayPRice, isActive , id , fontWeight ,textAlign ,bullet , lineHeight));
+        addPrice: (ArrayPRice, isActive , id , fontWeight ,fontStyle ,textAlign ,bullet , lineHeight ,transform) => {
+            dispatch(addPrice(ArrayPRice, isActive , id , fontWeight ,textAlign ,bullet , lineHeight , transform));
         }
 
     };
