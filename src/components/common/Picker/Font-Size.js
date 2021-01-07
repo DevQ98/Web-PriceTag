@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import { addSize } from '../../../actions/designAction.js'
+import { changeSize } from  '../../../actions/designAction'
+import {Price} from '../../../reducers/Price'
 import { connect } from 'react-redux';
 
 const options = [
@@ -28,18 +29,18 @@ class FontSize extends Component {
             fontSize: 24
         }
 
-    }
+    }   
 
+    addSize =  ( event) => {
+         this.props.changeSize( this.props.isActive , event.value )
+        console.log( event.value , this.props.isActive ,"props font size ")
+        // // this.setState({
+        // //     fontSize: event.value
 
-    changeSize(event) {
-
-        // this.setState({
-        //     fontSize: event.value
-
-        // });
-        // this.props.setSizes(event.value)
-        // this.props.onChange(event.value)
-        this.props.addSize(event.value)
+        // // });
+        // // this.props.setSizes(event.value)
+        // // this.props.onChange(event.value)
+        // this.props.changeSize(this.props.Price.isActive , event.value )
 
     }
 
@@ -47,12 +48,28 @@ class FontSize extends Component {
         return (
 
             <section >
-                <Select classNamePrefix="Font" style=" minWidth  :120px " onChange={this.changeSize.bind(this)} options={options} placeholder="16" />
+                <Select classNamePrefix="Font" style=" minWidth  :120px " onChange={this.addSize} options={options} placeholder="16" />
             </section>
         );
 
     }
 }
-  
-export default FontSize;
+
+const mapStateToProps = state => {
+    return {
+        Price : state.Price,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+
+        changeSize : (id , transform) =>{
+            dispatch(changeSize(id , transform))
+        },
+    };
+};
+
+export default FontSize = connect(mapStateToProps, mapDispatchToProps)(FontSize);
+
 

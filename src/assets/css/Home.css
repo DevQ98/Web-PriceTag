@@ -5,24 +5,23 @@
     top: 21rem ;
     bottom: 0;
 }
-.home__body-title{
+.home_body-title{
     border: 2px ;
     height: 48px;
-    border-bottom: 3px solid var(--white-color);
-    box-shadow: 4px var(--white-color);
+    font-size: 2rem;
+    font-weight: bold;
     margin: 0 1rem;
     position: relative;
-    top :0;
     z-index: 5;
 }
+
 .home__body-content {
     position: absolute;
     width: 100%;
     overflow: scroll;
-    border: 2px !important ;
     min-height: 300px;
     top: 48px ;
-    bottom: 0;
+    bottom: 3rem;
 }
 .jumbotron{
     background-color: white !important;
@@ -40,6 +39,7 @@
     justify-content: center;
     justify-items: center;
 }
+
 .bTybGL{
     font-size: 1.6em;
     background-color: white !important;
@@ -114,7 +114,7 @@ font-size: 2.5em;
 }
 
 .list-item{
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -131,18 +131,55 @@ font-size: 2.5em;
 .price-tag{
     display: inline-block;
     flex-direction: row;
-    width: calc(100% /6);
+    width: calc(100% /4);
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     flex: auto;
+    position: relative;
+}
+.price-tag__menu{
+    display: flex;
+    position:absolute;
+    flex-direction: column;
+    width: 155px;
+    height: 50%;
+    right: 0.7rem;
+    top: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    transform-origin: top;
+    animation: price-tag__menu ease-in 0.2s;
+    display: none;
+    background-color: #f1f1f1;
+}
+.price-tag:hover  .price-tag__menu {
+    display: flex;
+
+}
+.btn--edit{
+    background-color: rgb(241, 191, 216) !important;
+    font-weight: bold !important;
+}
+@keyframes price-tag__menu {
+    from{
+        opacity: 0;
+        transform:  scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 .price-tag > img {
     align-items: center;
-    width: 190px;
+    width: 300px;
     display: flex;
     margin: 0 auto;
     margin-top: 10px;
+}
+.price-tag:hover {
+    opacity: 0.7;
 }
 .title-text{
     display: flex;
@@ -166,3 +203,9 @@ font-size: 2.5em;
     bottom: 0;
     right: 0;
 }
+.Home_body-link{
+    position: absolute;
+    right: 40px;
+    font-size: 2rem;
+}
+

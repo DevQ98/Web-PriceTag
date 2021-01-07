@@ -1,4 +1,4 @@
-export const ADDSIZE = 'ADDSIZE'
+export const CHANGESIZE = 'CHANGESIZE'
 export const CHANGESTATUSNAV = 'CHANGESTATUSNAV'
 export const ADDPRICE = 'ADDPRICE'
 export const ADDNAME = 'ADDNAME'

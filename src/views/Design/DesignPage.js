@@ -169,6 +169,7 @@ import Price from "../../reducers/Price";
                                 lineHeight = { tag.lineHeight}    
                                 html = { tag.html}   
                                 transform = {tag.transform}
+                                size = { tag.size}
                             ></PriceElement>
                         )
                     })  

@@ -11,6 +11,7 @@ import ReactHintFactory from 'react-hint';
 import 'react-hint/css/index.css';
 import '../../assets/css/Menu.css';
 import '../../assets/css/Design.css';
+
 import { connect } from 'react-redux';
 import { addPrice , addName } from '../../actions/designAction.js'
 // import { DropzoneArea } from 'material-ui-dropzone';
@@ -75,8 +76,20 @@ class Menu extends Component {
         })
 
     }
-   
+    state={
+        profileImg:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+      }
+      imageHandler = (e) => {
+        const reader = new FileReader();
+        reader.onload = () =>{
+          if(reader.readyState === 2){
+            this.setState({profileImg: reader.result})
+          }
+        }
+        reader.readAsDataURL(e.target.files[0])
+      };
     render() {
+        const { profileImg} = this.state
         let { addPrice  } = this.props;
         let BG = this.state.color;
         let heights = this.state.height;
@@ -200,23 +213,37 @@ class Menu extends Component {
                                 </div>
                             </Tab.Pane>
                             <Tab.Pane eventKey="3">
-                                <div className="menu-content__upload">
+                                {/* <div className="menu-content__upload">
                                     <h3> Upload file here</h3>
                                     <div className='upload__content'>
                                         <IoMdCloudUpload className='upload__content-icon' ></IoMdCloudUpload>
                                     </div>
+                                    <img src={propfileImg} alt="" id="img" className='img'/>
+                                                                        <input type="file" name="image-upload" id="input" accept="image/*"></input>
                                     <button className='btn btn__upload'>Unload</button>
-                                </div>
+                                </div> */}
+                                <div className="page">
+				<div className="container">
+					<h1 className="heading">Add your Image</h1>
+					<div className="img-holder">
+						<img src={profileImg} alt="" id="img" className="img" />
+					</div>
+					<input type="file" accept="image/*" name="image-upload" id="input" onChange={this.imageHandler} />
+					<div className="label">
+                    <label className="image-upload" htmlFor="input">
+                        <IoMdCloudUpload className='upload__content-icon' ></IoMdCloudUpload>
+					</label>
+          </div>
+				</div>
+			</div>
                             </Tab.Pane>
                             <Tab.Pane eventKey="4">
                                 <div>
                                     <BGComponent setBGs={this.setBG} ></BGComponent>
                                     <button type="button" className=" btn bnt__request" onClick={() => this.props.addBG(BG)} >Change </button>
-                                    {/* <DropzoneArea
-  onChange={(files) => console.log('Files:', files)}
-/> */}
+
                                 </div>
-      
+                                
                             </Tab.Pane>
                             <Tab.Pane eventKey="5">
                                 <div className="menu-content__request">
@@ -243,8 +270,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
      
-        addPrice: (ArrayPRice, isActive , id , fontWeight ,fontStyle ,textAlign ,bullet , lineHeight ,transform) => {
-            dispatch(addPrice(ArrayPRice, isActive , id , fontWeight ,textAlign ,bullet , lineHeight , transform));
+        addPrice: (ArrayPRice, isActive , id , fontWeight ,fontStyle ,textAlign ,bullet , lineHeight ,transform , size) => {
+            dispatch(addPrice(ArrayPRice, isActive , id , fontWeight ,textAlign ,bullet , lineHeight , transform ,size));
         }
 
     };

@@ -6,14 +6,12 @@ import '../../assets/css/Home.css'
 function HistoryPage() {
     return (
         <div className='history--body'>
-            <Tabs className="history__tab" defaultActiveKey="profile" id="uncontrolled-tab-example" defaultActiveKey="My">
-                <Tab eventKey="My" className="history__tab--content" title="My Design">
-                    <ItemList></ItemList>
-                </Tab>
-                <Tab eventKey="All" className="history__tab--content" title="All Design">
-                    <ItemList></ItemList>
-                </Tab>
-            </Tabs>
+            <div className='home__body-title'>
+                <div className='home_body-title'> ALL design</div>    
+            </div>
+            <div className="home__body-content">
+                <ItemList></ItemList>
+            </div>
         </div>
     )
 }

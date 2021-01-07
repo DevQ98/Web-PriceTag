@@ -7,7 +7,7 @@ import  Row from 'react-bootstrap/Row';
 import "../../../assets/css/Home.css";
 const breakPoints = [
     { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
+    { width: 240, itemsToShow: 2 },
     { width: 768, itemsToShow: 3 },
     { width: 1200, itemsToShow: 4 },
   ];
@@ -25,6 +25,11 @@ const TagList = (props) => {
                             <Item number="6"></Item>
                             <Item number="7"></Item>
                             <Item number="8"></Item>
+                            <Item number="9"></Item>
+                            <Item number="10"></Item>
+                            <Item number="11"></Item>
+                            <Item number="12"></Item>
+
                         </Carousel>    
                     </Row>
             </Jumbotron>

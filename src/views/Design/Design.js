@@ -74,25 +74,7 @@ class DesignCom extends Component {
             isBullet : false
         }
     }
-    onClickHeightText = (isHeightText) => {
-        this.setState({
-            isHeightText: !this.state.isHeightText
-
-        })
-    }
-    onClickHeightText = (isHeightText) => {
-        this.setState({
-            isHeightText: !this.state.isHeightText
-
-        })
-        console.log('heightss ' ,isHeightText)
-    }
-    onClickBullet =(isBullet) =>{
-        this.setState({
-            isBullet: !this.state.isBullet
-
-        })
-    }
+  
     setColor = (colors) => {
         this.setState({
             color: colors
@@ -185,9 +167,8 @@ class DesignCom extends Component {
                                 <FontPicker> </FontPicker>
                             </div>
                             <div className=' tool-bar__size'>
-                                <FontSize
-                                    setSizes={this.setSize}
-                                    onChange={this.onChangeFontSize.bind(this)}
+                                <FontSize isActive = {Price.isActive}
+
                                 />
                             </div>
                             <div className=' tool-bar__item ' onClick={() =>changeBold(Price.isActive)}>
@@ -221,7 +202,7 @@ class DesignCom extends Component {
                         </div> 
                         <div className ="design__view">
                             <div>
-                                <div className=" btn btn__save" onClick={() => saveTem( 1 , ) } >
+                                <div className=" btn btn__save"  >
                                     Save
                                 </div>
                                 <section >
