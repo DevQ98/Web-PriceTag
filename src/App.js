@@ -5,25 +5,27 @@ import Routers from './Routers/Routers.js';
 
 import './App.css';
 function App() {
-      return (
-        <>
-          <Router>
-            <Navbar design=" true"></Navbar>
-            <Switch>
-               {                 
-                Routers.map((route, index) =>{
-                     return <Route
-                    key={index}
-                    path={route.path}
-                    exact={route.exact}
-                    component={route.main}
-                    />
-                 })
-               }
-            </Switch>
-          </Router>
-        </>
-    )
+  return (
+    <>
+      <Router>
+        <Navbar design=" true"></Navbar>
+        <Switch>
+          {
+            Routers.map((route, index) => {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  component={route.main}
+                />
+              )
+            })
+          }
+        </Switch>
+      </Router>
+    </>
+  )
 }
 
 export default App;

@@ -1,4 +1,6 @@
  export const PriceTag={
     ArrayPRice : [],
-    isActive :""
+    isActive :"",
+    height : "500px",
+    width : "500px"
 }

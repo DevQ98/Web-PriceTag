@@ -92,7 +92,8 @@ h1, .description {
 }
 
 .selecto-area {
-    padding: 20px;
+    width: 500px;
+    height: 500px;
 }
 
 #selecto1 .cube {

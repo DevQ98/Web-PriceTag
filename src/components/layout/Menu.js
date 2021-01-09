@@ -13,7 +13,7 @@ import '../../assets/css/Menu.css';
 import '../../assets/css/Design.css';
 
 import { connect } from 'react-redux';
-import { addPrice , addName } from '../../actions/designAction.js'
+import { addPrice , addName, addTemplate } from '../../actions/designAction.js'
 // import { DropzoneArea } from 'material-ui-dropzone';
 const ReactHint = ReactHintFactory(React)
 class Menu extends Component {
@@ -23,8 +23,7 @@ class Menu extends Component {
             leftOpen: true,
             nono: true,
             templateArray: [],
-            height: "",
-            width: "",
+            
             color: "",
             files: []
         }
@@ -90,10 +89,10 @@ class Menu extends Component {
       };
     render() {
         const { profileImg} = this.state
-        let { addPrice  } = this.props;
+        let { addPrice ,addTemplate  } = this.props;
         let BG = this.state.color;
         let heights = this.state.height;
-        console.log(" State and Props of Menu ", this.state, this.props)
+        console.log(" State and Props of Menu ", this.props)
         let widths = this.state.width;
         return (
             <>
@@ -152,37 +151,37 @@ class Menu extends Component {
                                 {
                                     this.state.templateArray.map((tag, index) => {
                                         return <div className="menu-content__template">
-                                            <button className="btn__template stamp1" onClick={() => this.props.addTemplate(heights, widths)} data-id="1" > </button>
+                                            <button className="btn__template stamp1" onClick={() => addTemplate(heights, widths)} data-id="1" > </button>
                                             <span> {this.state.height} x {this.state.width} px </span>
                                         </div>
                                     })
                                 }
                                 <div className="menu-content__template">
-                                    <button className="btn__template stamp1" onClick={() => this.props.addTemplate("56", "56")} data-id="1" > </button>
+                                    <button className="btn__template stamp1" onClick={() => addTemplate("156", "156")} data-id="1" > </button>
                                     <span> 56 x 56 px </span>
                                 </div>
                                 <div className="menu-content__template"  >
-                                    <button className="btn__template stamp2" onClick={() => this.props.addTemplate("100", "100")} data-id="1" >  </button>
+                                    <button className="btn__template stamp2" onClick={() => addTemplate("100", "100")} data-id="1" >  </button>
                                     <span> 100 x 100 px </span>
                                 </div>
                                 <div className="menu-content__template">
-                                    <button className="btn__template stamp3" onClick={() => this.props.addTemplate("800", "500")} data-id="1" >  </button>
+                                    <button className="btn__template stamp3" onClick={() => addTemplate("380", "250")} data-id="1" >  </button>
                                     <span> 800 x 500 px </span>
                                 </div>
                                 <div className="menu-content__template" >
-                                    <button className="btn__template stamp4" onClick={() => this.props.addTemplate("700", "800")} data-id="1"  > </button>
+                                    <button className="btn__template stamp4" onClick={() => addTemplate("270", "480")} data-id="1"  > </button>
                                     <span> 700 x 800 px </span>
                                 </div>
                                 <div className="menu-content__template"  >
-                                    <button className="btn__template stamp5" onClick={() => this.props.addTemplate("600", "800")} data-id="1">  </button>
+                                    <button className="btn__template stamp5" onClick={() => addTemplate("460", "380")} data-id="1">  </button>
                                     <span> 600 x 800 px </span>
                                 </div>
                                 <div className="menu-content__template">
-                                    <button className="btn__template stamp6" onClick={() => this.props.addTemplate("650", "750")} data-id="1" ></button>
+                                    <button className="btn__template stamp6" onClick={() => addTemplate("650", "750")} data-id="1" ></button>
                                     <span> 650 x 750 px </span>
                                 </div>
                                 <div className="menu-content__template"  >
-                                    <button className="btn__template stamp7" onClick={() => this.props.addTemplate("500", "700")} data-id="1">  </button>
+                                    <button className="btn__template stamp7" onClick={() => addTemplate("500", "700")} data-id="1">  </button>
                                     <span> 500 x 700 px </span>
                                 </div>
                             </Tab.Pane>
@@ -194,22 +193,22 @@ class Menu extends Component {
                                 </div>
 
                                 <div>
-                                    <button className="btn__element" onClick={() => addPrice(0 + (Math.random() * (100 - 0)), "Ten San Pham" ,"","" ,"","" ,"" ,"") } data-id="1" > Tên Sản phẩm</button>
+                                    <button className="btn__element" onClick={() => addPrice(0 + (Math.random() * (100 - 0)), "Ten San Pham" ,"","" ,"","" ,"" ,"","") } data-id="1" > Tên Sản phẩm</button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia San Pham" ,"" ,"","","" ,"","" )} data-id="2" > Giá Gốc </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia San Pham" ,"" ,"","","" ,"","","" )} data-id="2" > Giá Gốc </button>
                                 </div>
                                 <div >
                                     <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Khuyen Mai" ,"" ,"","","" ,"" ,"")} data-id="2" > Khuyen Mai </button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia Gach" ,"" ,"","" ,"" ,"","")} data-id="2" > Gia Gach </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Gia Gach" ,"" ,"","" ,"" ,"","","")} data-id="2" > Gia Gach </button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Tra Gop" ,"" ,"","" ,"" ,"","")} data-id="2" > Tra Gop </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ,"Tra Gop" ,"" ,"","" ,"" ,"","","")} data-id="2" > Tra Gop </button>
                                 </div>
                                 <div >
-                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Ngay thang" ,"" ,"","" , "","","" ,"","")} data-id="2" > Ngay thang </button>
+                                    <button className="btn__element" onClick={() => addPrice((Math.random() * (100 - 0)) ," Ngay thang" ,"" ,"","" , "","","" ,"","","")} data-id="2" > Ngay thang </button>
                                 </div>
                             </Tab.Pane>
                             <Tab.Pane eventKey="3">
@@ -270,10 +269,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
      
-        addPrice: (ArrayPRice, isActive , id , fontWeight ,fontStyle ,textAlign ,bullet , lineHeight ,transform , size) => {
-            dispatch(addPrice(ArrayPRice, isActive , id , fontWeight ,textAlign ,bullet , lineHeight , transform ,size));
+        addPrice: (ArrayPRice, isActive , id , fontWeight  ,textAlign ,bullet , lineHeight ,transform , size , color ) => {
+            dispatch(addPrice(ArrayPRice, isActive , id , fontWeight ,textAlign ,bullet , lineHeight , transform ,size , color ))
+        },
+        addTemplate : ( height , width) => {
+            dispatch(addTemplate(height , width))
         }
-
     };
 };
 

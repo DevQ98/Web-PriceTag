@@ -1,6 +1,9 @@
 import React from 'react'
 import { SketchPicker  } from 'react-color'
 import {MdFormatColorFill} from "react-icons/md";
+import { changeColor } from  '../../../actions/designAction'
+import {Price} from '../../../reducers/Price'
+import { connect } from 'react-redux';
 import '../../../assets/css/Menu.css';
 class ButtonExample extends React.Component {
   constructor(props) {
@@ -10,21 +13,19 @@ class ButtonExample extends React.Component {
       color: '#fff',
     }
   }
-
   handleClick = () => {
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
   };
 
   handleClose = () => {
     this.setState({ displayColorPicker: false })
+  };  handleChange = (colors) => {
+    this.props.changeColor( );
   };
+
   handleChange = (colors) => {
-    console.log("color",colors)
-    this.setState({ 
-      color: colors.hex
-    });
-    this.props.setColors(colors.hex)
-  }
+    this.props.changeColor( this.props.isActive ,colors.hex )
+  }  
   
   render() {
     const popover = {
@@ -43,11 +44,26 @@ class ButtonExample extends React.Component {
         <button  className='fill-color' onClick={ this.handleClick }><MdFormatColorFill className="tool-bar__color"/></button>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
-          <SketchPicker color={ this.state.color }  onChange={ this.handleChange.bind(this) }  />
+          <SketchPicker color={ this.state.color }  onChange={this.handleChange }  />
         </div> : null }
       </div>
     )
   }
 }
 
-export default ButtonExample
+const mapStateToProps = state => {
+  return {
+      Price : state.Price,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+      changeColor : (id , transform) =>{
+          dispatch(changeColor(id , transform))
+      },
+  };
+};
+
+export default ButtonExample = connect(mapStateToProps, mapDispatchToProps)(ButtonExample);

@@ -66,8 +66,7 @@ class DesignCom extends Component {
             isLineLeft: false,
             isLineCenter: true,
             isLineRight: false,
-            height: "500",
-            width : "300",
+
             BG :"",
             border : "",
             isHeightText: true,
@@ -86,11 +85,7 @@ class DesignCom extends Component {
             leftOpen: side
         })
     }
-    setSize = (sizes) => {
-        this.setState({
-            fontSize: sizes
-        });
-    }
+
     deleteEvent = (index) => {
         const copyNameArray = Object.assign([], this.state.nameArray);
         copyNameArray.splice(index, 1);
@@ -100,13 +95,7 @@ class DesignCom extends Component {
         })
     }
 
-    addTemplate = (h , w) => {
-
-        this.setState({
-            height :h,
-            width : w
-        })
-    }
+    
     addBG = (colors) => {
 
         this.setState({
@@ -130,6 +119,17 @@ class DesignCom extends Component {
             fontSize: sizes
         })
     }
+    // componentDidMount()  {
+    //     const fetchPricetag = async () => {
+    //         try {
+    //             const reponse = await pricetagApi.getAll()
+    //             console.log(reponse);
+    //         } catch (error) {
+    //             console.log("Failed to fetch")
+    //         }
+    //     }
+    //     fetchPriceTagList();
+    // }
 
     render() {
         console.log(this.props , "prop of design")
@@ -144,7 +144,7 @@ class DesignCom extends Component {
                 <div className='row design__page' id='left'>
 
                         <Menu className={` design__menu`} visible={this.state.leftOpen ? 'Open' : 'closed'}
-                            addTemplate={this.addTemplate.bind(this)}
+                           
                             setSides={this.setSide}
                             addBG={this.addBG.bind(this)}
                         ></Menu>
@@ -178,7 +178,7 @@ class DesignCom extends Component {
                                 <FiItalic data-rh="Italic" data-rh-at="bottom"/>
                             </div>
                             <div className=' tool-bar__item'>
-                                <ButtonExample data-rh="Fill Color" data-rh-at="bottom" setColors={this.setColor}></ButtonExample>
+                                <ButtonExample data-rh="Fill Color" data-rh-at="bottom" setColors={this.setColor} isActive={Price.isActive}></ButtonExample>
                             </div>
                             <div className=' tool-bar__item' onClick={()=> changeAlignLeft(Price.isActive)}>
                                 <AiOutlineAlignLeft data-rh="AlignLeft" data-rh-at="bottom"/>
@@ -210,12 +210,10 @@ class DesignCom extends Component {
                                      options={options} placeholder="142784_IphoneTem_Now" />
                                 </section>
                             </div>
-                            <div className='design__size-zoom'>Zoom : 100% | {this.state.height} x { this.state.width}</div>
+                            {/* <div className='design__size-zoom'>Zoom : 100% | {this.state.height} x { this.state.width}</div> */}
                         <div className="design__view--bg">         
                               <DesignPage 
                                     Price = {Price}
-                                    height = {height}
-                                    width = {width}
                                 > </DesignPage>
                             {/* <div className="elements selecto-area items-template " style={{height: '500mm', width: '300mm'}}><div className="items-element apply-font cube target" id="4.049045638421966" style={{fontWeight: 'bold', fontStyle: 'italic'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="80.5723268226495" style={{fontStyle: 'italic', fontWeight: 'bold'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="7.65505840659555" style={{fontStyle: 'italic'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="71.37352728387103" style={{fontWeight: 'bold'}}>Ten San Pham</div></div> */}
       

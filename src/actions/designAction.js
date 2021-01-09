@@ -1,9 +1,9 @@
-import { ADDNAME, ADDPRICE , CHANGEALIGNCENTER, CHANGEALIGNLEFT, CHANGEALIGNRIGHT, 
-    CHANGEBOLD, CHANGEITALIC, CHANGELINEHEIGHT, CHANGEBULLET, ISTARGET, SAVETEM, SHOWTEM, SAVEELEMENT ,CHANGESIZE } from './../constants/ActionTypes';
+import { ADDNAME, ADDPRICE , CHANGEALIGNCENTER, CHANGEALIGNLEFT, CHANGEALIGNRIGHT, ADDTEMPLATE, CHANGECOLOR,
+    CHANGEBOLD, CHANGEITALIC, CHANGELINEHEIGHT, CHANGEBULLET, ISTARGET, SAVETEM, SHOWTEM, SAVEELEMENT ,CHANGESIZE, CLEARELEMENT } from './../constants/ActionTypes';
 
 
 
-export function addPrice (id ,body , fontWeight , textAlign , bullet , lineHeight , transform  , size) {
+export function addPrice (id ,body , fontWeight , textAlign , bullet , lineHeight , transform  , size ) {
     return {
         type: ADDPRICE,
         id ,
@@ -17,11 +17,23 @@ export function addPrice (id ,body , fontWeight , textAlign , bullet , lineHeigh
     }
     
 }
+export function clearElement ( ) {
+    return {
+        type : CLEARELEMENT,
+    }
+}
 export function  changeSize(id , size) {
     return {
         type : CHANGESIZE,
         id ,
         size
+    }
+}
+export function  changeColor(id , color) {
+    return {
+        type : CHANGECOLOR,
+        id ,
+        color
     }
 }
 export function  saveElement( id , transform ) {
@@ -85,6 +97,13 @@ export function  isTarget (id) {
     return{
         type : ISTARGET,
         id
+    }
+}
+export function  addTemplate ( height , width) {
+    return{
+        type : ADDTEMPLATE,
+        height,
+        width
     }
 }
 export function  addName( id , body , fontWeight , fontStyle) {

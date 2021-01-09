@@ -10,8 +10,7 @@ class PriceElement extends Component {
         }
     }   
     render() {
-        const { id , fontWeight , fontStyle , textAlign , lineHeight , transform ,bullet , size} = this.props
-        console.log(this.props , "props price element")
+        const { id , fontWeight , fontStyle , textAlign , lineHeight , transform ,bullet , size , color} = this.props
 
             setTimeout(function(){ 
                 console.log("Style"  , id ,fontWeight);
@@ -22,6 +21,7 @@ class PriceElement extends Component {
                 document.getElementById(`${id}`).style.lineHeight = lineHeight
                 document.getElementById(`${id}`).style.transform = transform
                 document.getElementById(`${id}`).style.fontSize = size+"px"
+                document.getElementById(`${id}`).style.color = color
             }, 1);
             
           

@@ -18,6 +18,7 @@ import Price from "../../reducers/Price";
     console.log("Props of DesignPage" ,  props)
 
     const PriceArray = props.Price.ArrayPRice;
+    console.log(props.Price.height , "heightsss" )
 
     // console.log(NameArray , "priceArray");
     // const NameArray = props.addName.ArrayName;
@@ -96,7 +97,6 @@ import Price from "../../reducers/Price";
                     e.events.forEach(ev => {
                         const target = ev.target;
                         const frame = frameMap.get(target);
-                
                         frame.translate = ev.beforeTranslate;
                         target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
 
@@ -104,7 +104,6 @@ import Price from "../../reducers/Price";
                 }}
                 onDragEnd ={ e => {
                     const target = e.target;
-                    console.log(target.style.transform , " transfoddrmgg");
                     props.saveElement(target.id, target.style.transform )
 
 
@@ -150,12 +149,14 @@ import Price from "../../reducers/Price";
 
                 }}
             ></Selecto>
+
             { 
-            <div id ='element__show' className="elements selecto-area items-template " style={{ height : props.height +"mm" , width : props.width + "mm" , background : props.BG}}>
+            <div id ='element__show' className="elements selecto-area items-template " style={{ height : props.Price.height +"mm" , width : props.Price.width + "mm" , background : props.BG}}>
             
                 {
-               
+
                     PriceArray.map((tag , index) =>{
+
                         return(        
                             <PriceElement 
                                 key={index}
@@ -170,6 +171,7 @@ import Price from "../../reducers/Price";
                                 html = { tag.html}   
                                 transform = {tag.transform}
                                 size = { tag.size}
+                                color = { tag.color}
                             ></PriceElement>
                         )
                     })  
