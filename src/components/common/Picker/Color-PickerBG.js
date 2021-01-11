@@ -1,29 +1,15 @@
-import React from 'react'
+import React from 'react';
 import { CompactPicker } from 'react-color';
+import { useDispatch } from 'react-redux';
+import { updateFrame } from 'app/stampSlice';
 
-class BGComponent extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      
-      background: '#fff',
-    }
-  }
-
-  handleChangeComplete = (color) => {
-    this.setState({ background: color.hex });
-    this.props.setBGs(color.hex)
-    
-    
+function BGComponent(props) {
+  const dispatch = useDispatch();
+  const handleChangeBGColor = (colors) => {
+    const color = colors.hex;
+    const action = updateFrame({ color });
+    dispatch(action);
   };
-
-  render() {
-    return (
-      <CompactPicker
-        color={ this.state.background }
-        onChangeComplete={ this.handleChangeComplete }
-      />
-    );
-  }
+  return <CompactPicker onChangeComplete={handleChangeBGColor} />;
 }
 export default BGComponent;

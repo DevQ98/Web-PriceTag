@@ -4,7 +4,8 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './redux/configureStore';
 import { Provider } from "react-redux";
-const store = configureStore();
+import store from './app/store';
+// const store = configureStore();
 
 
 ReactDOM.render(

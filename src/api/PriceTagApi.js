@@ -1,7 +1,7 @@
-class pricetagApi {
+const pricetagApi = {
     getAll = (params) => {
-    const url = '/products';
-    return axiosClient.get(url, { params });
-    };
+        const url = '/products';
+        return axiosClient.get(url, { params });
     }
-    export default pricetagApi;
+}
+export default pricetagApi;
