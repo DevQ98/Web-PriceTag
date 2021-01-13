@@ -1,7 +1,7 @@
 import axios from 'axios';
 import axiosClient from './axiosClient';
 class PriceTagApi {
-  getAll = (params) => {
+  getAllPriceTag = (params) => {
     const url = '/pricetag';
     return axiosClient.get(url, { params });
   };

@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import './App.css';
 import priceTagApi from './api/pricetagAPI.js';
+import elementsApi from './api/elementsAPI.js';
 function App() {
   //cerate state variables
   const [productList, setProductList] = useState([]);
@@ -13,8 +14,10 @@ function App() {
     const fetchProductList = async () => {
       try {
         const params = { _page: 1, _limit: 10 };
-        const response = await priceTagApi.getAll(params);
+        const response = await priceTagApi.getAllPriceTag(params);
+        const responseHaHa = await elementsApi.getAllElements(params);
         console.log('Fetch products successfully: ', response);
+        console.log('Fetch elements successfully: ', responseHaHa);
 
         // setProductList(response.data);
       } catch (error) {

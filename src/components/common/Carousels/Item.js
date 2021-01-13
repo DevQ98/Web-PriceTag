@@ -2,9 +2,28 @@ import React from 'react';
 import Image from 'react-bootstrap/Image';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import '../../../assets/css/Home.css';
-const Item = ({ number }) => {
+import { addElement, setCurrentStamp } from 'app/stampSlice';
+
+function Item({ number }) {
+  const dispatch = useDispatch();
+  const handleEditClick = () => {
+    const currentStamp = JSON.parse(localStorage.getItem('Price'));
+    if (currentStamp != null) {
+      let action = setCurrentStamp(currentStamp.current);
+      dispatch(action);
+    } else {
+      const stamp = {
+        frame: { w: 100, h: 100 },
+        elementList: [],
+      };
+      let action = setCurrentStamp(stamp);
+      dispatch(action);
+    }
+  };
+
   return (
     <div className=" price-tag">
       <Image src="./images/stamp_01.jpg" />
@@ -13,7 +32,7 @@ const Item = ({ number }) => {
         <div className="stamp__actions">
           <div>
             <Link to="design">
-              <Button outline color="primary">
+              <Button outline color="primary" onClick={handleEditClick}>
                 Edit
               </Button>
             </Link>
@@ -29,5 +48,5 @@ const Item = ({ number }) => {
       </div>
     </div>
   );
-};
+}
 export default Item;

@@ -1,4 +1,4 @@
-import { updateElementAttribute } from 'app/stampSlice';
+import { updateElementAttribute, setCurrentStamp, addElement } from 'app/stampSlice';
 import React, { Component } from 'react';
 import ReactHintFactory from 'react-hint';
 import {
@@ -26,6 +26,7 @@ import FontPicker from '../../components/common/Picker/Font-Picker';
 import FontSize from '../../components/common/Picker/Font-Size';
 import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
+import elementsAPI from '../../api/elementsAPI';
 
 const options = [
   { value: '1', label: '142784_IphoneTem_V1' },
@@ -55,7 +56,7 @@ class DesignCom extends Component {
       leftOpen: side,
     });
   };
-
+  componentDidMount() {}
   //   deleteEvent = (index) => {
   //     const copyNameArray = Object.assign([], this.state.nameArray);
   //     copyNameArray.splice(index, 1);
@@ -156,6 +157,13 @@ class DesignCom extends Component {
       attrValue: 'right',
     });
   };
+
+  handleSaveElement = () => {
+    localStorage.getItem('Price');
+    console.log(localStorage.getItem('Price'));
+    elementsAPI.postAllElement();
+  };
+
   render() {
     console.log(this.props, 'prop of design');
     const { Price } = this.props;
@@ -225,7 +233,9 @@ class DesignCom extends Component {
             </div>
             <div className="design__view">
               <div>
-                <div className=" btn btn__save">Save</div>
+                <div className=" btn btn__save" onClick={this.handleSaveElement}>
+                  Save
+                </div>
                 <section>
                   <Select
                     classNamePrefix="Font"
@@ -257,7 +267,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      setCurrentStamp,
       updateElementAttribute,
+      addElement,
     },
     dispatch
   );

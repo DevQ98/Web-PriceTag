@@ -169,12 +169,12 @@ function DesignPageCom(props) {
             height: stamp.frame == undefined ? 100 : stamp.frame.h + 'mm',
             width: stamp.frame == undefined ? 100 : stamp.frame.w + 'mm',
             // background: stamp.frame.color == undefined ? '#FFF' : stamp.frame.color,
-            backgroundImage: stamp.frame.bgImage == undefined ? ' ' : `url(${stamp.frame.bgImage})`,
-            backgroundSize: stamp.frame.bgSize == undefined ? '' : stamp.frame.bgSize,
+            backgroundImage: stamp.frame == undefined ? ' ' : `url(${stamp.frame.bgImage})`,
+            backgroundSize: stamp.frame == undefined ? '' : stamp.frame.bgSize,
           }}
         >
           {' '}
-          {stamp.elementList == undefined
+          {stamp == undefined
             ? stamp.current.elementList.map((element) => {
                 return <StampElement key={element.id} element={element} />;
               })
