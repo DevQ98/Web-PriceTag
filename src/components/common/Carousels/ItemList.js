@@ -1,40 +1,47 @@
-import React from 'react'
-import Item from './Item'
-import '../../../assets/css/Home.css'
+import React from 'react';
+import Item from './Item';
+import '../../../assets/css/Home.css';
 function ItemList() {
-    return (
-        <div className="list-item">   
-            <div className='list-tag'>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
-
-            </div>
-        </div>
-    )
+  return (
+    <div className="list-item">
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+      <div className="list-tag">
+        <Item></Item>
+      </div>
+    </div>
+  );
 }
 
-export default ItemList
+export default ItemList;

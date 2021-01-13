@@ -1,4 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
+const PriceData = JSON.parse(localStorage.getItem('Price'));
 
 const initialState = {
   current: null,
@@ -13,21 +14,21 @@ const stampSlice = createSlice({
     },
     addElement(state, action) {
       state.current.elementList.push(action.payload);
+      localStorage.setItem('Price', JSON.stringify(state));
     },
 
     updateFrame(state, action) {
       if (!state.current) return state;
-
       state.current.frame = {
         ...state.current.frame,
         ...action.payload,
       };
+      localStorage.setItem('Price', JSON.stringify(state));
     },
 
     updateElementAttribute(state, action) {
       const activeElementIdxList = state.current.elementList.reduce((idxList, element, idx) => {
         if (element.isActive) idxList.push(idx);
-
         return idxList;
       }, []);
       activeElementIdxList.forEach((elementIdx) => {
@@ -36,22 +37,19 @@ const stampSlice = createSlice({
           state.current.elementList[elementIdx].attributes = {};
         }
         const { attrName, attrValue } = action.payload;
-        console.log(state.current.elementList[elementIdx].attributes[attrName], ' List');
-
-        console.log(attrName, attrValue, 'action');
-        state.current.elementList[elementIdx].attributes[attrName] == attrValue
-          ? (state.current.elementList[elementIdx].attributes[attrName] = 'normal')
-          : (state.current.elementList[elementIdx].attributes[attrName] = attrValue);
+        state.current.elementList[elementIdx].attributes[attrName] = attrValue;
       });
+      localStorage.setItem('Price', JSON.stringify(state));
     },
 
     setActiveElements(state, action) {
       const activeElementIdList = action.payload;
       console.log(activeElementIdList, 'List active');
-
-      state.current.elementList.forEach((element) => {
-        element.isActive = activeElementIdList.includes(element.id.toString());
-      });
+      if (state.current.elementList)
+        state.current.elementList.forEach((element) => {
+          element.isActive = activeElementIdList.includes(element.id.toString());
+        });
+      localStorage.setItem('Price', JSON.stringify(state));
     },
   },
 });

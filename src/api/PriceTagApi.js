@@ -1,7 +1,10 @@
-const pricetagApi = {
-    getAll = (params) => {
-        const url = '/products';
-        return axiosClient.get(url, { params });
-    }
+import axios from 'axios';
+import axiosClient from './axiosClient';
+class PriceTagApi {
+  getAll = (params) => {
+    const url = '/pricetag';
+    return axiosClient.get(url, { params });
+  };
 }
-export default pricetagApi;
+const priceTagApi = new PriceTagApi();
+export default priceTagApi;

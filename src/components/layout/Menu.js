@@ -24,6 +24,7 @@ class Menu extends Component {
       templateArray: [],
       color: '',
       files: [],
+      name: '',
     };
 
     const currentThis = this;
@@ -70,6 +71,55 @@ class Menu extends Component {
           currentThis.props.addElement({ id: new Date().getTime(), name: 'Mã sản phẩm' });
         },
       },
+      {
+        id: 7,
+        name: 'QR',
+        onClick: function () {
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'QR' });
+        },
+      },
+      {
+        id: 8,
+        name: 'Tình trạng',
+        onClick: function () {
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Tình trạng' });
+        },
+      },
+      {
+        id: 9,
+        name: 'Ngày áp dụng',
+        onClick: function () {
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Ngày áp dụng' });
+        },
+      },
+      {
+        id: 10,
+        name: 'Khuyến mãi',
+        onClick: function () {
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Khuyến mãi' });
+        },
+      },
+      {
+        id: 11,
+        name: 'Trả góp 1',
+        onClick: function () {
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Trả góp 1' });
+        },
+      },
+      {
+        id: 12,
+        name: 'Trả góp 2',
+        onClick: function () {
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Trả góp 2' });
+        },
+      },
+      {
+        id: 13,
+        name: 'Trả góp 3',
+        onClick: function () {
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Trả góp 3' });
+        },
+      },
     ];
   }
 
@@ -92,7 +142,12 @@ class Menu extends Component {
   handleWidthChange = (e) => {
     this.setState({ width: e.target.value });
   };
-
+  handleLabelChange = (e) => {
+    this.setState({ name: e.target.value });
+  };
+  handleAddLabelChange = () => {
+    this.props.addElement({ id: new Date().getTime(), name: this.state.name });
+  };
   handleLogin = () => {
     const copytemplateArray = Object.assign([], this.state.templateArray);
     setTimeout(() => {
@@ -125,8 +180,10 @@ class Menu extends Component {
   handleFrameChange = (w, h) => {
     this.props.updateFrame({ w, h });
   };
-  handleFrameBGChange = (bg) => {
-    this.props.updateFrame({ bg });
+  handleFrameBGChange = () => {
+    let bgSize = 'cover';
+    let bgImage = '/images/01.jpg';
+    this.props.updateFrame({ bgImage, bgSize });
   };
   render() {
     const { profileImg } = this.state;
@@ -254,32 +311,32 @@ class Menu extends Component {
                 <div className="menu-content__template">
                   <button
                     className="btn__template stamp1"
-                    onClick={() => this.handleFrameChange('156', '156')}
+                    onClick={() => this.handleFrameChange('141', '99')}
                     data-id="1"
                   >
                     {' '}
                   </button>
-                  <span> 56 x 56 px </span>
+                  <span> 141 x 99 mm </span>
                 </div>
                 <div className="menu-content__template">
                   <button
                     className="btn__template stamp2"
-                    onClick={() => this.handleFrameChange('100', '100')}
+                    onClick={() => this.handleFrameChange('55', '130')}
                     data-id="1"
                   >
                     {' '}
                   </button>
-                  <span> 100 x 100 px </span>
+                  <span> 55 x 130 mm </span>
                 </div>
                 <div className="menu-content__template">
                   <button
                     className="btn__template stamp3"
-                    onClick={() => this.handleFrameChange('380', '250')}
+                    onClick={() => this.handleFrameChange('100', '156')}
                     data-id="1"
                   >
                     {' '}
                   </button>
-                  <span> 800 x 500 px </span>
+                  <span> 100 x 156 mm </span>
                 </div>
                 <div className="menu-content__template">
                   <button
@@ -294,7 +351,7 @@ class Menu extends Component {
                 <div className="menu-content__template">
                   <button
                     className="btn__template stamp5"
-                    onClick={() => this.handleFrameChange('460', '380')}
+                    onClick={() => this.handleFrameChange(460, 380)}
                     data-id="1"
                   >
                     {' '}
@@ -334,6 +391,21 @@ class Menu extends Component {
                     placeholder="Search"
                   ></input>
                 </div>
+                <div className="menu-content__size--label">
+                  <input
+                    className="panel-size-input__left"
+                    type="text"
+                    value={this.state.name}
+                    onChange={this.handleLabelChange}
+                  ></input>
+                  <button
+                    type="button"
+                    className="  btn--addLabel"
+                    onClick={this.handleAddLabelChange}
+                  >
+                    Add label
+                  </button>
+                </div>
 
                 {this.elementList.map((element) => (
                   <div key={element.id}>
@@ -371,14 +443,9 @@ class Menu extends Component {
                     <BGComponent></BGComponent>
                   </div>
                   <div className="menu-content__template">
-                    <button
-                      className="btn__template stamp10"
-                      onClick={() => this.handleFrameBGChange('')}
-                      data-id="1"
-                    >
+                    <button className="btn__template " onClick={() => this.handleFrameBGChange()}>
                       <img className="navbar__left-logo" src="./images/01.jpg" />
                     </button>
-                    <span> 500 x 700 px </span>
                   </div>
                 </div>
               </Tab.Pane>

@@ -8,9 +8,13 @@ import { setActiveElements } from 'app/stampSlice';
 import { saveElement } from '../../actions/designAction.js';
 import StampElement from '../../components/common/Draggable/StampElement';
 import '../../components/common/Draggable/TxtElement.css';
+import {
+  updateElementAttribute,
+  elementListSelector,
+  activeElementListSelector,
+} from 'app/stampSlice';
 
 function DesignPageCom(props) {
-  const dispatch = useDispatch();
   const [targets, setTargets] = useState([]);
   const [frameMap] = useState(() => new Map());
   const moveableRef = useRef(null);
@@ -18,14 +22,13 @@ function DesignPageCom(props) {
   const selectoRef = useRef(null);
   const cubes = [];
   console.log('Props of DesignPage', props);
-
+  const dispatch = useDispatch();
   const handleSelectedElementsChange = (selectedElementList) => {
     const action = setActiveElements(selectedElementList.map((x) => x.id));
     dispatch(action);
   };
 
   const { stamp } = props;
-
   return (
     <div className="moveable app" style={{ margin: 'auto' }}>
       {stamp && (
@@ -41,12 +44,27 @@ function DesignPageCom(props) {
             }}
             onResize={({ target, width, height, drag }) => {
               const beforeTranslate = drag.beforeTranslate;
-
+              debugger;
               frame.translate = beforeTranslate;
               target.style.width = `${width}px`;
               target.style.height = `${height}px`;
               target.style.transform = `translate(${beforeTranslate[0]}px, ${beforeTranslate[1]}px)`;
               console.log(target.style.width, target.style.height, 'HW');
+              let action = updateElementAttribute({
+                attrName: 'width',
+                attrValue: target.style.width,
+              });
+              dispatch(action);
+              action = updateElementAttribute({
+                attrName: 'height',
+                attrValue: target.style.height,
+              });
+              dispatch(action);
+              action = updateElementAttribute({
+                attrName: 'transform',
+                attrValue: target.style.transform,
+              });
+              dispatch(action);
             }}
             onClickGroup={(e) => {
               selectoRef.current.clickTarget(e.inputEvent, e.inputTarget);
@@ -72,6 +90,13 @@ function DesignPageCom(props) {
             }}
             onDragEnd={(e) => {
               const target = e.target;
+
+              const action = updateElementAttribute({
+                attrName: 'transform',
+                attrValue: target.style.transform,
+              });
+              dispatch(action);
+
               //   props.saveElement(target.id, target.style.transform);
             }}
             onDragGroupStart={(e) => {
@@ -120,10 +145,10 @@ function DesignPageCom(props) {
             }}
             onSelect={(e) => {
               setTargets(e.selected);
+              handleSelectedElementsChange(e.selected);
             }}
             onSelectEnd={(e) => {
               const moveable = moveableRef.current;
-              handleSelectedElementsChange(e.selected);
 
               if (e.isDragStart) {
                 e.inputEvent.preventDefault();
@@ -141,14 +166,21 @@ function DesignPageCom(props) {
           id="element__show"
           className="elements selecto-area items-template "
           style={{
-            height: stamp.frame.h + 'mm',
-            width: stamp.frame.w + 'mm',
-            background: stamp.frame.color,
+            height: stamp.frame == undefined ? 100 : stamp.frame.h + 'mm',
+            width: stamp.frame == undefined ? 100 : stamp.frame.w + 'mm',
+            // background: stamp.frame.color == undefined ? '#FFF' : stamp.frame.color,
+            backgroundImage: stamp.frame.bgImage == undefined ? ' ' : `url(${stamp.frame.bgImage})`,
+            backgroundSize: stamp.frame.bgSize == undefined ? '' : stamp.frame.bgSize,
           }}
         >
-          {stamp.elementList.map((element) => {
-            return <StampElement key={element.id} element={element} />;
-          })}
+          {' '}
+          {stamp.elementList == undefined
+            ? stamp.current.elementList.map((element) => {
+                return <StampElement key={element.id} element={element} />;
+              })
+            : stamp.elementList.map((element) => {
+                return <StampElement key={element.id} element={element} />;
+              })}
         </div>
       )}
     </div>
@@ -163,8 +195,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      activeElementListSelector,
       setActiveElements,
-      saveElement,
     },
     dispatch
   );

@@ -1,4 +1,4 @@
-import { updateElementAttribute, activeElementListSelector } from 'app/stampSlice';
+import { updateElementAttribute } from 'app/stampSlice';
 import React, { Component } from 'react';
 import ReactHintFactory from 'react-hint';
 import {
@@ -47,6 +47,7 @@ class DesignCom extends Component {
     super(props);
     this.state = {
       BG: '',
+      Check: '',
     };
   }
   setSide = (side) => {
@@ -64,6 +65,32 @@ class DesignCom extends Component {
   //     });
   //   };
 
+  isActiveList = (attrName, attrValue) => {
+    const activeElementIdxList = this.props.stamp.elementList.reduce((idxList, element, idx) => {
+      if (element.isActive) idxList.push(idx);
+
+      return idxList;
+    }, []);
+
+    const ListElementIsAttributes = [];
+    activeElementIdxList.forEach((elementIdx) => {
+      const elementAttributes = this.props.stamp.elementList[elementIdx].attributes;
+      if (this.props.stamp.elementList[elementIdx].attributes) {
+        console.log(this.props.stamp.elementList[elementIdx].attributes, 'isTrue');
+        if (this.props.stamp.elementList[elementIdx].attributes[attrName] != attrValue) {
+          ListElementIsAttributes.push(1);
+          console.log(ListElementIsAttributes, ' Check');
+        }
+      }
+    });
+    if (ListElementIsAttributes.length > 0) {
+      this.state.Check = true;
+    } else {
+      this.state.Check = false;
+    }
+    console.log(this.state.Check, ' Check');
+  };
+
   changeBorder(event) {}
   toggleSidebar = (event) => {
     let key = `${event.currentTarget.parentNode.id}Open`;
@@ -78,11 +105,20 @@ class DesignCom extends Component {
       attrValue: 'double',
     });
   };
+
   handleBoldClick = () => {
-    this.props.updateElementAttribute({
-      attrName: 'fontWeight',
-      attrValue: 'bold',
-    });
+    this.isActiveList('fontWeight', 'bold');
+    console.log('isTrue', this.state.Check);
+    if (this.state.Check)
+      this.props.updateElementAttribute({
+        attrName: 'fontWeight',
+        attrValue: 'bold',
+      });
+    else
+      this.props.updateElementAttribute({
+        attrName: 'fontWeight',
+        attrValue: '',
+      });
   };
   handleItalicClick = () => {
     this.props.updateElementAttribute({
@@ -222,7 +258,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       updateElementAttribute,
-      activeElementListSelector,
     },
     dispatch
   );

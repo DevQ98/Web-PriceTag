@@ -96,10 +96,12 @@
 }
 
 .stamp-name {
-  color: rgb(0, 0, 0);
-  font-weight: 200;
-  font-size: 12px;
-  text-align: center;
+  position: relative;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 24px;
 }
 .Tab-history {
   margin: 0 15px;
@@ -121,28 +123,67 @@
   align-items: center;
 }
 .list-item > div {
-  width: calc(100% / 6);
+  width: calc(100% / 4);
   padding: 0 6px;
   box-sizing: border-box;
   flex: auto;
 }
+.stamp__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
 
-.price-tag {
-  display: inline-block;
-  flex-direction: row;
-  width: calc(100% / 4);
-  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
-  box-sizing: border-box;
-  flex: auto;
+
+  width: 100%;
+  height: 100%;
+
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: all 0.25s ease 0s;
+}
+.stamp__actions {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  opacity: 0;
+  transition: all 0.35s ease 0s;
+  transform: translateY(1rem);
+}
+.stamp__actions > div {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+}
+.price-tag {
   position: relative;
+  /* margin-bottom: 2rem; */
+  margin: 2rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.price-tag :hover {
+  cursor: pointer;
+}
+.price-tag:hover > img {
+  transform: scale(1.35);
+}
+.price-tag:hover .stamp__overlay,
+.price-tag:hover .stamp__actions {
+  opacity: 1;
+  transform: translateY(0);
 }
 .price-tag__menu {
-  display: flex;
   position: absolute;
-  flex-direction: column;
-  width: 155px;
-  height: 50%;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
   right: 0.7rem;
   top: 1rem;
   justify-content: space-around;
@@ -150,15 +191,11 @@
   transform-origin: top;
   animation: price-tag__menu ease-in 0.2s;
   display: none;
-  background-color: #f1f1f1;
 }
 .price-tag:hover .price-tag__menu {
-  display: flex;
+  display: inline-flex;
 }
-.btn--edit {
-  background-color: rgb(241, 191, 216) !important;
-  font-weight: bold !important;
-}
+
 @keyframes price-tag__menu {
   from {
     opacity: 0;
@@ -170,15 +207,16 @@
   }
 }
 .price-tag > img {
-  align-items: center;
-  width: 300px;
-  display: flex;
-  margin: 0 auto;
-  margin-top: 10px;
+  width: 100%;
+  vertical-align: middle;
+  transition: all 0.45s ease 0s;
 }
-.price-tag:hover {
-  opacity: 0.7;
+.price-tag > img:hover {
+  transform: scale(1.2);
+  opacity: 1;
+  transition: 0.5s ease-out;
 }
+
 .title-text {
   display: flex;
   height: 100%;

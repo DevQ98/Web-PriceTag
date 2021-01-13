@@ -54,12 +54,12 @@ body {
 
 .cube {
   display: inline-block;
-  border-radius: 5px;
   width: 100px;
   height: 40px;
   margin: 4px;
-  background: #eee;
+  background: rgba(196, 196, 196, 0.5);
   --color: #4af;
+  position: absolute;
 }
 
 h1,

@@ -110,6 +110,15 @@
   width: 100%;
   top: 15px;
 }
+.menu-content__size--label {
+  display: flex;
+  position: relative;
+  right: 0;
+  width: 100%;
+  top: 15px;
+  align-items: center;
+  height: 30px;
+}
 .menu-content__size--width {
   display: flex;
   position: relative;
@@ -124,6 +133,28 @@
 
   border-radius: 6px;
   position: absolute;
+}
+.panel-size-input__left {
+  left: 10px;
+  width: 100px;
+  border-color: gray !important;
+  border-radius: 6px;
+  position: absolute;
+}
+.btn--addLabel {
+  right: 10px;
+  max-width: 60px !important;
+  background-color: red !important;
+  position: absolute;
+  display: inline;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  box-shadow: 0px 1px 2px rgba(255, 255, 255, 0.25);
+  background-color: var(--white-color) !important;
+  border-radius: 5px;
 }
 .span_txt {
   position: absolute;
