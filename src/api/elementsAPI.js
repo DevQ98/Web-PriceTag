@@ -1,15 +1,23 @@
 import axios from 'axios';
 import axiosClient from './axiosClient';
-class elementsApi {
+class ElementsApi {
   getAllElements = (params) => {
-    const url = '/elements';
+    const url = '/element';
     return axiosClient.get(url, { params });
   };
 
   postAllElement = (params) => {
-    const url = `/elements`;
+    const url = `/element`;
     return axiosClient.post(url, { params });
   };
+
+  postData = (data) => {
+    const url = 'http://localhost:8080/api/element';
+    axios
+      .post(url, { ...data })
+      .then((res) => console.log(res.data))
+      .catch((error) => console.log(error));
+  };
 }
-const eleApi = new elementsApi();
-export default eleApi;
+const elementsApi = new ElementsApi();
+export default elementsApi;

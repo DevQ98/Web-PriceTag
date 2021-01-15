@@ -3,29 +3,17 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar.js';
 import Routers from './Routers/Routers.js';
 import axios from 'axios';
-
+import { useDispatch } from 'react-redux';
+import { setCurrentStamp } from 'app/stampSlice';
 import './App.css';
 import priceTagApi from './api/pricetagAPI.js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import elementsApi from './api/elementsAPI.js';
 function App() {
   //cerate state variables
+  const dispatch = useDispatch();
   const [productList, setProductList] = useState([]);
-  useEffect(() => {
-    const fetchProductList = async () => {
-      try {
-        const params = { _page: 1, _limit: 10 };
-        const response = await priceTagApi.getAllPriceTag(params);
-        const responseHaHa = await elementsApi.getAllElements(params);
-        console.log('Fetch products successfully: ', response);
-        console.log('Fetch elements successfully: ', responseHaHa);
-
-        // setProductList(response.data);
-      } catch (error) {
-        console.log('Failed to fetch product list: ', error);
-      }
-    };
-    fetchProductList();
-  }, []);
 
   return (
     <>

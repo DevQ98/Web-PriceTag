@@ -13,7 +13,8 @@ export default function NavbarCom() {
 
   const handleCreateStampClick = () => {
     // check current stamp --> if any, show confirmation before processing
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem('Price');
     const stamp = {
       frame: { w: 100, h: 100 },
       elementList: [],

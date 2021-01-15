@@ -27,6 +27,9 @@ import FontSize from '../../components/common/Picker/Font-Size';
 import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
 import elementsAPI from '../../api/elementsAPI';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify';
 
 const options = [
   { value: '1', label: '142784_IphoneTem_V1' },
@@ -42,6 +45,7 @@ const border = [
   { value: 'borderBottom', label: <AiOutlineBorderBottom /> },
   { value: 'borderTop', label: <AiOutlineBorderTop /> },
 ];
+toast.configure();
 const ReactHint = ReactHintFactory(React);
 class DesignCom extends Component {
   constructor(props) {
@@ -56,29 +60,23 @@ class DesignCom extends Component {
       leftOpen: side,
     });
   };
+  notify = () => {
+    toast('Basic');
+  };
   componentDidMount() {}
-  //   deleteEvent = (index) => {
-  //     const copyNameArray = Object.assign([], this.state.nameArray);
-  //     copyNameArray.splice(index, 1);
-
-  //     this.setState({
-  //       nameArray: copyNameArray,
-  //     });
-  //   };
-
   isActiveList = (attrName, attrValue) => {
     const activeElementIdxList = this.props.stamp.elementList.reduce((idxList, element, idx) => {
       if (element.isActive) idxList.push(idx);
-
+      console.log(idxList, element, idx, ' List');
       return idxList;
     }, []);
 
     const ListElementIsAttributes = [];
     activeElementIdxList.forEach((elementIdx) => {
-      const elementAttributes = this.props.stamp.elementList[elementIdx].attributes;
+      // const elementAttributes = this.props.stamp.elementList[elementIdx].attributes;
       if (this.props.stamp.elementList[elementIdx].attributes) {
         console.log(this.props.stamp.elementList[elementIdx].attributes, 'isTrue');
-        if (this.props.stamp.elementList[elementIdx].attributes[attrName] != attrValue) {
+        if (this.props.stamp.elementList[elementIdx].attributes[attrName] !== attrValue) {
           ListElementIsAttributes.push(1);
           console.log(ListElementIsAttributes, ' Check');
         }
@@ -101,10 +99,22 @@ class DesignCom extends Component {
     });
   };
   handleBorderClick = (event) => {
-    this.props.updateElementAttribute({
-      attrName: event.value,
-      attrValue: 'double',
-    });
+    // this.props.updateElementAttribute({
+    //   attrName: event.value,
+    //   attrValue: 'double',
+    // });
+    this.isActiveList(event.value, 'double');
+    console.log('isTrue', this.state.Check);
+    if (this.state.Check)
+      this.props.updateElementAttribute({
+        attrName: event.value,
+        attrValue: 'double',
+      });
+    else
+      this.props.updateElementAttribute({
+        attrName: event.value,
+        attrValue: '',
+      });
   };
 
   handleBoldClick = () => {
@@ -122,16 +132,40 @@ class DesignCom extends Component {
       });
   };
   handleItalicClick = () => {
-    this.props.updateElementAttribute({
-      attrName: 'fontStyle',
-      attrValue: 'italic',
-    });
+    // this.props.updateElementAttribute({
+    //   attrName: 'fontStyle',
+    //   attrValue: 'italic',
+    // });
+    this.isActiveList('fontStyle', 'italic');
+    console.log('isTrue', this.state.Check);
+    if (this.state.Check)
+      this.props.updateElementAttribute({
+        attrName: 'fontStyle',
+        attrValue: 'italic',
+      });
+    else
+      this.props.updateElementAttribute({
+        attrName: 'fontStyle',
+        attrValue: '',
+      });
   };
   handleLineHeightClick = () => {
-    this.props.updateElementAttribute({
-      attrName: 'lineHeight',
-      attrValue: '2',
-    });
+    // this.props.updateElementAttribute({
+    //   attrName: 'lineHeight',
+    //   attrValue: '2',
+    // });
+    this.isActiveList('lineHeight', '2');
+    console.log('isTrue', this.state.Check);
+    if (this.state.Check)
+      this.props.updateElementAttribute({
+        attrName: 'lineHeight',
+        attrValue: '2',
+      });
+    else
+      this.props.updateElementAttribute({
+        attrName: 'lineHeight',
+        attrValue: '',
+      });
   };
   handleListStyleTypeClick = () => {
     this.props.updateElementAttribute({
@@ -140,33 +174,113 @@ class DesignCom extends Component {
     });
   };
   handleTextAlignLeftClick = () => {
-    this.props.updateElementAttribute({
-      attrName: 'textAlign',
-      attrValue: 'left',
-    });
+    // this.props.updateElementAttribute({
+    //   attrName: 'textAlign',
+    //   attrValue: 'left',
+    // });
+    this.isActiveList('textAlign', 'left');
+    console.log('isTrue', this.state.Check);
+    if (this.state.Check)
+      this.props.updateElementAttribute({
+        attrName: 'textAlign',
+        attrValue: 'left',
+      });
+    else
+      this.props.updateElementAttribute({
+        attrName: 'textAlign',
+        attrValue: '',
+      });
   };
   handleTextAlignCenterClick = () => {
-    this.props.updateElementAttribute({
-      attrName: 'textAlign',
-      attrValue: 'center',
-    });
+    // this.props.updateElementAttribute({
+    //   attrName: 'textAlign',
+    //   attrValue: 'center',
+    // });
+    this.isActiveList('textAlign', 'center');
+    console.log('isTrue', this.state.Check);
+    if (this.state.Check)
+      this.props.updateElementAttribute({
+        attrName: 'textAlign',
+        attrValue: 'center',
+      });
+    else
+      this.props.updateElementAttribute({
+        attrName: 'textAlign',
+        attrValue: '',
+      });
   };
   handleTextAlignRightClick = () => {
-    this.props.updateElementAttribute({
-      attrName: 'textAlign',
-      attrValue: 'right',
-    });
+    // this.props.updateElementAttribute({
+    //   attrName: 'textAlign',
+    //   attrValue: 'right',
+    // });
+    this.isActiveList('textAlign', 'right');
+    console.log('isTrue', this.state.Check);
+    if (this.state.Check)
+      this.props.updateElementAttribute({
+        attrName: 'textAlign',
+        attrValue: 'right',
+      });
+    else
+      this.props.updateElementAttribute({
+        attrName: 'textAlign',
+        attrValue: '',
+      });
   };
 
   handleSaveElement = () => {
-    localStorage.getItem('Price');
-    console.log(localStorage.getItem('Price'));
-    elementsAPI.postAllElement();
+    const stampData = localStorage.getItem('Price');
+    localStorage.setItem('Stamp', stampData);
+
+    const elementData = JSON.parse(localStorage.getItem('Stamp'));
+    const elementListData = elementData.current.elementList;
+    // console.log(elementData.current.elementList);
+    elementListData.forEach((e) => {
+      console.log({
+        id: e.id,
+        fontStyle: e.attributes ? e.attributes.fontStyle : null,
+        fontWeight: e.attributes ? e.attributes.fontWeight : null,
+        color: e.attributes ? e.attributes.color : null,
+        name: e.name,
+        height: e.attributes ? e.attributes.height : null,
+        width: e.attributes ? e.attributes.width : null,
+        transform: e.attributes ? e.attributes.transform : null,
+        textAlign: e.attributes ? e.attributes.textAlign : null,
+        listStyleType: e.attributes ? e.attributes.listStyleType : null,
+        lineHeight: e.attributes ? e.attributes.lineHeight : null,
+        pricetagId: 1,
+      });
+      try {
+        elementsAPI.postData({
+          fontStyle: e.attributes ? e.attributes.fontStyle : null,
+          fontWeight: e.attributes ? e.attributes.fontWeight : null,
+          color: e.attributes ? e.attributes.color : null,
+          name: e.name,
+          height: e.attributes ? e.attributes.height : null,
+          width: e.attributes ? e.attributes.width : null,
+          transform: e.attributes ? e.attributes.transform : null,
+          borderLeft: e.attributes ? e.attributes.border : null,
+          pricetagId: 1,
+        });
+        toast.info(' Lưu thành công !', { position: toast.POSITION.TOP_RIGHT, autoClose: 1500 });
+      } catch (error) {
+        toast.error(' Có lỗi xảy ra !', { position: toast.POSITION.TOP_RIGHT, autoClose: 1500 });
+      }
+
+      // elementsAPI.postData({
+      //   fontStyle: 'italic',
+      //   fontWeight: 'bold',
+      //   color: 'pink',
+      //   name: 'Gia san pham',
+      //   transform: 'translate(-10px,20px)',
+      //   pricetagId: 1,
+      // });
+    });
   };
 
   render() {
     console.log(this.props, 'prop of design');
-    const { Price } = this.props;
+    // const { Price } = this.props;
     let leftOpen = this.state.leftOpen ? 'open' : 'closed';
     return (
       <div className="design__page">

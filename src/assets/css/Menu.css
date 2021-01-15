@@ -219,7 +219,7 @@
   align-items: center;
   margin: 35px 10px;
   height: 30px;
-  width: 95%;
+  width: 90%;
   border-radius: 5px;
   list-style-type: none !important;
   border: 2px;
@@ -331,17 +331,23 @@
 }
 
 .img-holder {
-  margin: auto;
-  width: 150px;
-  height: 150px;
-  border: 3px dashed gray;
-  border-radius: 5px;
   margin-top: 1rem;
 }
-.img {
+.btn__changleBG {
+  display: flex;
+  justify-content: center;
+  margin-left: 55px;
+}
+
+.img-holder > .img {
+  display: flex;
   width: 145px;
-  object-fit: cover;
-  box-sizing: border-box;
+  /* object-fit: cover;
+  box-sizing: border-box; */
+  height: 145px;
+  border: 3px dashed gray;
+  border-radius: 5px;
+  margin: 0 auto;
 }
 #input[type='file'] {
   display: none;

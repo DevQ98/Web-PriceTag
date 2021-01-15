@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Moveable from 'react-moveable';
 import { connect, useDispatch } from 'react-redux';
 import Selecto from 'react-selecto';
@@ -15,13 +15,16 @@ import {
 } from 'app/stampSlice';
 
 function DesignPageCom(props) {
+  const [isActiveId, setActiveId] = useState([]);
   const [targets, setTargets] = useState([]);
   const [frameMap] = useState(() => new Map());
   const moveableRef = useRef(null);
   const [frame, setFrame] = useState({ translate: [0, 0] });
   const selectoRef = useRef(null);
   const cubes = [];
+
   console.log('Props of DesignPage', props);
+
   const dispatch = useDispatch();
   const handleSelectedElementsChange = (selectedElementList) => {
     const action = setActiveElements(selectedElementList.map((x) => x.id));
@@ -29,6 +32,7 @@ function DesignPageCom(props) {
   };
 
   const { stamp } = props;
+
   return (
     <div className="moveable app" style={{ margin: 'auto' }}>
       {stamp && (
@@ -44,7 +48,6 @@ function DesignPageCom(props) {
             }}
             onResize={({ target, width, height, drag }) => {
               const beforeTranslate = drag.beforeTranslate;
-              debugger;
               frame.translate = beforeTranslate;
               target.style.width = `${width}px`;
               target.style.height = `${height}px`;
@@ -71,7 +74,7 @@ function DesignPageCom(props) {
             }}
             onDragStart={(e) => {
               const target = e.target;
-
+              setActiveId(target);
               if (!frameMap.has(target)) {
                 frameMap.set(target, {
                   translate: [0, 0],
@@ -144,12 +147,11 @@ function DesignPageCom(props) {
               }
             }}
             onSelect={(e) => {
-              setTargets(e.selected);
               handleSelectedElementsChange(e.selected);
             }}
             onSelectEnd={(e) => {
               const moveable = moveableRef.current;
-
+              setTargets(e.selected);
               if (e.isDragStart) {
                 e.inputEvent.preventDefault();
                 setTimeout(() => {
@@ -168,7 +170,7 @@ function DesignPageCom(props) {
           style={{
             height: stamp.frame == undefined ? 100 : stamp.frame.h + 'mm',
             width: stamp.frame == undefined ? 100 : stamp.frame.w + 'mm',
-            // background: stamp.frame.color == undefined ? '#FFF' : stamp.frame.color,
+            backgroundColor: stamp.frame.color == undefined ? '#FFF' : stamp.frame.color,
             backgroundImage: stamp.frame == undefined ? ' ' : `url(${stamp.frame.bgImage})`,
             backgroundSize: stamp.frame == undefined ? '' : stamp.frame.bgSize,
           }}
@@ -196,7 +198,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       activeElementListSelector,
-      setActiveElements,
+      // setActiveElements,
     },
     dispatch
   );

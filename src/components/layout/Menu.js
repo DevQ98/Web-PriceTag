@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Tab from 'react-bootstrap/Tab';
 import ReactHintFactory from 'react-hint';
 import 'react-hint/css/index.css';
+import { Button } from 'reactstrap';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { FaRegClone } from 'react-icons/fa';
 import { HiTemplate } from 'react-icons/hi';
@@ -11,6 +12,8 @@ import { MdTexture } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setCurrentStamp, updateFrame, addElement } from '../../app/stampSlice';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/css/Design.css';
 import '../../assets/css/Menu.css';
 import BGComponent from '../../components/common/Picker/Color-PickerBG';
@@ -25,7 +28,9 @@ class Menu extends Component {
       color: '',
       files: [],
       name: '',
+      value: '',
     };
+    this.handleChangeValue = this.handleChangeValue.bind(this);
 
     const currentThis = this;
     this.elementList = [
@@ -136,6 +141,9 @@ class Menu extends Component {
       files: files,
     });
   }
+  handleChangeValue(event) {
+    this.setState({ value: event.target.value });
+  }
   handleHeightChange = (e) => {
     this.setState({ height: e.target.value });
   };
@@ -180,10 +188,16 @@ class Menu extends Component {
   handleFrameChange = (w, h) => {
     this.props.updateFrame({ w, h });
   };
-  handleFrameBGChange = () => {
+  handleFrameBGChange = (bgImage) => {
     let bgSize = 'cover';
-    let bgImage = '/images/01.jpg';
     this.props.updateFrame({ bgImage, bgSize });
+  };
+  handleSubmitRequest = () => {
+    this.setState({ value: '' });
+    toast('Gửi request thành công !', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1500,
+    });
   };
   render() {
     const { profileImg } = this.state;
@@ -266,7 +280,7 @@ class Menu extends Component {
                 </div>
                 <div className="menu-content__size">
                   <div className="menu-content__size--height">
-                    <span className="span_txt"> Dài</span>
+                    <span className="span_txt"> Rộng</span>
                     <input
                       className="panel-size-input"
                       type="text"
@@ -275,7 +289,7 @@ class Menu extends Component {
                     ></input>
                   </div>
                   <div className="menu-content__size--width">
-                    <span className="span_txt">Rộng</span>
+                    <span className="span_txt">Dài</span>
                     <input
                       className="panel-size-input"
                       type="text"
@@ -321,12 +335,12 @@ class Menu extends Component {
                 <div className="menu-content__template">
                   <button
                     className="btn__template stamp2"
-                    onClick={() => this.handleFrameChange('55', '130')}
+                    onClick={() => this.handleFrameChange('77', '195')}
                     data-id="1"
                   >
                     {' '}
                   </button>
-                  <span> 55 x 130 mm </span>
+                  <span> 77 x 195 mm </span>
                 </div>
                 <div className="menu-content__template">
                   <button
@@ -377,7 +391,7 @@ class Menu extends Component {
                   <span> 500 x 700 px </span>
                 </div>
               </Tab.Pane>
-              <Tab.Pane eventKey="2">
+              <Tab.Pane eventKey="2" className="menu__template">
                 <div className="menu-content__search">
                   <span className="icon__search">
                     {' '}
@@ -415,26 +429,34 @@ class Menu extends Component {
                   </div>
                 ))}
               </Tab.Pane>
-              <Tab.Pane eventKey="3">
+              <Tab.Pane eventKey="3" className="menu__template">
                 <div className="page">
-                  <div className="container">
-                    <h1 className="heading">Add your Image</h1>
-                    <div className="img-holder">
-                      <img src={profileImg} alt="" id="img" className="img" />
-                    </div>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      name="image-upload"
-                      id="input"
-                      onChange={this.imageHandler}
-                    />
-                    <div className="label">
-                      <label className="image-upload" htmlFor="input">
-                        <IoMdCloudUpload className="upload__content-icon"></IoMdCloudUpload>
-                      </label>
-                    </div>
+                  <h1 className="heading">Add Image</h1>
+                  <div className="img-holder">
+                    <img src={profileImg} alt="" id="img" className="img" />
                   </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    name="image-upload"
+                    id="input"
+                    onChange={this.imageHandler}
+                  />
+                  <div className="label">
+                    <label className="image-upload" htmlFor="input">
+                      <IoMdCloudUpload className="upload__content-icon"></IoMdCloudUpload>
+                    </label>
+                  </div>
+
+                  <Button
+                    outline
+                    color="primary"
+                    className="btn__changleBG"
+                    onClick={() => this.handleFrameBGChange(profileImg)}
+                  >
+                    {' '}
+                    ChangeBG
+                  </Button>
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="4">
@@ -443,16 +465,37 @@ class Menu extends Component {
                     <BGComponent></BGComponent>
                   </div>
                   <div className="menu-content__template">
-                    <button className="btn__template " onClick={() => this.handleFrameBGChange()}>
+                    <button
+                      className="btn__template "
+                      onClick={() => this.handleFrameBGChange('./images/01.jpg')}
+                    >
                       <img className="navbar__left-logo" src="./images/01.jpg" />
+                    </button>
+                  </div>
+                  <div className="menu-content__template">
+                    <button
+                      className="btn__template "
+                      onClick={() => this.handleFrameBGChange('./images/02.jpg')}
+                    >
+                      <img className="navbar__left-logo" src="./images/02.jpg" />
                     </button>
                   </div>
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="5">
                 <div className="menu-content__request">
-                  <input className="txt_decription" type="text" placeholder="Desciptions"></input>
-                  <button type="button" className=" btn bnt__request">
+                  <input
+                    className="txt_decription"
+                    type="text "
+                    value={this.state.value}
+                    onChange={this.handleChangeValue}
+                    placeholder="Desciptions"
+                  ></input>
+                  <button
+                    type="button"
+                    className=" btn bnt__request"
+                    onClick={() => this.handleSubmitRequest()}
+                  >
                     {' '}
                     Send Request
                   </button>
