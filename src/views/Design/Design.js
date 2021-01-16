@@ -60,9 +60,7 @@ class DesignCom extends Component {
       leftOpen: side,
     });
   };
-  notify = () => {
-    toast('Basic');
-  };
+
   componentDidMount() {}
   isActiveList = (attrName, attrValue) => {
     const activeElementIdxList = this.props.stamp.elementList.reduce((idxList, element, idx) => {

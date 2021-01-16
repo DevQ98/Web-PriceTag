@@ -12,9 +12,18 @@ import {
   updateElementAttribute,
   elementListSelector,
   activeElementListSelector,
+  removeElement,
 } from 'app/stampSlice';
 
 function DesignPageCom(props) {
+  useEffect(() => {
+    window.addEventListener('keydown', (e) => {
+      if (window.event.keyCode === 46) {
+        console.log(props.stamp, e.key);
+      }
+    });
+    return () => {};
+  });
   const [isActiveId, setActiveId] = useState([]);
   const [targets, setTargets] = useState([]);
   const [frameMap] = useState(() => new Map());
@@ -24,7 +33,14 @@ function DesignPageCom(props) {
   const cubes = [];
 
   console.log('Props of DesignPage', props);
-
+  const isActiveList = () => {
+    window.addEventListener('keydown', (e) => {
+      if (window.event.keyCode === 46) {
+        const action = removeElement();
+        dispatch(action);
+      }
+    });
+  };
   const dispatch = useDispatch();
   const handleSelectedElementsChange = (selectedElementList) => {
     const action = setActiveElements(selectedElementList.map((x) => x.id));
@@ -37,6 +53,35 @@ function DesignPageCom(props) {
     <div className="moveable app" style={{ margin: 'auto' }}>
       {stamp && (
         <>
+          <Selecto
+            ref={selectoRef}
+            dragContainer={'.elements'}
+            selectableTargets={['.selecto-area .cube']}
+            hitRate={0}
+            selectByClick={true}
+            selectFromInside={false}
+            toggleContinueSelect={['shift']}
+            ratio={0}
+            onDragStart={(e) => {
+              //const moveable = moveableRef.current;
+              const target = e.inputEvent.target;
+              if (targets.some((t) => t === target || t.contains(target))) {
+                e.stop();
+              }
+            }}
+            onSelect={(e) => {
+              handleSelectedElementsChange(e.selected);
+            }}
+            onSelectEnd={(e) => {
+              isActiveList();
+              // const moveable = moveableRef.current;
+              setTargets(e.selected);
+              if (e.isDragStart) {
+                e.inputEvent.preventDefault();
+                //   moveable.dragStart(e.inputEvent);
+              }
+            }}
+          ></Selecto>
           <Moveable
             ref={moveableRef}
             draggable={true}
@@ -120,46 +165,11 @@ function DesignPageCom(props) {
               e.events.forEach((ev) => {
                 const target = ev.target;
                 const frame = frameMap.get(target);
-
                 frame.translate = ev.beforeTranslate;
                 target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
-                setTimeout(console.log('transformsss', target.style.transform), 1);
               });
             }}
           ></Moveable>
-          <Selecto
-            ref={selectoRef}
-            dragContainer={'.elements'}
-            selectableTargets={['.selecto-area .cube']}
-            hitRate={0}
-            selectByClick={true}
-            selectFromInside={false}
-            toggleContinueSelect={['shift']}
-            ratio={0}
-            onDragStart={(e) => {
-              const moveable = moveableRef.current;
-              const target = e.inputEvent.target;
-              if (
-                moveable.isMoveableElement(target) ||
-                targets.some((t) => t === target || t.contains(target))
-              ) {
-                e.stop();
-              }
-            }}
-            onSelect={(e) => {
-              handleSelectedElementsChange(e.selected);
-            }}
-            onSelectEnd={(e) => {
-              const moveable = moveableRef.current;
-              setTargets(e.selected);
-              if (e.isDragStart) {
-                e.inputEvent.preventDefault();
-                setTimeout(() => {
-                  moveable.dragStart(e.inputEvent);
-                });
-              }
-            }}
-          ></Selecto>
         </>
       )}
 
@@ -175,7 +185,6 @@ function DesignPageCom(props) {
             backgroundSize: stamp.frame == undefined ? '' : stamp.frame.bgSize,
           }}
         >
-          {' '}
           {stamp == undefined
             ? stamp.current.elementList.map((element) => {
                 return <StampElement key={element.id} element={element} />;

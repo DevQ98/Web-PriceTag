@@ -16,7 +16,21 @@ const stampSlice = createSlice({
       state.current.elementList.push(action.payload);
       localStorage.setItem('Price', JSON.stringify(state));
     },
+    removeElement(state, action) {
+      const activeElementIdxList = state.current.elementList.reduce((idxList, element, idx) => {
+        if (!element.isActive) idxList.push(element);
+        return idxList;
+      }, []);
+      state.current.elementList = activeElementIdxList;
+      return state;
 
+      // state.current.elementList = state.current.elementList.filter(
+      //   (element) => element.id == action.payload
+      // );
+      // console.log(state, 'action');
+
+      // return state;
+    },
     updateFrame(state, action) {
       if (!state.current) return state;
       state.current.frame = {
@@ -62,6 +76,7 @@ export const activeElementListSelector = createSelector(elementListSelector, (el
 );
 
 export const {
+  removeElement,
   setCurrentStamp,
   updateElementAttribute,
   updateFrame,
