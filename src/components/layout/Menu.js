@@ -33,6 +33,40 @@ class Menu extends Component {
     this.handleChangeValue = this.handleChangeValue.bind(this);
 
     const currentThis = this;
+    this.templateList = [
+      {
+        id: 1,
+        height: 141,
+        width: 99,
+        onClick: function () {
+          currentThis.props.updateFrame({ height: 141, width: 99 });
+        },
+      },
+      {
+        id: 2,
+        height: 77,
+        width: 195,
+        onClick: function () {
+          currentThis.props.updateFrame({ height: 77, width: 195 });
+        },
+      },
+      {
+        id: 3,
+        height: 100,
+        width: 156,
+        onClick: function () {
+          currentThis.props.updateFrame({ height: 100, width: 156 });
+        },
+      },
+      {
+        id: 4,
+        height: 100,
+        width: 200,
+        onClick: function () {
+          currentThis.props.updateFrame({ height: 100, width: 200 });
+        },
+      },
+    ];
     this.elementList = [
       {
         id: 1,
@@ -156,20 +190,8 @@ class Menu extends Component {
   handleAddLabelChange = () => {
     this.props.addElement({ id: new Date().getTime(), name: this.state.name });
   };
-  handleLogin = () => {
-    const copytemplateArray = Object.assign([], this.state.templateArray);
-    setTimeout(() => {
-      copytemplateArray.splice(this, 1);
-    }, 1);
-
-    copytemplateArray.push({
-      h: this.state.height,
-      w: this.state.width,
-    });
-
-    this.setState({
-      templateArray: copytemplateArray,
-    });
+  handleChangeSizeTemplate = () => {
+    this.props.updateFrame({ height: this.state.height, width: this.state.width });
   };
   state = {
     profileImg:
@@ -201,7 +223,6 @@ class Menu extends Component {
   };
   render() {
     const { profileImg } = this.state;
-    let BG = this.state.color;
     let heights = this.state.height;
     let widths = this.state.width;
 
@@ -280,7 +301,7 @@ class Menu extends Component {
                 </div>
                 <div className="menu-content__size">
                   <div className="menu-content__size--height">
-                    <span className="span_txt"> Rộng</span>
+                    <span className="span_txt"> Dài (mm)</span>
                     <input
                       className="panel-size-input"
                       type="text"
@@ -289,7 +310,7 @@ class Menu extends Component {
                     ></input>
                   </div>
                   <div className="menu-content__size--width">
-                    <span className="span_txt">Dài</span>
+                    <span className="span_txt">Rộng (mm)</span>
                     <input
                       className="panel-size-input"
                       type="text"
@@ -300,7 +321,7 @@ class Menu extends Component {
                   <button
                     type="button"
                     className=" btn btn__create--template"
-                    onClick={this.handleLogin}
+                    onClick={this.handleChangeSizeTemplate}
                   >
                     Create
                   </button>
@@ -317,79 +338,22 @@ class Menu extends Component {
                       </button>
                       <span>
                         {' '}
-                        {this.state.height} x {this.state.width} px{' '}
+                        {this.state.height} x {this.state.width} mm{' '}
                       </span>
                     </div>
                   );
                 })}
-                <div className="menu-content__template">
-                  <button
-                    className="btn__template stamp1"
-                    onClick={() => this.handleFrameChange('141', '99')}
-                    data-id="1"
-                  >
-                    {' '}
-                  </button>
-                  <span> 141 x 99 mm </span>
-                </div>
-                <div className="menu-content__template">
-                  <button
-                    className="btn__template stamp2"
-                    onClick={() => this.handleFrameChange('77', '195')}
-                    data-id="1"
-                  >
-                    {' '}
-                  </button>
-                  <span> 77 x 195 mm </span>
-                </div>
-                <div className="menu-content__template">
-                  <button
-                    className="btn__template stamp3"
-                    onClick={() => this.handleFrameChange('100', '156')}
-                    data-id="1"
-                  >
-                    {' '}
-                  </button>
-                  <span> 100 x 156 mm </span>
-                </div>
-                <div className="menu-content__template">
-                  <button
-                    className="btn__template stamp4"
-                    onClick={() => this.handleFrameChange('270', '480')}
-                    data-id="1"
-                  >
-                    {' '}
-                  </button>
-                  <span> 700 x 800 px </span>
-                </div>
-                <div className="menu-content__template">
-                  <button
-                    className="btn__template stamp5"
-                    onClick={() => this.handleFrameChange(460, 380)}
-                    data-id="1"
-                  >
-                    {' '}
-                  </button>
-                  <span> 600 x 800 px </span>
-                </div>
-                <div className="menu-content__template">
-                  <button
-                    className="btn__template stamp6"
-                    onClick={() => this.handleFrameChange('650', '750')}
-                    data-id="1"
-                  ></button>
-                  <span> 650 x 750 px </span>
-                </div>
-                <div className="menu-content__template">
-                  <button
-                    className="btn__template stamp7"
-                    onClick={() => this.handleFrameChange('500', '700')}
-                    data-id="1"
-                  >
-                    {' '}
-                  </button>
-                  <span> 500 x 700 px </span>
-                </div>
+                {this.templateList.map((template) => (
+                  <div className="menu-content__template">
+                    <button
+                      className={`btn__template stamp${template.id}`}
+                      onClick={template.onClick}
+                    />
+                    <span>
+                      {template.height} x {template.width} mm{' '}
+                    </span>
+                  </div>
+                ))}
               </Tab.Pane>
               <Tab.Pane eventKey="2" className="menu__template">
                 <div className="menu-content__search">
@@ -423,7 +387,11 @@ class Menu extends Component {
 
                 {this.elementList.map((element) => (
                   <div key={element.id}>
-                    <button className="btn__element" onClick={element.onClick} data-id={element.id}>
+                    <button
+                      className="btn__element stamp5"
+                      onClick={element.onClick}
+                      data-id={element.id}
+                    >
                       {element.name}
                     </button>
                   </div>
@@ -459,9 +427,9 @@ class Menu extends Component {
                   </Button>
                 </div>
               </Tab.Pane>
-              <Tab.Pane eventKey="4">
+              <Tab.Pane eventKey="4" className="menu__template">
                 <div>
-                  <div>
+                  <div className="compact-picker">
                     <BGComponent></BGComponent>
                   </div>
                   <div className="menu-content__template">
@@ -469,7 +437,7 @@ class Menu extends Component {
                       className="btn__template "
                       onClick={() => this.handleFrameBGChange('./images/01.jpg')}
                     >
-                      <img className="navbar__left-logo" src="./images/01.jpg" />
+                      <img className="navbar__left-logo" alt="" src="./images/01.jpg" />
                     </button>
                   </div>
                   <div className="menu-content__template">
@@ -477,7 +445,7 @@ class Menu extends Component {
                       className="btn__template "
                       onClick={() => this.handleFrameBGChange('./images/02.jpg')}
                     >
-                      <img className="navbar__left-logo" src="./images/02.jpg" />
+                      <img className="navbar__left-logo" alt="" src="./images/02.jpg" />
                     </button>
                   </div>
                 </div>
@@ -510,7 +478,7 @@ class Menu extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    stamp: state.stamp.current,
+    stamp: state.stamp.present.current,
   };
 };
 

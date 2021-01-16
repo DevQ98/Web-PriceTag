@@ -12,11 +12,9 @@ export default function NavbarCom() {
   const dispatch = useDispatch();
 
   const handleCreateStampClick = () => {
-    // check current stamp --> if any, show confirmation before processing
-    // localStorage.clear();
     localStorage.removeItem('Price');
     const stamp = {
-      frame: { w: 100, h: 100 },
+      frame: { width: 100, height: 100 },
       elementList: [],
     };
     const action = setCurrentStamp(stamp);
@@ -27,9 +25,9 @@ export default function NavbarCom() {
     <>
       <nav className="navbar-fluid">
         <div className="navbar-container">
-          <div className="navbar__left navbar__left--separate ">
+          <div className="navbar__left  ">
             <Link to="/" className="navbar__left">
-              <img className="navbar__left-logo" src="./images/logo-1.png" />
+              <img className="navbar__left-logo" alt="" src="./images/logo-1.png" />
             </Link>
           </div>
           <div className="navbar__center  ">

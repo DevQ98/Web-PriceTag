@@ -1,5 +1,5 @@
-import stampReducer from './stampSlice'
-
+import stampReducer from './stampSlice';
+import undoable from 'redux-undo';
 export default {
-    stamp: stampReducer
-}
+  stamp: undoable(stampReducer),
+};

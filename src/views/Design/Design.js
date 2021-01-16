@@ -1,6 +1,8 @@
-import { updateElementAttribute, setCurrentStamp, addElement } from 'app/stampSlice';
+import { addElement, setCurrentStamp, updateElementAttribute } from 'app/stampSlice';
 import React, { Component } from 'react';
 import ReactHintFactory from 'react-hint';
+import { ActionCreators, ActionCreators as UndoActionCreators } from 'redux-undo';
+import UndoRedo from './UndoRedo';
 import {
   AiOutlineAlignCenter,
   AiOutlineAlignLeft,
@@ -18,6 +20,8 @@ import { IoIosArrowDropleft } from 'react-icons/io';
 import { IoArrowRedoSharp, IoArrowUndoSharp } from 'react-icons/io5';
 import { connect } from 'react-redux';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { bindActionCreators } from 'redux';
 import '../../assets/css/Design.css';
 import '../../assets/css/Menu.css';
@@ -26,9 +30,7 @@ import FontPicker from '../../components/common/Picker/Font-Picker';
 import FontSize from '../../components/common/Picker/Font-Size';
 import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
-import elementsAPI from '../../api/elementsAPI';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import store from 'app/store';
 // import 'react-toastify';
 
 const options = [
@@ -61,7 +63,20 @@ class DesignCom extends Component {
     });
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    const currentStamp = localStorage.getItem('Price');
+    if (currentStamp == null) {
+      const newStamp = {
+        frame: { width: 100, height: 100 },
+        elementList: [],
+      };
+      this.props.setCurrentStamp(newStamp);
+    } else {
+      const newCurrentStamp = JSON.parse(currentStamp);
+      this.props.setCurrentStamp(newCurrentStamp.current);
+      console.log(newCurrentStamp.current, 'currtem');
+    }
+  }
   isActiveList = (attrName, attrValue) => {
     const activeElementIdxList = this.props.stamp.elementList.reduce((idxList, element, idx) => {
       if (element.isActive) idxList.push(idx);
@@ -71,7 +86,6 @@ class DesignCom extends Component {
 
     const ListElementIsAttributes = [];
     activeElementIdxList.forEach((elementIdx) => {
-      // const elementAttributes = this.props.stamp.elementList[elementIdx].attributes;
       if (this.props.stamp.elementList[elementIdx].attributes) {
         console.log(this.props.stamp.elementList[elementIdx].attributes, 'isTrue');
         if (this.props.stamp.elementList[elementIdx].attributes[attrName] !== attrValue) {
@@ -81,14 +95,15 @@ class DesignCom extends Component {
       }
     });
     if (ListElementIsAttributes.length > 0) {
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.Check = true;
     } else {
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.Check = false;
     }
     console.log(this.state.Check, ' Check');
   };
 
-  changeBorder(event) {}
   toggleSidebar = (event) => {
     let key = `${event.currentTarget.parentNode.id}Open`;
     this.setState({
@@ -97,12 +112,7 @@ class DesignCom extends Component {
     });
   };
   handleBorderClick = (event) => {
-    // this.props.updateElementAttribute({
-    //   attrName: event.value,
-    //   attrValue: 'double',
-    // });
     this.isActiveList(event.value, 'double');
-    console.log('isTrue', this.state.Check);
     if (this.state.Check)
       this.props.updateElementAttribute({
         attrName: event.value,
@@ -117,7 +127,6 @@ class DesignCom extends Component {
 
   handleBoldClick = () => {
     this.isActiveList('fontWeight', 'bold');
-    console.log('isTrue', this.state.Check);
     if (this.state.Check)
       this.props.updateElementAttribute({
         attrName: 'fontWeight',
@@ -130,12 +139,7 @@ class DesignCom extends Component {
       });
   };
   handleItalicClick = () => {
-    // this.props.updateElementAttribute({
-    //   attrName: 'fontStyle',
-    //   attrValue: 'italic',
-    // });
     this.isActiveList('fontStyle', 'italic');
-    console.log('isTrue', this.state.Check);
     if (this.state.Check)
       this.props.updateElementAttribute({
         attrName: 'fontStyle',
@@ -148,12 +152,7 @@ class DesignCom extends Component {
       });
   };
   handleLineHeightClick = () => {
-    // this.props.updateElementAttribute({
-    //   attrName: 'lineHeight',
-    //   attrValue: '2',
-    // });
     this.isActiveList('lineHeight', '2');
-    console.log('isTrue', this.state.Check);
     if (this.state.Check)
       this.props.updateElementAttribute({
         attrName: 'lineHeight',
@@ -172,12 +171,7 @@ class DesignCom extends Component {
     });
   };
   handleTextAlignLeftClick = () => {
-    // this.props.updateElementAttribute({
-    //   attrName: 'textAlign',
-    //   attrValue: 'left',
-    // });
     this.isActiveList('textAlign', 'left');
-    console.log('isTrue', this.state.Check);
     if (this.state.Check)
       this.props.updateElementAttribute({
         attrName: 'textAlign',
@@ -190,12 +184,7 @@ class DesignCom extends Component {
       });
   };
   handleTextAlignCenterClick = () => {
-    // this.props.updateElementAttribute({
-    //   attrName: 'textAlign',
-    //   attrValue: 'center',
-    // });
     this.isActiveList('textAlign', 'center');
-    console.log('isTrue', this.state.Check);
     if (this.state.Check)
       this.props.updateElementAttribute({
         attrName: 'textAlign',
@@ -208,12 +197,7 @@ class DesignCom extends Component {
       });
   };
   handleTextAlignRightClick = () => {
-    // this.props.updateElementAttribute({
-    //   attrName: 'textAlign',
-    //   attrValue: 'right',
-    // });
     this.isActiveList('textAlign', 'right');
-    console.log('isTrue', this.state.Check);
     if (this.state.Check)
       this.props.updateElementAttribute({
         attrName: 'textAlign',
@@ -227,75 +211,56 @@ class DesignCom extends Component {
   };
 
   handleSaveElement = () => {
-    const stampData = localStorage.getItem('Price');
-    localStorage.setItem('Stamp', stampData);
+    const currentStamp = localStorage.getItem('Price');
+    localStorage.setItem('Stamp', currentStamp);
+    // const elementListData = elementData.current.elementList;
+    // elementListData.forEach((e) => {
+    //   try {
+    //     elementsAPI.postData({
+    //       fontStyle: e.attributes ? e.attributes.fontStyle : null,
+    //       fontWeight: e.attributes ? e.attributes.fontWeight : null,
+    //       color: e.attributes ? e.attributes.color : null,
+    //       name: e.name,
+    //       height: e.attributes ? e.attributes.height : null,
+    //       width: e.attributes ? e.attributes.width : null,
+    //       transform: e.attributes ? e.attributes.transform : null,
+    //       borderLeft: e.attributes ? e.attributes.border : null,
+    //       pricetagId: 1,
+    //     });
+    //     toast.info(' Lưu thành công !', { position: toast.POSITION.TOP_RIGHT, autoClose: 1500 });
+    //   } catch (error) {
+    //     toast.error(' Có lỗi xảy ra !', { position: toast.POSITION.TOP_RIGHT, autoClose: 1500 });
+    //   }
 
-    const elementData = JSON.parse(localStorage.getItem('Stamp'));
-    const elementListData = elementData.current.elementList;
-    // console.log(elementData.current.elementList);
-    elementListData.forEach((e) => {
-      console.log({
-        id: e.id,
-        fontStyle: e.attributes ? e.attributes.fontStyle : null,
-        fontWeight: e.attributes ? e.attributes.fontWeight : null,
-        color: e.attributes ? e.attributes.color : null,
-        name: e.name,
-        height: e.attributes ? e.attributes.height : null,
-        width: e.attributes ? e.attributes.width : null,
-        transform: e.attributes ? e.attributes.transform : null,
-        textAlign: e.attributes ? e.attributes.textAlign : null,
-        listStyleType: e.attributes ? e.attributes.listStyleType : null,
-        lineHeight: e.attributes ? e.attributes.lineHeight : null,
-        pricetagId: 1,
-      });
-      try {
-        elementsAPI.postData({
-          fontStyle: e.attributes ? e.attributes.fontStyle : null,
-          fontWeight: e.attributes ? e.attributes.fontWeight : null,
-          color: e.attributes ? e.attributes.color : null,
-          name: e.name,
-          height: e.attributes ? e.attributes.height : null,
-          width: e.attributes ? e.attributes.width : null,
-          transform: e.attributes ? e.attributes.transform : null,
-          borderLeft: e.attributes ? e.attributes.border : null,
-          pricetagId: 1,
-        });
-        toast.info(' Lưu thành công !', { position: toast.POSITION.TOP_RIGHT, autoClose: 1500 });
-      } catch (error) {
-        toast.error(' Có lỗi xảy ra !', { position: toast.POSITION.TOP_RIGHT, autoClose: 1500 });
-      }
-
-      // elementsAPI.postData({
-      //   fontStyle: 'italic',
-      //   fontWeight: 'bold',
-      //   color: 'pink',
-      //   name: 'Gia san pham',
-      //   transform: 'translate(-10px,20px)',
-      //   pricetagId: 1,
-      // });
-    });
+    // elementsAPI.postData({
+    //   fontStyle: 'italic',
+    //   fontWeight: 'bold',
+    //   color: 'pink',
+    //   name: 'Gia san pham',
+    //   transform: 'translate(-10px,20px)',
+    //   pricetagId: 1,
+    // });
+    // });
   };
 
   render() {
     console.log(this.props, 'prop of design');
-    // const { Price } = this.props;
-    let leftOpen = this.state.leftOpen ? 'open' : 'closed';
+    console.log(this.onUndo, 'undo');
     return (
       <div className="design__page">
         <ReactHint autoPosition events delay />
-        <div className="row design__page" id="left">
+        <div className="design__page" id="left">
           <Menu
             className={` design__menu`}
             visible={this.state.leftOpen ? 'Open' : 'closed'}
             setSides={this.setSide}
           ></Menu>
-
-          <div className={`btn__sidebar--${this.state.leftOpen} `} onClick={this.toggleSidebar}>
-            <div className=" btn__push">
-              <IoIosArrowDropleft />
+          <div className={` design__content`}>
+            <div className={`btn__sidebar--${this.state.leftOpen} `} onClick={this.toggleSidebar}>
+              <div className=" btn__push">
+                <IoIosArrowDropleft />
+              </div>
             </div>
-          </div>
-          <div className={` design__content--${leftOpen}`}>
             <div className=" tool-bar ">
               <div className=" tool-bar__item">
                 <IoArrowUndoSharp data-rh="Undo" data-rh-at="bottom" />
@@ -344,7 +309,8 @@ class DesignCom extends Component {
               </section>
             </div>
             <div className="design__view">
-              <div>
+              <UndoRedo />
+              <div className="design__view-control">
                 <div className=" btn btn__save" onClick={this.handleSaveElement}>
                   Save
                 </div>
@@ -360,7 +326,6 @@ class DesignCom extends Component {
               {/* <div className='design__size-zoom'>Zoom : 100% | {this.state.height} x { this.state.width}</div> */}
               <div className="design__view--bg">
                 <DesignPage> </DesignPage>
-                {/* <div className="elements selecto-area items-template " style={{height: '500mm', width: '300mm'}}><div className="items-element apply-font cube target" id="4.049045638421966" style={{fontWeight: 'bold', fontStyle: 'italic'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="80.5723268226495" style={{fontStyle: 'italic', fontWeight: 'bold'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="7.65505840659555" style={{fontStyle: 'italic'}}>Gia San Pham</div><div className="items-element apply-font cube target" id="71.37352728387103" style={{fontWeight: 'bold'}}>Ten San Pham</div></div> */}
               </div>
             </div>
           </div>
@@ -372,13 +337,14 @@ class DesignCom extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    stamp: state.stamp.current,
+    stamp: state.stamp.present.current,
   };
 };
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      onUndo: () => dispatch(UndoActionCreators.undo()),
       setCurrentStamp,
       updateElementAttribute,
       addElement,

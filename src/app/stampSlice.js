@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 const PriceData = JSON.parse(localStorage.getItem('Price'));
 const StampData = JSON.parse(localStorage.getItem('Stamp'));
 const initialState = {
@@ -10,6 +10,7 @@ const stampSlice = createSlice({
   initialState,
   reducers: {
     setCurrentStamp(state, action) {
+      console.log(action);
       state.current = action.payload;
     },
     addElement(state, action) {
@@ -83,4 +84,6 @@ export const {
   addElement,
   setActiveElements,
 } = stampSlice.actions;
+
+// export default undoablestampSlice;
 export default stampSlice.reducer;

@@ -20,6 +20,7 @@
   justify-content: space-evenly;
 }
 .navbar__left {
+  margin: 0 1rem;
   cursor: pointer;
   box-sizing: border-box;
   position: relative;
@@ -29,17 +30,7 @@
   height: 5.6rem;
   object-fit: cover;
 }
-.navbar__left--separate ::before {
-  content: '';
-  display: block;
-  position: absolute;
-  width: 0.3rem;
-  height: 2.6rem;
-  background-color: var(--white-color) !important;
-  top: 0;
-  right: 0;
-  cursor: default;
-}
+
 .navbar__center {
   display: flex;
   list-style: none;

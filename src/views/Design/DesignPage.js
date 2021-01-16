@@ -1,19 +1,19 @@
+/* eslint-disable eqeqeq */
+import {
+  activeElementListSelector,
+  removeElement,
+  setActiveElements,
+  updateElementAttribute,
+} from 'app/stampSlice';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import * as React from 'react';
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Moveable from 'react-moveable';
 import { connect, useDispatch } from 'react-redux';
 import Selecto from 'react-selecto';
 import { bindActionCreators } from 'redux';
-import { setActiveElements } from 'app/stampSlice';
-import { saveElement } from '../../actions/designAction.js';
 import StampElement from '../../components/common/Draggable/StampElement';
 import '../../components/common/Draggable/TxtElement.css';
-import {
-  updateElementAttribute,
-  elementListSelector,
-  activeElementListSelector,
-  removeElement,
-} from 'app/stampSlice';
 
 function DesignPageCom(props) {
   useEffect(() => {
@@ -23,14 +23,13 @@ function DesignPageCom(props) {
       }
     });
     return () => {};
-  });
-  const [isActiveId, setActiveId] = useState([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [targets, setTargets] = useState([]);
   const [frameMap] = useState(() => new Map());
   const moveableRef = useRef(null);
-  const [frame, setFrame] = useState({ translate: [0, 0] });
+  const [frame] = useState({ translate: [0, 0] });
   const selectoRef = useRef(null);
-  const cubes = [];
 
   console.log('Props of DesignPage', props);
   const isActiveList = () => {
@@ -119,7 +118,6 @@ function DesignPageCom(props) {
             }}
             onDragStart={(e) => {
               const target = e.target;
-              setActiveId(target);
               if (!frameMap.has(target)) {
                 frameMap.set(target, {
                   translate: [0, 0],
@@ -178,11 +176,11 @@ function DesignPageCom(props) {
           id="element__show"
           className="elements selecto-area items-template "
           style={{
-            height: stamp.frame == undefined ? 100 : stamp.frame.h + 'mm',
-            width: stamp.frame == undefined ? 100 : stamp.frame.w + 'mm',
-            backgroundColor: stamp.frame.color == undefined ? '#FFF' : stamp.frame.color,
-            backgroundImage: stamp.frame == undefined ? ' ' : `url(${stamp.frame.bgImage})`,
-            backgroundSize: stamp.frame == undefined ? '' : stamp.frame.bgSize,
+            height: stamp.frame === undefined ? 100 : stamp.frame.height + 'mm',
+            width: stamp.frame === undefined ? 100 : stamp.frame.width + 'mm',
+            backgroundColor: stamp.frame === undefined ? '#FFF' : stamp.frame.color,
+            backgroundImage: stamp.frame === undefined ? ' ' : `url(${stamp.frame.bgImage})`,
+            backgroundSize: stamp.frame === undefined ? '' : stamp.frame.bgSize,
           }}
         >
           {stamp == undefined
@@ -199,13 +197,14 @@ function DesignPageCom(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    stamp: state.stamp.current,
+    stamp: state.stamp.present.current,
   };
 };
 // handleSelectedElementsChange(e.selected);
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      onUndo: () => dispatch(UndoActionCreators.undo()),
       activeElementListSelector,
       // setActiveElements,
     },
