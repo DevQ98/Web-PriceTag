@@ -1,6 +1,4 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-const PriceData = JSON.parse(localStorage.getItem('Price'));
-const StampData = JSON.parse(localStorage.getItem('Stamp'));
 const initialState = {
   current: null,
 };

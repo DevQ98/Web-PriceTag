@@ -1,7 +1,7 @@
 import { addElement, setCurrentStamp, updateElementAttribute } from 'app/stampSlice';
 import React, { Component } from 'react';
 import ReactHintFactory from 'react-hint';
-import { ActionCreators, ActionCreators as UndoActionCreators } from 'redux-undo';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import UndoRedo from './UndoRedo';
 import {
   AiOutlineAlignCenter,
@@ -17,7 +17,6 @@ import { FaBorderAll, FaListUl } from 'react-icons/fa';
 import { FiItalic } from 'react-icons/fi';
 import { ImTextHeight } from 'react-icons/im';
 import { IoIosArrowDropleft } from 'react-icons/io';
-import { IoArrowRedoSharp, IoArrowUndoSharp } from 'react-icons/io5';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
@@ -30,7 +29,6 @@ import FontPicker from '../../components/common/Picker/Font-Picker';
 import FontSize from '../../components/common/Picker/Font-Size';
 import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
-import store from 'app/store';
 // import 'react-toastify';
 
 const options = [
@@ -262,12 +260,13 @@ class DesignCom extends Component {
               </div>
             </div>
             <div className=" tool-bar ">
-              <div className=" tool-bar__item">
+              <UndoRedo />
+              {/* <div className=" tool-bar__item">
                 <IoArrowUndoSharp data-rh="Undo" data-rh-at="bottom" />
               </div>
               <div className=" tool-bar__item">
                 <IoArrowRedoSharp data-rh="Redo" data-rh-at="bottom" />
-              </div>
+              </div> */}
               <div className=" tool-bar__font">
                 <FontPicker> </FontPicker>
               </div>
@@ -309,7 +308,6 @@ class DesignCom extends Component {
               </section>
             </div>
             <div className="design__view">
-              <UndoRedo />
               <div className="design__view-control">
                 <div className=" btn btn__save" onClick={this.handleSaveElement}>
                   Save
