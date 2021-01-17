@@ -33,7 +33,7 @@ function FontSize(props) {
     <section>
       <Select
         classNamePrefix="Font"
-        style=" minWidth  :120px "
+        style={{ minWidth: '120px' }}
         onChange={handleChangeSize}
         options={options}
         placeholder="16"

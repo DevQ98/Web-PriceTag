@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React from 'react';
 import '../../../assets/css/Home.css';
 
 export default function StampElement({ element }) {

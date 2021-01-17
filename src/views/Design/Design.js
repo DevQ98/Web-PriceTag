@@ -1,8 +1,6 @@
 import { addElement, setCurrentStamp, updateElementAttribute } from 'app/stampSlice';
 import React, { Component } from 'react';
 import ReactHintFactory from 'react-hint';
-import { ActionCreators as UndoActionCreators } from 'redux-undo';
-import UndoRedo from './UndoRedo';
 import {
   AiOutlineAlignCenter,
   AiOutlineAlignLeft,
@@ -22,6 +20,7 @@ import Select from 'react-select';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { bindActionCreators } from 'redux';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import '../../assets/css/Design.css';
 import '../../assets/css/Menu.css';
 import ButtonColor from '../../components/common/Picker/Color-Picker';
@@ -29,6 +28,7 @@ import FontPicker from '../../components/common/Picker/Font-Picker';
 import FontSize from '../../components/common/Picker/Font-Size';
 import Menu from '../../components/layout/Menu';
 import DesignPage from './DesignPage';
+import UndoRedo from './UndoRedo';
 // import 'react-toastify';
 
 const options = [

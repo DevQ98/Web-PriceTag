@@ -289,12 +289,11 @@ class Menu extends Component {
                 <div className="menu-content__search">
                   <span className="icon__search">
                     {' '}
-                    <i class="fa fa-search "></i>{' '}
+                    <i className="fa fa-search "></i>{' '}
                   </span>
                   <input
                     type="text"
                     className="panel-search-input"
-                    autocomplete="off"
                     data-toggle="db-search-input"
                     placeholder="Search "
                   ></input>
@@ -328,7 +327,7 @@ class Menu extends Component {
                 </div>
                 {this.state.templateArray.map((tag, index) => {
                   return (
-                    <div className="menu-content__template">
+                    <div key={index} className="menu-content__template">
                       <button
                         className="btn__template stamp1"
                         onClick={() => this.handleFrameChange(heights, widths)}
@@ -344,7 +343,7 @@ class Menu extends Component {
                   );
                 })}
                 {this.templateList.map((template) => (
-                  <div className="menu-content__template">
+                  <div key={template.id} className="menu-content__template">
                     <button
                       className={`btn__template stamp${template.id}`}
                       onClick={template.onClick}
@@ -359,12 +358,11 @@ class Menu extends Component {
                 <div className="menu-content__search">
                   <span className="icon__search">
                     {' '}
-                    <i class="fa fa-search "></i>{' '}
+                    <i className="fa fa-search "></i>{' '}
                   </span>
                   <input
                     type="text"
                     className="panel-search-input"
-                    autocomplete="off"
                     data-toggle="db-search-input"
                     placeholder="Search"
                   ></input>
