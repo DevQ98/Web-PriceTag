@@ -7,8 +7,6 @@ export default function StampElement({ element }) {
       className="items-element apply-font cube target"
       style={{ ...element.attributes }}
       id={element.id}
-      // onKeyDown={handleDelete}
-      // onClick={handleDelete}
     >
       {element.name}
     </div>

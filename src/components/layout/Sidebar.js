@@ -13,7 +13,6 @@ class SideBar extends React.Component {
 
   toggleSidebar = (event) => {
     let key = `${event.currentTarget.parentNode.id}Open`;
-    console.log(event.currentTarget.parentNode.id);
     this.setState({ [key]: !this.state[key] });
   };
 

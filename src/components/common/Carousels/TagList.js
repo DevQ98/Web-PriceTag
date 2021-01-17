@@ -17,18 +17,56 @@ const TagList = (props) => {
       <Jumbotron className="jumbotron">
         <Row className="item-area">
           <Carousel breakPoints={breakPoints}>
-            <Item number="1"></Item>
-            <Item number="2"></Item>
-            <Item number="3"></Item>
-            <Item number="4"></Item>
-            <Item number="5"></Item>
-            <Item number="6"></Item>
-            <Item number="7"></Item>
-            <Item number="8"></Item>
-            <Item number="9"></Item>
-            <Item number="10"></Item>
-            <Item number="11"></Item>
-            <Item number="12"></Item>
+            <Item
+              number="1"
+              photo="./images/stamp_01.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="2"
+              photo="./images/stamp_02.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="3"
+              photo="./images/stamp_03.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="4"
+              photo="./images/stamp_04.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="5"
+              photo="./images/stamp_01.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="6"
+              photo="./images/stamp_05.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="7"
+              photo="./images/stamp_04.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="8"
+              photo="./images/stamp_03.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="9"
+              photo="./images/stamp_02.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
+            <Item
+              number="10"
+              photo="./images/stamp_01.jpg"
+              title="142100 - Stamp Tai nghe Bluetooth "
+            ></Item>
           </Carousel>
         </Row>
       </Jumbotron>

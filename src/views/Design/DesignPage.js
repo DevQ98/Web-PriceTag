@@ -5,7 +5,6 @@ import {
   setActiveElements,
   updateElementAttribute,
 } from 'app/stampSlice';
-import { ActionCreators as UndoActionCreators } from 'redux-undo';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import Moveable from 'react-moveable';
@@ -19,7 +18,6 @@ function DesignPageCom(props) {
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
       if (window.event.keyCode === 46) {
-        console.log(props.stamp, e.key);
       }
     });
     return () => {};
@@ -31,7 +29,6 @@ function DesignPageCom(props) {
   const [frame] = useState({ translate: [0, 0] });
   const selectoRef = useRef(null);
 
-  console.log('Props of DesignPage', props);
   const isActiveList = () => {
     window.addEventListener('keydown', (e) => {
       if (window.event.keyCode === 46) {
@@ -96,7 +93,6 @@ function DesignPageCom(props) {
               target.style.width = `${width}px`;
               target.style.height = `${height}px`;
               target.style.transform = `translate(${beforeTranslate[0]}px, ${beforeTranslate[1]}px)`;
-              console.log(target.style.width, target.style.height, 'HW');
               let action = updateElementAttribute({
                 attrName: 'width',
                 attrValue: target.style.width,
@@ -200,13 +196,10 @@ const mapStateToProps = (state) => {
     stamp: state.stamp.present.current,
   };
 };
-// handleSelectedElementsChange(e.selected);
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      onUndo: () => dispatch(UndoActionCreators.undo()),
       activeElementListSelector,
-      // setActiveElements,
     },
     dispatch
   );

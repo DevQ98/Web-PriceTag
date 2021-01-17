@@ -8,7 +8,6 @@ const stampSlice = createSlice({
   initialState,
   reducers: {
     setCurrentStamp(state, action) {
-      console.log(action);
       state.current = action.payload;
     },
     addElement(state, action) {
@@ -26,7 +25,6 @@ const stampSlice = createSlice({
       // state.current.elementList = state.current.elementList.filter(
       //   (element) => element.id == action.payload
       // );
-      // console.log(state, 'action');
 
       // return state;
     },
@@ -57,7 +55,6 @@ const stampSlice = createSlice({
 
     setActiveElements(state, action) {
       const activeElementIdList = action.payload;
-      console.log(activeElementIdList, 'List active');
       if (state.current.elementList)
         state.current.elementList.forEach((element) => {
           element.isActive = activeElementIdList.includes(element.id.toString());

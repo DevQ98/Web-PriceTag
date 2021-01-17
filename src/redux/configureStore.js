@@ -14,7 +14,6 @@ const composeEnhancers =
     : compose;
 
 // const sagaMiddleware = createSagaMiddleware();
-console.log("Sadada");
 const configureStore = () => {
   const middlewares = [thunk];
   const enhancers = [applyMiddleware(...middlewares)];

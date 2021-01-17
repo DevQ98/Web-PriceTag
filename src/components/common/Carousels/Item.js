@@ -5,8 +5,12 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from 'reactstrap';
+import { setConstantValue } from 'typescript';
+import { useState } from 'react';
 import '../../../assets/css/Home.css';
-function Item({ number }) {
+
+function Item({ number, photo, title }) {
+  const [photos, setPhoto] = useState(photo);
   const dispatch = useDispatch();
   const handleEditClick = () => {
     const currentStamp = JSON.parse(localStorage.getItem('Stamp'));
@@ -24,6 +28,7 @@ function Item({ number }) {
     }
     localStorage.setItem('Price', localStorage.getItem('Stamp'));
   };
+  const handleDeleteClick = () => {};
   // useEffect(() => {
   //   const fetchProductList = async () => {
   //     try {
@@ -55,29 +60,32 @@ function Item({ number }) {
   //   };
   //   fetchProductList();
   // }, []);
+
   return (
-    <div className=" price-tag">
-      <Image src="./images/stamp_01.jpg" />
-      <div className="stamp__overlay">
-        <div className="stamp-name"> 142100 - Stamp Tai nghe Bluetooth </div>
-        <div className="stamp__actions">
-          <div>
-            <Link to="design">
-              <Button outline color="primary" onClick={handleEditClick}>
-                Edit
-              </Button>
-            </Link>
-          </div>
-          <div>
-            <Link to="#">
-              <Button outline color="danger">
-                Delete
-              </Button>
-            </Link>
+    <>
+      <div className=" price-tag">
+        <Image src={photos} alt="" />
+        <div className="stamp__overlay">
+          <div className="stamp-name"> {title}</div>
+          <div className="stamp__actions">
+            <div>
+              <Link to="design">
+                <Button outline color="primary" onClick={handleEditClick}>
+                  Edit
+                </Button>
+              </Link>
+            </div>
+            <div>
+              <Link to="#">
+                <Button outline color="danger" onClick={handleDeleteClick}>
+                  Delete
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Item;

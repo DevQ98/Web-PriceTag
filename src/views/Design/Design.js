@@ -63,7 +63,7 @@ class DesignCom extends Component {
 
   componentDidMount() {
     const currentStamp = localStorage.getItem('Price');
-    if (currentStamp == null) {
+    if (localStorage.getItem('Price') == null) {
       const newStamp = {
         frame: { width: 100, height: 100 },
         elementList: [],
@@ -71,24 +71,21 @@ class DesignCom extends Component {
       this.props.setCurrentStamp(newStamp);
     } else {
       const newCurrentStamp = JSON.parse(currentStamp);
-      this.props.setCurrentStamp(newCurrentStamp.current);
-      console.log(newCurrentStamp.current, 'currtem');
+      if (newCurrentStamp !== null) this.props.setCurrentStamp(newCurrentStamp.current);
     }
   }
+
   isActiveList = (attrName, attrValue) => {
     const activeElementIdxList = this.props.stamp.elementList.reduce((idxList, element, idx) => {
       if (element.isActive) idxList.push(idx);
-      console.log(idxList, element, idx, ' List');
       return idxList;
     }, []);
 
     const ListElementIsAttributes = [];
     activeElementIdxList.forEach((elementIdx) => {
       if (this.props.stamp.elementList[elementIdx].attributes) {
-        console.log(this.props.stamp.elementList[elementIdx].attributes, 'isTrue');
         if (this.props.stamp.elementList[elementIdx].attributes[attrName] !== attrValue) {
           ListElementIsAttributes.push(1);
-          console.log(ListElementIsAttributes, ' Check');
         }
       }
     });
@@ -99,7 +96,6 @@ class DesignCom extends Component {
       // eslint-disable-next-line react/no-direct-mutation-state
       this.state.Check = false;
     }
-    console.log(this.state.Check, ' Check');
   };
 
   toggleSidebar = (event) => {
@@ -242,8 +238,6 @@ class DesignCom extends Component {
   };
 
   render() {
-    console.log(this.props, 'prop of design');
-    console.log(this.onUndo, 'undo');
     return (
       <div className="design__page">
         <ReactHint autoPosition events delay />
@@ -261,12 +255,6 @@ class DesignCom extends Component {
             </div>
             <div className=" tool-bar ">
               <UndoRedo />
-              {/* <div className=" tool-bar__item">
-                <IoArrowUndoSharp data-rh="Undo" data-rh-at="bottom" />
-              </div>
-              <div className=" tool-bar__item">
-                <IoArrowRedoSharp data-rh="Redo" data-rh-at="bottom" />
-              </div> */}
               <div className=" tool-bar__font">
                 <FontPicker> </FontPicker>
               </div>
@@ -321,7 +309,10 @@ class DesignCom extends Component {
                   />
                 </section>
               </div>
-              {/* <div className='design__size-zoom'>Zoom : 100% | {this.state.height} x { this.state.width}</div> */}
+              <div className="design__size-zoom">
+                Zoom : 100% | {this.props.stamp == null ? 100 : this.props.stamp.frame.height} x{' '}
+                {this.props.stamp == null ? 100 : this.props.stamp.frame.width} mm
+              </div>
               <div className="design__view--bg">
                 <DesignPage> </DesignPage>
               </div>

@@ -301,7 +301,7 @@ div[id^='font-picker'] {
 .btn__upload {
   margin-left: 5rem;
 }
-/* .design__size-zoom {
+.design__size-zoom {
   background-color: white;
   width: auto;
   height: 24px;
@@ -314,4 +314,4 @@ div[id^='font-picker'] {
   z-index: 900;
   top: 80vh;
   right: 10vw;
-} */
+}

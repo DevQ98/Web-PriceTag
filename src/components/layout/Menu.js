@@ -36,18 +36,18 @@ class Menu extends Component {
     this.templateList = [
       {
         id: 1,
-        height: 141,
-        width: 99,
+        height: 99,
+        width: 141,
         onClick: function () {
-          currentThis.props.updateFrame({ height: 141, width: 99 });
+          currentThis.props.updateFrame({ height: 99, width: 141 });
         },
       },
       {
         id: 2,
-        height: 77,
-        width: 195,
+        height: 195,
+        width: 77,
         onClick: function () {
-          currentThis.props.updateFrame({ height: 77, width: 195 });
+          currentThis.props.updateFrame({ height: 195, width: 77 });
         },
       },
       {
@@ -72,14 +72,14 @@ class Menu extends Component {
         id: 1,
         name: 'Tên Sản Phẩm ',
         onClick: function () {
-          currentThis.props.addElement({ id: new Date().getTime(), name: 'Tên Sản Phẩm' });
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Tên sản phẩm' });
         },
       },
       {
         id: 2,
         name: 'Giá Sản Phẩm',
         onClick: function () {
-          currentThis.props.addElement({ id: new Date().getTime(), name: 'Giá Sản Phẩm' });
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Giá sản phẩm' });
         },
       },
       {
@@ -93,7 +93,7 @@ class Menu extends Component {
         id: 4,
         name: 'Chi tiết sản phẩm',
         onClick: function () {
-          currentThis.props.addElement({ id: new Date().getTime(), name: 'Chi tiết sẩn phẩm' });
+          currentThis.props.addElement({ id: new Date().getTime(), name: 'Chi tiết sản phẩm' });
         },
       },
       {
@@ -194,8 +194,7 @@ class Menu extends Component {
     this.props.updateFrame({ height: this.state.height, width: this.state.width });
   };
   state = {
-    profileImg:
-      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+    profileImg: '',
   };
   imageHandler = (e) => {
     const reader = new FileReader();
@@ -225,8 +224,6 @@ class Menu extends Component {
     const { profileImg } = this.state;
     let heights = this.state.height;
     let widths = this.state.width;
-
-    console.log(' State and Props of Menu ', this.props);
 
     return (
       <>
@@ -286,7 +283,7 @@ class Menu extends Component {
           <div className={` menu__content--${this.props.visible}`}>
             <Tab.Content className="layout--none">
               <Tab.Pane eventKey="1" className="menu__template">
-                <div className="menu-content__search">
+                <form className="menu-content__search">
                   <span className="icon__search">
                     {' '}
                     <i className="fa fa-search "></i>{' '}
@@ -297,9 +294,9 @@ class Menu extends Component {
                     data-toggle="db-search-input"
                     placeholder="Search "
                   ></input>
-                </div>
+                </form>
                 <div className="menu-content__size">
-                  <div className="menu-content__size--height">
+                  <form className="menu-content__size--height">
                     <span className="span_txt"> Dài (mm)</span>
                     <input
                       className="panel-size-input"
@@ -307,8 +304,8 @@ class Menu extends Component {
                       value={this.state.height}
                       onChange={this.handleHeightChange}
                     ></input>
-                  </div>
-                  <div className="menu-content__size--width">
+                  </form>
+                  <form className="menu-content__size--width">
                     <span className="span_txt">Rộng (mm)</span>
                     <input
                       className="panel-size-input"
@@ -316,7 +313,7 @@ class Menu extends Component {
                       value={this.state.width}
                       onChange={this.handleWidthChange}
                     ></input>
-                  </div>
+                  </form>
                   <button
                     type="button"
                     className=" btn btn__create--template"
@@ -355,7 +352,7 @@ class Menu extends Component {
                 ))}
               </Tab.Pane>
               <Tab.Pane eventKey="2" className="menu__template">
-                <div className="menu-content__search">
+                <form className="menu-content__search">
                   <span className="icon__search">
                     {' '}
                     <i className="fa fa-search "></i>{' '}
@@ -366,8 +363,8 @@ class Menu extends Component {
                     data-toggle="db-search-input"
                     placeholder="Search"
                   ></input>
-                </div>
-                <div className="menu-content__size--label">
+                </form>
+                <form className="menu-content__size--label">
                   <input
                     className="panel-size-input__left"
                     type="text"
@@ -381,7 +378,7 @@ class Menu extends Component {
                   >
                     Add label
                   </button>
-                </div>
+                </form>
 
                 {this.elementList.map((element) => (
                   <div key={element.id}>
@@ -396,7 +393,7 @@ class Menu extends Component {
                 ))}
               </Tab.Pane>
               <Tab.Pane eventKey="3" className="menu__template">
-                <div className="page">
+                <form className="page">
                   <h1 className="heading">Add Image</h1>
                   <div className="img-holder">
                     <img src={profileImg} alt="" id="img" className="img" />
@@ -423,7 +420,7 @@ class Menu extends Component {
                     {' '}
                     ChangeBG
                   </Button>
-                </div>
+                </form>
               </Tab.Pane>
               <Tab.Pane eventKey="4" className="menu__template">
                 <div>
@@ -449,7 +446,7 @@ class Menu extends Component {
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="5">
-                <div className="menu-content__request">
+                <form className="menu-content__request">
                   <input
                     className="txt_decription"
                     type="text "
@@ -465,7 +462,7 @@ class Menu extends Component {
                     {' '}
                     Send Request
                   </button>
-                </div>
+                </form>
               </Tab.Pane>
             </Tab.Content>
           </div>
