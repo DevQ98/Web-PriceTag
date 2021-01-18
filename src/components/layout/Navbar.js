@@ -16,6 +16,8 @@ export default function NavbarCom() {
     const stamp = {
       frame: { width: 100, height: 100 },
       elementList: [],
+      name: ' chua set name',
+      link: ' chua set link',
     };
     const action = setCurrentStamp(stamp);
     dispatch(action);

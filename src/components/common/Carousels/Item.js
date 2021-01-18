@@ -8,25 +8,39 @@ import { Button } from 'reactstrap';
 import { setConstantValue } from 'typescript';
 import { useState } from 'react';
 import '../../../assets/css/Home.css';
+import priceTagApi from 'api/pricetagAPI';
 
 function Item({ number, photo, title }) {
   const [photos, setPhoto] = useState(photo);
   const dispatch = useDispatch();
+  const [stampList, setStampList] = useState([]);
   const handleEditClick = () => {
-    const currentStamp = JSON.parse(localStorage.getItem('Stamp'));
-    if (currentStamp != null) {
-      let action = setCurrentStamp(currentStamp.current);
-
-      dispatch(action);
-    } else {
-      const stamp = {
-        frame: { width: 100, height: 100 },
-        elementList: [],
-      };
-      let action = setCurrentStamp(stamp);
-      dispatch(action);
-    }
-    localStorage.setItem('Price', localStorage.getItem('Stamp'));
+    // const currentStamp = JSON.parse(localStorage.getItem('Stamp'));
+    // if (currentStamp != null) {
+    //   let action = setCurrentStamp(currentStamp.current);
+    //   dispatch(action);
+    // } else {
+    //   const stamp = {
+    //     frame: { width: 100, height: 100 },
+    //     elementList: [],
+    //   };
+    //   let action = setCurrentStamp(stamp);
+    //   dispatch(action);
+    // }
+    // localStorage.setItem('Price', localStorage.getItem('Stamp'));
+    const fetchStampList = async () => {
+      try {
+        const responseID = await priceTagApi.getStampById(number);
+        console.log('Fetch products successfully OK: ', responseID);
+        const stamp = { current: responseID };
+        localStorage.setItem('Price', JSON.stringify(stamp));
+        localStorage.setItem('Stamp', JSON.stringify(stamp));
+        setStampList(responseID);
+      } catch (error) {
+        console.log('Failed to fetch product list: ', error);
+      }
+    };
+    fetchStampList();
   };
   const handleDeleteClick = () => {};
   // useEffect(() => {
@@ -69,7 +83,7 @@ function Item({ number, photo, title }) {
           <div className="stamp-name"> {title}</div>
           <div className="stamp__actions">
             <div>
-              <Link to="design">
+              <Link to={'/design/' + number} refresh="true">
                 <Button outline color="primary" onClick={handleEditClick}>
                   Edit
                 </Button>

@@ -93,21 +93,30 @@ class Menu extends Component {
         id: 4,
         name: 'Chi tiết sản phẩm',
         onClick: function () {
-          currentThis.props.addElement({ id: new Date().getTime(), name: 'Chi tiết sản phẩm' });
+          currentThis.props.addElement({
+            id: new Date().getTime(),
+            name: 'Chi tiết sản phẩm',
+          });
         },
       },
       {
         id: 5,
         name: 'Thông tin trả góp',
         onClick: function () {
-          currentThis.props.addElement({ id: new Date().getTime(), name: 'Thông tin trả góp' });
+          currentThis.props.addElement({
+            id: new Date().getTime(),
+            name: 'Thông tin trả góp',
+          });
         },
       },
       {
         id: 6,
         name: 'Mã sản phẩm',
         onClick: function () {
-          currentThis.props.addElement({ id: new Date().getTime(), name: 'Mã sản phẩm' });
+          currentThis.props.addElement({
+            id: new Date().getTime(),
+            name: 'Mã sản phẩm',
+          });
         },
       },
       {
@@ -427,7 +436,7 @@ class Menu extends Component {
                   <div className="compact-picker">
                     <BGComponent></BGComponent>
                   </div>
-                  <div className="menu-content__template">
+                  {/* <div className="menu-content__template">
                     <button
                       className="btn__template "
                       onClick={() => this.handleFrameBGChange('./images/01.jpg')}
@@ -442,7 +451,7 @@ class Menu extends Component {
                     >
                       <img className="navbar__left-logo" alt="" src="./images/02.jpg" />
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="5">

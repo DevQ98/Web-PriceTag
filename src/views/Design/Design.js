@@ -1,3 +1,5 @@
+import priceTagApi from 'api/pricetagAPI';
+import DownloadLink from 'react-download-link';
 import { addElement, setCurrentStamp, updateElementAttribute } from 'app/stampSlice';
 import React, { Component } from 'react';
 import ReactHintFactory from 'react-hint';
@@ -62,19 +64,24 @@ class DesignCom extends Component {
   };
 
   componentDidMount() {
-    const currentStamp = localStorage.getItem('Price');
     if (localStorage.getItem('Price') == null) {
       const newStamp = {
         frame: { width: 100, height: 100 },
         elementList: [],
+        name: ' chua co name',
+        link: ' chua luu link',
       };
       this.props.setCurrentStamp(newStamp);
     } else {
+      const currentStamp = localStorage.getItem('Stamp');
       const newCurrentStamp = JSON.parse(currentStamp);
       if (newCurrentStamp !== null) this.props.setCurrentStamp(newCurrentStamp.current);
+      // if (newCurrentStamp !== null) this.props.setCurrentStamp(newCurrentStamp.current);
     }
   }
-
+  getHTML = () => {
+    document.getElementById('test');
+  };
   isActiveList = (attrName, attrValue) => {
     const activeElementIdxList = this.props.stamp.elementList.reduce((idxList, element, idx) => {
       if (element.isActive) idxList.push(idx);
@@ -203,7 +210,16 @@ class DesignCom extends Component {
         attrValue: '',
       });
   };
-
+  getDataFromURL = (url) =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        fetch(url)
+          .then((response) => response.text())
+          .then((data) => {
+            resolve(data);
+          });
+      });
+    }, 2000);
   handleSaveElement = () => {
     const currentStamp = localStorage.getItem('Price');
     localStorage.setItem('Stamp', currentStamp);
@@ -225,7 +241,13 @@ class DesignCom extends Component {
     //   } catch (error) {
     //     toast.error(' Có lỗi xảy ra !', { position: toast.POSITION.TOP_RIGHT, autoClose: 1500 });
     //   }
-
+    console.log(JSON.stringify(JSON.parse(currentStamp).current));
+    const params = JSON.parse(currentStamp).current;
+    toast('lưu thành công !', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1500,
+    });
+    priceTagApi.postAllElement(params);
     // elementsAPI.postData({
     //   fontStyle: 'italic',
     //   fontWeight: 'bold',
@@ -297,6 +319,7 @@ class DesignCom extends Component {
             </div>
             <div className="design__view">
               <div className="design__view-control">
+                {/* <DownloadLink label="Download" filename="fileName.html" exportFile={() => {}} /> */}
                 <div className=" btn btn__save" onClick={this.handleSaveElement}>
                   Save
                 </div>
@@ -313,7 +336,7 @@ class DesignCom extends Component {
                 Zoom : 100% | {this.props.stamp == null ? 100 : this.props.stamp.frame.height} x{' '}
                 {this.props.stamp == null ? 100 : this.props.stamp.frame.width} mm
               </div>
-              <div className="design__view--bg">
+              <div id="test" className="design__view--bg">
                 <DesignPage> </DesignPage>
               </div>
             </div>

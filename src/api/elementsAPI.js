@@ -5,12 +5,6 @@ class ElementsApi {
     const url = '/element';
     return axiosClient.get(url, { params });
   };
-
-  postAllElement = (params) => {
-    const url = `/element`;
-    return axiosClient.post(url, { params });
-  };
-
   postData = (data) => {
     const url = 'http://localhost:8080/api/element';
     axios

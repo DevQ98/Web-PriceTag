@@ -1,4 +1,5 @@
 /* eslint-disable eqeqeq */
+import priceTagApi from 'api/pricetagAPI';
 import {
   activeElementListSelector,
   removeElement,
@@ -15,13 +16,28 @@ import StampElement from '../../components/common/Draggable/StampElement';
 import '../../components/common/Draggable/TxtElement.css';
 
 function DesignPageCom(props) {
+  const [stampList, setStampList] = useState([]);
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
       if (window.event.keyCode === 46) {
       }
     });
     return () => {};
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    const fetchStampList = async () => {
+      try {
+        const params = { _page: 1, _limit: 10 };
+        const response = await priceTagApi.getAllPriceTag(params);
+        console.log('Fetch products successfully: ', response);
+        setStampList(response.data);
+      } catch (error) {
+        console.log('Failed to fetch product list: ', error);
+      }
+    };
+    fetchStampList();
   }, []);
   const [targets, setTargets] = useState([]);
   const [frameMap] = useState(() => new Map());

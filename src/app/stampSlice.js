@@ -38,10 +38,12 @@ const stampSlice = createSlice({
     },
 
     updateElementAttribute(state, action) {
+      console.log(state.current.elementList);
       const activeElementIdxList = state.current.elementList.reduce((idxList, element, idx) => {
         if (element.isActive) idxList.push(idx);
         return idxList;
       }, []);
+      console.log(activeElementIdxList);
       activeElementIdxList.forEach((elementIdx) => {
         const elementAttributes = state.current.elementList[elementIdx].attributes;
         if (!elementAttributes) {
@@ -55,8 +57,11 @@ const stampSlice = createSlice({
 
     setActiveElements(state, action) {
       const activeElementIdList = action.payload;
+      console.log(action.payload, ' action');
       if (state.current.elementList)
         state.current.elementList.forEach((element) => {
+          console.log(element.elementId, 'id');
+          console.log(activeElementIdList);
           element.isActive = activeElementIdList.includes(element.id.toString());
         });
       localStorage.setItem('Price', JSON.stringify(state));
